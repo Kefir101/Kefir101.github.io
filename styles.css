@@ -1,4 +1,4 @@
-h1{
+/* h1{
   color:orange;
   background-color: aqua;
   font-size: 52px;
@@ -54,7 +54,7 @@ a[href="t.html"]{
   padding: 20px solid red;
   text-decoration: bold;
   text-transform: uppercase;
-}*/
+}
 div{
   color: lightcoral;
   border: lightcoral 3px solid;
@@ -64,7 +64,73 @@ div p{
   border: inherit;
   margin: inherit;
   color: seagreen;
-}
+}*/
 p{
   color:orange;
+}
+.accounttitle{
+  background-color: rgb(60, 182, 223);
+  text-align: center;
+}
+h2{
+  display: inline;
+  color:blue;
+  border: lightblue 2px solid;
+}
+.btn {
+  display: inline;
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+  border: 2px solid darkred;
+  font-size: 15px;
+  color:black;
+  background-color: darkorchid;
+}
+body{
+  background-color: 9ACDE0;
+}
+label{
+  color:black;
+  font-size: 15px;
+}
+.loginbutton{
+  width: 200px;
+  height: 25px;
+  transition: 3s;
+}
+.input{
+  width: 200px;
+  height: 25px;
+  font-size: 25px;
+}
+.loginbutton:hover{
+  background: saddlebrown;
+  transform: rotateZ(720deg);
+  transform: translate(300px);
+}
+.btn.bouncebutton{
+  background-color: sandybrown;
+  animation-name: bounce;
+  animation-duration: 3s;
+  /* animation-fill-mode: backwards; 
+  animation-delay: 3s; */
+  animation: bounce 3s linear infinite alternate,
+             rotate360 1s 1.5s linear;
+}
+@keyframes bounce {
+  from{transform: translate(0px, 0px)}
+  to{transform:translate(300px, 300px)}
+}
+@keyframes rotate360 {
+  from{transform: translate(0px, 0px) rotate(0deg)}
+  to{transform: translate(300px, 300px) rotate(360deg)}
+}
+canvas {
+  background-color: #F08080;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 40%;
+  left: 70%;
 }

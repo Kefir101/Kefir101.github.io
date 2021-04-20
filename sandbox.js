@@ -1,3 +1,56 @@
+function showInput(){
+  var username = document.getElementById("usernametext").value;
+  var password = document.getElementById("passwordtext").value;
+  if(username == '1' && password == 1){
+    window.location= "/account.html";
+  }else{
+    var tag = document.createElement("h3");
+    var text = document.createTextNode("Try again!");
+    tag.appendChild(text);
+    var element = document.getElementById("new");
+    element.appendChild(tag);
+  }
+  //alert(`username is ${username} and password is ${password}`);
+}
+function changeColor(color){
+   document.body.style.backgroundColor = color;
+}
+var canvas = document.querySelector("canvas");
+canvas.width = 400;
+canvas.height = 400;
+var l = canvas.getContext('2d');
+var x = 0;
+var y = 0;
+var radius = 30;
+do {
+  x = Math.floor(Math.random() * canvas.width);
+  y = Math.floor(Math.random() * canvas.height);
+} while (outOfBounds(x, y, radius, 0, 0, canvas.width, canvas.height));
+var vx = Math.floor(Math.random() * 4);
+var vy = Math.floor(Math.random() * 8);
+move();
+function move() {
+  requestAnimationFrame(move);
+  l.clearRect(0, 0, canvas.width, canvas.height);
+  l.beginPath();
+  l.arc(x, y, radius, 0, 2 * Math.PI, false);
+  l.fillStyle = 'green';
+  l.fill();
+  l.strokeStyle = '#003300';
+  l.stroke();
+  //0 is relative to canvas
+  if (radius + x > canvas.width || x - radius < 0)
+      vx = -vx;
+  if (y + radius > canvas.height || y - radius < 0)
+      vy = 0 - vy;
+  x += vx;
+  y += vy;
+}
+function outOfBounds(centerx, centery, r, rectx, recty, width, height){
+  if (x - r < 0 || x + r > width || y + r > height || y - r < 0)
+      return true;
+  return false;
+}
 // console.log(12);            
 // let age = 25;
 // console.log(age,2019);
@@ -71,14 +124,3 @@
 // console.log(String(50), typeof String(50));
 // console.log(Boolean(100), typeof Boolean(100)); //100 = true, 0 = false
 // console.log(Boolean('0'), typeof Boolean('0')); //'0' = true, '' = false
-
-function showInput(){
-  var username = document.getElementById("usernametext").value;
-  var password = document.getElementById("passwordtext").value;
-  if(username == 'The_Cyber_Shadow' && password == 34){
-    window.location= "/account.html";
-  }else{
-    alert('WRONG! Try again')
-  }
-  //alert(`username is ${username} and password is ${password}`);
-}

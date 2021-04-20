@@ -7,12 +7,36 @@
   <title>A Button App</title>
 </head>
 <body>
+  <h1 class = "accounttitle">Welcome</h1>
+
+  <canvas>
+
+  </canvas>
+  
+  <label for="">Choose a premade color:</label>
+  <button onclick="changeColor('FDF8E2')" id = "color1" class = "btn">Color 1</button>
+  <button onclick="changeColor('FFDDD3')" id = "color2" class = "btn">Color 2</button>
+  <button onclick="changeColor('F3BFB3')" id = "color3" class = "btn">Color 3</button>
+  <button onclick="changeColor('5EA9BE')" id = "color4" class = "btn">Color 4</button>
+  <button onclick="changeColor('9ACDE0')" id = "color5" class = "btn">Color 5</button>
+  <button onclick="changeColor('CBE1EF')" id = "color6" class = "btn">Color 6</button>
+
+  <label for="colorpicker">or make your own!</label>
+  <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
+
   <br><br>
-  <input id="usernametext" placeholder="type username here" required>
+  <h2>Login here please:</h2>
   <br><br>
-  <input type="password" id = "passwordtext" placeholder="type password here" required>
-  <button onclick="showInput()" id = "button1">Click here</button>
+  <input class = "input" id="usernametext" placeholder="username..." required>
+  <br>
+  <input class = "input" type="password" id = "passwordtext" placeholder="password..." required>
+  <br>
+  <button class = "loginbutton" onclick="showInput()" id = "button1">Click here to login</button>
+  <br><br>
+  <div id  ="new"></div>
+  <button class = "btn bouncebutton" onclick="" id = "bouncebutton">Bounce!</button>
+
+  <!-- <input type="text" id = "text" placeholder="test" required> -->
   <script src="sandbox.js"></script>
-  <p>Testing testing 123</p>
 </body>
 </html>
