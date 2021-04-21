@@ -94,35 +94,44 @@ label{
   color:black;
   font-size: 15px;
 }
-.loginbutton{
-  width: 200px;
-  height: 25px;
-  transition: 3s;
-}
-.input{
+input{
   width: 200px;
   height: 25px;
   font-size: 25px;
 }
-.loginbutton:hover{
-  background: saddlebrown;
-  transform: rotateZ(720deg);
-  transform: translate(300px);
+.loginbutton{
+  width: 200px;
+  height: 25px;
+  transition: 3s;
+  background: revert;
+  text-decoration: none;
 }
+ /* .loginbutton:focus{
+   background: rgb(78, 36, 2);
+  text-decoration: line-through;
+  animation: catchMe 5s linear 2 alternate; 
+} */
 .btn.bouncebutton{
   background-color: sandybrown;
-  animation-name: bounce;
-  animation-duration: 3s;
-  /* animation-fill-mode: backwards; 
-  animation-delay: 3s; */
-  animation: bounce 3s linear infinite alternate,
-             rotate360 1s 1.5s linear;
+  animation: bounce 3s linear infinite alternate;
+}
+h1.gae{
+  transform: translate(750px, -20px);
+}
+@keyframes catchMe {
+  1%{transform: translate(0px, -300px) rotate(-720deg) scale(2)}
+  10%{transform: translate(1500px, -200px) rotate(720deg) scale(4)}
+  20%{transform: translate(0px, -100px) rotate(-720deg) scale(2)}
+  30%{transform: translate(1500px, 0px) rotate(720deg) scale(4)}
+  40%{transform: translate(0px, 100px) rotate(-720deg) scale(2)}
+  50%{transform: translate(1500px, 200px) rotate(720deg) scale(4)}
+  60%{transform: translate(0px, 300px) rotate(-720deg) scale(2)}
+  70%{transform: translate(1500px, 400px) rotate(720deg) scale(4)}
+  80%{transform: translate(0px, 500px) rotate(-720deg) scale(2)}
+  90%{transform: translate(1500px, 600px) rotate(720deg) scale(4)}
+  100%{transform: translate(0px, 700px) rotate(-720deg) scale(2)}
 }
 @keyframes bounce {
-  from{transform: translate(0px, 0px)}
-  to{transform:translate(300px, 300px)}
-}
-@keyframes rotate360 {
   from{transform: translate(0px, 0px) rotate(0deg)}
   to{transform: translate(300px, 300px) rotate(360deg)}
 }
