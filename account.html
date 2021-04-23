@@ -7,16 +7,14 @@
 </head>
 <body>
   <div>
-    <iframe width="1500" height="844"src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
-    <br>
-    <h1 class = "gae">y r u gae?</h2>
-    <br><br><br>
-    <h1>This is your account!</h1>
-    <p>Ssssh, dont tell anyone</p>
-    <a href="index.html">Return to main</a>
+    <!-- <iframe id = "myVideo" width="1500" height="844" src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
+    <br> <h1 class = "gae" id = "gae">y r u gae?</h2> -->
+    <h1>What do you want boi?</h1>
+    <a href="index.html" class = "link">Return to main</a>
   </div>
+  <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
 
-  <div id="youtube-player-container" style="float:right"> </div>
+  <!-- <div id="youtube-player-container" style="float:right"> </div>
   <script type="text/javascript" src="http://127.0.0.1:5500/account.html/folder/jQuery.tubeplayer.min.js"></script>
   <script type="text/javascript">
   jQuery("#youtube-player-container").tubeplayer({
@@ -33,6 +31,27 @@
     onPlayerEnded: function(){ alert("oo"); },
     onUnMute: function(){} // after the player is unmuted
 });
+</script> -->
+<script>
+  setTimeout(stopVideo, 3000)
+  setTimeout(stopText, 4000)
+  function stopVideo(){
+    document.getElementById("myVideo").style.display="none";
+  }
+  function stopText(){
+    document.getElementById("gae").style.display="none";
+  }
+  // console.log(1);
+  // document.getElementById('myVideo').addEventListener('ended', myHandler, false);
+  // console.log(2);
+  // function myHandler(e) {
+  //     console.log(3);
+  //     if(!e) { e = window.event; }
+  //       console.log(3);
+  //       document.getElementById('myVideo').style.display="none";
+  //       document.getElementById('videoEnd').style.display="block";
+  //     }
 </script>
+<script src="sandbox.js"></script>
 </body>
 </html>

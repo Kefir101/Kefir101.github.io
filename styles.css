@@ -96,8 +96,8 @@ label{
 }
 input{
   width: 200px;
-  height: 25px;
-  font-size: 25px;
+  height: 20px;
+  font-size: 20px;
 }
 .loginbutton{
   width: 200px;
@@ -142,4 +142,20 @@ canvas {
   position: absolute;
   top: 40%;
   left: 70%;
+}
+.link{
+  font-size: 40px;
+}
+.popup{
+  display: inline-block;
+  width: 500px;
+  height: 200px;
+  text-align: center;
+  background-color: chocolate;
+  animation: popup 2s forwards;
+}
+@keyframes popup {
+  0%{transform: translate(100px, -400px)}
+  50%{transform: translate(100px, 0px)}
+  100%{transform: translate(100px, -50px)}
 }

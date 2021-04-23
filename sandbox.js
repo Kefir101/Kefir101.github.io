@@ -53,6 +53,14 @@ function makeBallAndBounce(){
     return false;
   }
 }
+function enteredPopupInput(){
+  // var input = document.getElementById("popuptext").value;
+  document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      document.getElementById("popup").style.display="none";
+    }
+  })
+}
 
 // console.log(12);            
 // let age = 25;
@@ -127,3 +135,47 @@ function makeBallAndBounce(){
 // console.log(String(50), typeof String(50));
 // console.log(Boolean(100), typeof Boolean(100)); //100 = true, 0 = false
 // console.log(Boolean('0'), typeof Boolean('0')); //'0' = true, '' = false
+const grade = 'D';
+switch(grade){ //uses === not ==
+  case 'A':
+    console.log('great job!');
+    break;
+  case 'B':
+    console.log('good job!');
+    break;
+  case 'C':
+    console.log('average job!');
+    break;
+  default:
+    console.log('get the whip!')
+}
+const speak = function(name = 'defaultnameifNOargument'){ //function expression, no hoist though (cant use speak() before function defined)
+  console.log(`hi ${name}`);
+};
+speak();
+
+const display = () => {
+  console.log(add2(25));
+}
+const add2 = value => value+2;
+display();
+let people =[ ]
+people.forEach(function(person, index){
+  console.log(person, index); //prints 1, 2, 3
+});
+//arrow style
+people.forEach((person, index) =>{
+  console.log(person, index); //prints 1, 2, 3
+});
+const logPerson = (person, index) => {
+  console.log(`${index}: hello ${person}`);
+}
+people.forEach(logPerson);
+
+
+const ul = document.querySelector('.ulclass');
+let html = ``;
+people.forEach(function(person){
+  html += `<li style="color: green">${person}</li>`;
+});
+ul.innerHTML = html;

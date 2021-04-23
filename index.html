@@ -8,11 +8,7 @@
 </head>
 <body>
   <h1 class = "accounttitle">Welcome</h1>
-
-  <canvas>
-
-  </canvas>
-
+  <canvas></canvas>
   <label for="">Choose a premade color:</label>
   <button onclick="changeColor('FDF8E2')" id = "color1" class = "btn">Color 1</button>
   <button onclick="changeColor('FFDDD3')" id = "color2" class = "btn">Color 2</button>
@@ -20,10 +16,14 @@
   <button onclick="changeColor('5EA9BE')" id = "color4" class = "btn">Color 4</button>
   <button onclick="changeColor('9ACDE0')" id = "color5" class = "btn">Color 5</button>
   <button onclick="changeColor('CBE1EF')" id = "color6" class = "btn">Color 6</button>
-
   <label for="colorpicker">or make your own!</label>
   <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
 
+  <div class = "popup" id = "popup">
+    <h1>Why hello there!</h1>
+      <p>Hows it going? Hows your day been?</p>
+      <input type="text" id = "popuptext" onclick="enteredPopupInput()">
+  </div>
   <br><br>
   <h2>Login here please:</h2>
   <br><br>
@@ -34,8 +34,23 @@
   <button class = "loginbutton" onclick="showInput()" id = "button1">Click here to login</button>
   <br><br>
   <div id  ="new"></div>
-  <button class = "btn bouncebutton" onclick="makeBallAndBounce()" id = "bouncebutton">Bounce!</button>
+  <button class = "btn bouncebutton" onclick="makeBallAndBounce()" id = "bouncebutton">Click me!</button>
+  <ul class ="ulclass">
+
+
+  </ul>
   <!-- <input type="text" id = "text" placeholder="test" required> -->
   <script src="sandbox.js"></script>
 </body>
+<!-- <body>
+  <p>This is your first java applet shown below! </p>
+  <applet
+    code ="Chess.class"
+    codebase="..\\..\\build\\classes"
+    height="640"
+    width="640"
+    <p>You need a java-enabled browser to see this.</p>
+   </applet>
+  </body> -->
+  
 </html>
