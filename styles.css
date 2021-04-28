@@ -124,6 +124,27 @@ input{
   background: revert;
   text-decoration: none;
 }
+.game{
+  display: inline-block;
+  margin: 20px;
+  background-color: #F08080;
+  font-size: 35px;
+}
+.gameh1{
+  text-decoration: underline;
+  font-size: 45px;
+}
+.games{
+  font-size: 35px;
+}
+.link{
+  font-size: 20px;
+}
+.song{
+  margin: 10px;
+  display: inline-block;
+  border: 2px solid purple;
+}
  /* .loginbutton:focus{
    background: rgb(78, 36, 2);
   text-decoration: line-through;
