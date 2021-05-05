@@ -1,3 +1,76 @@
+function checkInput(){
+  var inputusername = document.getElementById("usernametext").value;
+  var inputpassword = document.getElementById("passwordtext").value;
+  var inputdate = document.getElementById("date").value;
+  let possibleLogins = [
+    {
+      username: "Kefir101Awesome",
+      password: 101,
+      date: "2004-11-24",
+    },
+    {
+      username: "The_Cyber_Shadow",
+      password: 34,
+      date: "2005-04-16",
+    },
+    {
+      username: "Savta",
+      password: 1946,
+      date: "1946-01-01",
+    },
+  ];
+  let correct = false;
+  possibleLogins.forEach(login =>{
+    if((inputusername == login.username) && (inputpassword == login.password) && (inputdate == login.date)){
+      correct = true;
+    }
+  });
+  if(correct){
+    window.location= "/account.html";
+    console.log("login correct!");
+  }else if(!correct){
+    var tag = document.createElement("h3");
+    var text = document.createTextNode("Try again!");
+    tag.appendChild(text);
+    var element = document.getElementById("new");
+    element.appendChild(tag);
+    setTimeout(() => {  element.removeChild(tag);; }, 1000);
+  }
+  //alert(`username is ${username} and password is ${password}`);
+}
+function changeColor(color){
+  document.body.style.background = color;
+}
+var stopped = false;
+function changeLink(){
+  const link = document.querySelector('.song');
+  link.setAttribute('href', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+  //link.classList.toggle('classname'); (adds/removes class)
+}
+function disable(){
+  let p5 = document.getElementById('p5');
+  p5.src = "random.js";  
+  console.log(p5);
+  let h1 = document.getElementById('h1');
+  h1.class = "game"; 
+  console.log(h1);
+}
+function undo(){
+  if(stopped){
+    start();
+  }else if(!stopped){
+    stop();
+  }
+}
+function stop(){
+  stopped = true;
+  noLoop();
+}
+function start(){
+  stopped = false;
+  loop();
+}
+
 let ballList = [];
 const ballSize = 12;
 let ballScore = 0;
@@ -31,11 +104,7 @@ function draw() {
     let ball = ballList[i];
     let x = ball.x;
     let y = ball.y;
-    if (findDist(ball.x, ball.y, mouseX, mouseY) <= (2 * ballSize + ballSize) / 2) {
-      ball.xSpeed = random(-3, 3);
-      ball.ySpeed = random(-3, 3);
-    }
-    for (let j = 0; j < -1; j++) {
+    for (let j = 0; j < ballList.length; j++) {
           let jball = ballList[j];
           if (i != j) {
             if (ballInsideBall(x, y, jball.x, jball.y) || ballHitBall(x, y, jball.x, jball.y)) {
@@ -60,9 +129,14 @@ function draw() {
               ball.ySpeed = tooSmall(tempballySpeed);
               jball.xSpeed = tooSmall(tempjballxSpeed);
               jball.ySpeed = tooSmall(tempjballySpeed);
+            }else{
+              if (findDist(x, y, mouseX, mouseY) <= (2 * ballSize + ballSize) / 2) {
+                ball.xSpeed = random(-3, 3);
+                ball.ySpeed = random(-3, 3);
+              }
             }
           }
-        }
+    }
     ball.move();
     ball.reverse();
     ball.show();

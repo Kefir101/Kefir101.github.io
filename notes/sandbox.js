@@ -1,76 +1,97 @@
-function checkInput(){
-  var inputusername = document.getElementById("usernametext").value;
-  var inputpassword = document.getElementById("passwordtext").value;
-  var inputdate = document.getElementById("date").value;
-  let possibleLogins = [
-    {
-      username: "Kefir101Awesome",
-      password: 101,
-      date: "2004-11-24",
-    },
-    {
-      username: "The_Cyber_Shadow",
-      password: 34,
-      date: "2005-04-16",
-    },
-    {
-      username: "Savta",
-      password: 1946,
-      date: "1946-01-01",
-    },
-  ];
-  let correct = false;
-  possibleLogins.forEach(login =>{
-    if((inputusername == login.username) && (inputpassword == login.password) && (inputdate == login.date)){
-      correct = true;
-    }
-  });
-  if(correct){
-    window.location= "/account.html";
-    console.log("login correct!");
-  }else if(!correct){
-    var tag = document.createElement("h3");
-    var text = document.createTextNode("Try again!");
-    tag.appendChild(text);
-    var element = document.getElementById("new");
-    element.appendChild(tag);
-    setTimeout(() => {  element.removeChild(tag);; }, 1000);
-  }
-  //alert(`username is ${username} and password is ${password}`);
-}
-function changeColor(color){
-  document.body.style.background = color;
-}
-var stopped = false;
-function changeLink(){
-  const link = document.querySelector('.song');
-  link.setAttribute('href', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-  //link.classList.toggle('classname'); (adds/removes class)
-}
-function disable(){
-  let p5 = document.getElementById('p5');
-  p5.src = "random.js";  
-  console.log(p5);
-  let h1 = document.getElementById('h1');
-  h1.class = "game"; 
-  console.log(h1);
-}
-function undo(){
-  if(stopped){
-    start();
-  }else if(!stopped){
-    stop();
-  }
-}
-function stop(){
-  stopped = true;
-  noLoop();
-}
-function start(){
-  stopped = false;
-  loop();
-}
+// <!-- <input type="text" id = "text" placeholder="test" required> -->
+//   <!-- <APPLET archive="Life.jar" code="Life.class" WIDTH=400 HEIGHT=200 alt="You need to have compatible browser to run this Java applet">Hi there</APPLET> -->
+//   <!-- <div id="youtube-player-container" style="float:right"> </div>
+//   <script type="text/javascript" src="http://127.0.0.1:5500/account.html/folder/jQuery.tubeplayer.min.js"></script>
+//   <script type="text/javascript">
+//   jQuery("#youtube-player-container").tubeplayer({
+//     width: 1500, // the width of the player
+//     height: 844, // the height of the player
+//     allowFullScreen: "true", // true by default, allow user to go full screen
+//     initialVideo: "KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0", // the video that is loaded into the player
+//     preferredQuality: "default",// preferred quality: default, small, medium, large, hd720
+//     onPlay: function(id){}, // after the play method is called
+//     onPause: function(){}, // after the pause method is called
+//     onStop: function(){}, // after the player is stopped
+//     onSeek: function(time){}, // after the video has been seeked to a defined point
+//     onMute: function(){}, // after the player is muted
+//     onPlayerEnded: function(){ alert("oo"); },
+//     onUnMute: function(){} // after the player is unmuted
+// });
+// </script> -->
+// <script>
+//   // setTimeout(stopVideo, 3000)
+//   // setTimeout(stopText, 4000)
+//   // function stopVideo(){
+//   //   document.getElementById("myVideo").style.display="none";
+//   // }
+//   // function stopText(){
+//   //   document.getElementById("gae").style.display="none";
+//   // }
+//   // console.log(1);
+//   // document.getElementById('myVideo').addEventListener('ended', myHandler, false);
+//   // console.log(2);
+//   // function myHandler(e) {
+//   //     console.log(3);
+//   //     if(!e) { e = window.event; }
+//   //       console.log(3);
+//   //       document.getElementById('myVideo').style.display="none";
+//   //       document.getElementById('videoEnd').style.display="block";
+//   //     }
+// </script>
 
+
+
+
+
+
+// <!-- <script type="module" src="Scene.js"></script> -->
+// <!-- <script type = "text/javascript">
+//   var counter;
+//   var canvas = document.querySelector("canvas");
+//   canvas.width = 400;
+//   canvas.height = 400;
+//   var l = canvas.getContext('2d');
+//   var allballs = [];
+//   function addBall(){
+//     allballs.push(ball = {
+//       x: Math.floor(Math.random() * canvas.width),
+//       y: Math.floor(Math.random() * canvas.height),
+//       xSpeed: Math.floor(Math.random() * 4),
+//       ySpeed: Math.floor(Math.random() * 8),
+//       radius: 30,
+//     })
+//   }
+//   console.log(allballs);
+//   counter++;
+//   console.log(counter);
+  // if(counter % 2 == 0){
+  //   function bouncingBalls(){
+  //     for(let i = 0; i < allballs.size(); i++){
+  //       move(i);
+  //     }
+  //   }
+  //   function move(i) {
+  //     let x = allballs[i].x;
+  //     let y = allballs[i].y;
+  //     let radius = allballs[i].radius;
+  //     requestAnimationFrame(move);
+  //     //l.clearRect(0, 0, canvas.width, canvas.height);
+  //     l.beginPath();
+  //     l.strokeStyle = "black";
+  //     l.fillStyle = "green";
+  //     l.arc(x, y, radius, 0, Math.PI * 2, false);
+  //     l.fill();
+  //     l.strokeStyle = '#003300';
+  //     l.stroke();
+  //     if (radius + x > canvas.width || x - radius < 0)
+  //         vx = -vx;
+  //     if (y + radius > canvas.height || y - radius < 0)
+  //         vy = -vy;
+  //     x = x + vx;
+  //     y = y + vy;
+  //   }
+  // } 
+//</script> -->
 
 
 // //get script and html
