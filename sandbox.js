@@ -1,54 +1,144 @@
-function showInput(){
-  var username = document.getElementById("usernametext").value;
-  var password = document.getElementById("passwordtext").value;
-  if(username == '1' && password == 1){
+function checkInput(){
+  var inputusername = document.getElementById("usernametext").value;
+  var inputpassword = document.getElementById("passwordtext").value;
+  var inputdate = document.getElementById("date").value;
+  let possibleLogins = [
+    {
+      username: "Kefir101Awesome",
+      password: 101,
+      date: "2004-11-24",
+    },
+    {
+      username: "The_Cyber_Shadow",
+      password: 34,
+      date: "2005-04-16",
+    },
+    {
+      username: "Savta",
+      password: 1946,
+      date: "1946-01-01",
+    },
+  ];
+  let correct = false;
+  possibleLogins.forEach(login =>{
+    if((inputusername == login.username) && (inputpassword == login.password) && (inputdate == login.date)){
+      correct = true;
+    }
+  });
+  if(correct){
     window.location= "/account.html";
-  }else{
+    console.log("login correct!");
+  }else if(!correct){
     var tag = document.createElement("h3");
     var text = document.createTextNode("Try again!");
     tag.appendChild(text);
     var element = document.getElementById("new");
     element.appendChild(tag);
+    setTimeout(() => {  element.removeChild(tag);; }, 1000);
   }
   //alert(`username is ${username} and password is ${password}`);
 }
 function changeColor(color){
-   document.body.style.backgroundColor = color;
+  document.body.style.background = color;
 }
+var stopped = false;
 function changeLink(){
   const link = document.querySelector('.song');
   link.setAttribute('href', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
   //link.classList.toggle('classname'); (adds/removes class)
 }
-// let allballs = [];
-// let canvas = document.querySelector("canvas");
-// canvas.width = 400;
-// canvas.height = 400;
-// let l = canvas.getContext('2d');
+function disable(){
+  let p5 = document.getElementById('p5');
+  p5.src = "random.js";  
+  console.log(p5);
+  let h1 = document.getElementById('h1');
+  h1.class = "game"; 
+  console.log(h1);
+}
+function undo(){
+  if(stopped){
+    start();
+  }else if(!stopped){
+    stop();
+  }
+}
+function stop(){
+  stopped = true;
+  noLoop();
+}
+function start(){
+  stopped = false;
+  loop();
+}
+
+
+
+// //get script and html
+// var yourscripttag = document.getElementById('p5');
+// var scripthtml = 'if (1==0){' + yourscripttag.innerHTML + '}';
+// //remove script
+// yourscripttag.remove();
+// //create new script element
+// var newscript = document.createElement('script');
+// newscript.type ='text/javascript';
+// //insert html in new script tag
+// newscript.appendChild(document.createTextNode(scripthtml));
+// //insert new script tag into head
+// document.getElementsByTagName('head').item(0).appendChild(newscript);
+
+
+// var canvas;
+// var allballs;
+// var ball;
 // function balls(){
-//   for(let i = 0; i < 5; i++){
-//     allballs.push(ball = {
-//       x: Math.floor(Math.random() * canvas.width),
-//       y: Math.floor(Math.random() * canvas.height),
-//       xSpeed: Math.floor(Math.random() * 4),
-//       ySpeed: Math.floor(Math.random() * 8),
-//       radius: 30,
-//     })
-//     console.log(allballs.forEach(console.log(ball.x)))
-//     makeBallAndBounce(i);
-//   }
+//   canvas = document.querySelector("canvas");
+//   allballs = [];
+//   canvas.width = 400;
+//   canvas.height = 400;
+//   allballs.push(ball = {
+//     x: Math.floor(Math.random() * canvas.width),
+//     y: Math.floor(Math.random() * canvas.height),
+//     xSpeed: Math.floor(Math.random() * 4),
+//     ySpeed: Math.floor(Math.random() * 8),
+//     radius: 30,
+//   })
+//   makeBallAndBounce(0);
+//   // for(let i = 0; i < 5; i++){
+//   //   allballs.push(ball = {
+//   //     x: Math.floor(Math.random() * canvas.width),
+//   //     y: Math.floor(Math.random() * canvas.height),
+//   //     xSpeed: Math.floor(Math.random() * 4),
+//   //     ySpeed: Math.floor(Math.random() * 8),
+//   //     radius: 30,
+//   //   })
+//   //   makeBallAndBounce(i);
+//   // }
 //   //allballs.forEach(makeBallAndBounce());
 // }
 // function makeBallAndBounce(i){
-//   let l = canvas.getContext('2d');
+//   ball = allballs[i];
+//   var l = canvas.getContext('2d');
 //   // let x = Math.floor(Math.random() * canvas.width);
+//   //let radius = 30;
 //   // let y = Math.floor(Math.random() * canvas.height);
-//   l.clearRect(0, 0, canvas.width, canvas.height);
-//   do {
-//     ball.x = Math.floor(Math.random() * canvas.width);
-//     ball.y = Math.floor(Math.random() * canvas.height);
-//   } while (outOfBounds(x, y, radius, 0, 0, canvas.width, canvas.height));
-//   move();
+//   //l.clearRect(0, 0, canvas.width, canvas.height);
+//   // do {
+//   //   ball.x = Math.floor(Math.random() * canvas.width);
+//   //   ball.y = Math.floor(Math.random() * canvas.height);
+//   // } while (outOfBounds(ball.x, ball.y, ball.radius, canvas.width, canvas.height));
+//   l.beginPath();
+//   l.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI, false);
+//   l.fillStyle = 'green';
+//   l.fill();
+//   l.strokeStyle = '#003300';
+//   l.stroke();
+//   requestAnimationFrame(makeBallAndBounce);
+//   if (ball.radius + ball.x > canvas.width || ball.x - ball.radius < 0)
+//       ball.xSpeed = -ball.xSpeed;
+//   if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0)
+//       ball.ySpeed = -ball.ySpeed;
+//   ball.x += ball.xSpeed;
+//   ball.y += ball.ySpeed;
 //   function move() {
 //     requestAnimationFrame(move);
 //     //l.clearRect(0, 0, canvas.width, canvas.height);
@@ -59,35 +149,35 @@ function changeLink(){
 //     l.strokeStyle = '#003300';
 //     l.stroke();
 //     //0 is relative to canvas
-//     for(let j = 0; j < 5; j++){
-//       let jball = allballs[j];
-//       if(i != j){
-//         console.log(ball.x, ball.y, jball.x, jball.y);
-//         if(findDist(ball.x, ball.y, jball.x, jball.y) <= radius){
-//           let tempballxSpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v1x");
-//           let tempballySpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v1y");
-//           let tempjballxSpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v2x");
-//           let tempjballySpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v2y");
-//           ball.xSpeed = tooSmall(tempballxSpeed);
-//           ball.ySpeed = tooSmall(tempballySpeed);
-//           jball.xSpeed = tooSmall(tempjballxSpeed);
-//           jball.ySpeed = tooSmall(tempjballySpeed);
-//           ball.xSpeed = tempballxSpeed;
-//           ball.ySpeed = tempballySpeed;
-//           jball.xSpeed = tempjballxSpeed;
-//           jball.ySpeed = tempjballySpeed;
-//         }
-//       }
-//     }
+//     // for(let j = 0; j < 5; j++){
+//     //   let jball = allballs[j];
+//     //   if(i != j){
+//     //     console.log(ball.x, ball.y, jball.x, jball.y);
+//     //     if(findDist(ball.x, ball.y, jball.x, jball.y) <= radius){
+//     //       let tempballxSpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v1x");
+//     //       let tempballySpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v1y");
+//     //       let tempjballxSpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v2x");
+//     //       let tempjballySpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v2y");
+//     //       ball.xSpeed = tooSmall(tempballxSpeed);
+//     //       ball.ySpeed = tooSmall(tempballySpeed);
+//     //       jball.xSpeed = tooSmall(tempjballxSpeed);
+//     //       jball.ySpeed = tooSmall(tempjballySpeed);
+//     //       ball.xSpeed = tempballxSpeed;
+//     //       ball.ySpeed = tempballySpeed;
+//     //       jball.xSpeed = tempjballxSpeed;
+//     //       jball.ySpeed = tempjballySpeed;
+//     //     }
+//     //   }
+//     // }
 //     if (radius + x > canvas.width || x - radius < 0)
-//         ball.xSpeed = -ball.xSpeed;
+//       ball.xSpeed = -ball.xSpeed;
 //     if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0)
 //         ball.ySpeed = -ball.ySpeed;
 //     ball.x += ball.xSpeed;
 //     ball.y += ball.ySpeed;
 //   }
-//   function outOfBounds(centerx, centery, r, rectx, recty, width, height){
-//     if (x - r < 0 || x + r > width || y + r > height || y - r < 0)
+//   function outOfBounds(centerx, centery, radius, width, height){
+//     if (centerx - radius < 0 || centerx + radius > width || centery + radius > height || centery - radius < 0)
 //         return true;
 //     return false;
 //   }

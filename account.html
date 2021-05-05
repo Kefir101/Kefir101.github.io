@@ -1,20 +1,40 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <link rel="stylesheet" href="styles.css">
     <title>Learning HTML</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8" />
 </head>
 <body>
+  <script src="sketch.js" id = 'p5'></script>
+  <script src="sandbox.js"></script>
   <div>
     <!-- <iframe id = "myVideo" width="1500" height="844" src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
     <br> <h1 class = "gae" id = "gae">y r u gae?</h2> -->
-    <h1>What do you want boi?</h1>
-    <a href="index.html" class = "link">Return to main</a>
+    <h1 id = 'h1' class = "1">What do you want boi?</h1>
+    <a href="login.html" class = "link">Return to main</a>
   </div>
-  <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
-
+  <div>
+    <label for="">Choose a premade color:</label>
+    <button onclick="changeColor('#FDF8E2')" id = "color1" class = "btn">Color 1</button>
+    <button onclick="changeColor('#FFDDD3')" id = "color2" class = "btn">Color 2</button>
+    <button onclick="changeColor('#F3BFB3')" id = "color3" class = "btn">Color 3</button>
+    <button onclick="changeColor('#5EA9BE')" id = "color4" class = "btn">Color 4</button>
+    <button onclick="changeColor('#9ACDE0')" id = "color5" class = "btn">Color 5</button>
+    <button onclick="changeColor('#CBE1EF')" id = "color6" class = "btn">Color 6</button>
+    <label for="colorpicker">or make your own!</label>
+    <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
+  </div>  
+  <canvas id = "canvas"></canvas>
+  <a class = "song link" href="https://www.youtube.com/watch?v=40JmEj0_aVM" onclick = "changeLink()">A song</a> <br> <br>
+  <button class = "btn bouncebutton" onclick="setSize(400)" id = "bouncebutton">Click me!</button>
+  <ul class ="ulclass">
+  </ul>
+  <a class = "link" href="allgames.html">Click to see my projects!</a>
+  <!-- <input type="text" id = "text" placeholder="test" required> -->
+  <!-- <APPLET archive="Life.jar" code="Life.class" WIDTH=400 HEIGHT=200 alt="You need to have compatible browser to run this Java applet">Hi there</APPLET> -->
   <!-- <div id="youtube-player-container" style="float:right"> </div>
   <script type="text/javascript" src="http://127.0.0.1:5500/account.html/folder/jQuery.tubeplayer.min.js"></script>
   <script type="text/javascript">
@@ -34,14 +54,15 @@
 });
 </script> -->
 <script>
-  setTimeout(stopVideo, 3000)
-  setTimeout(stopText, 4000)
-  function stopVideo(){
-    document.getElementById("myVideo").style.display="none";
-  }
-  function stopText(){
-    document.getElementById("gae").style.display="none";
-  }
+ 
+  // setTimeout(stopVideo, 3000)
+  // setTimeout(stopText, 4000)
+  // function stopVideo(){
+  //   document.getElementById("myVideo").style.display="none";
+  // }
+  // function stopText(){
+  //   document.getElementById("gae").style.display="none";
+  // }
   // console.log(1);
   // document.getElementById('myVideo').addEventListener('ended', myHandler, false);
   // console.log(2);
@@ -53,6 +74,56 @@
   //       document.getElementById('videoEnd').style.display="block";
   //     }
 </script>
-<script src="sandbox.js"></script>
+<script>
+
+</script>
+<!-- <script type="module" src="Scene.js"></script> -->
+<!-- <script type = "text/javascript">
+  var counter;
+  var canvas = document.querySelector("canvas");
+  canvas.width = 400;
+  canvas.height = 400;
+  var l = canvas.getContext('2d');
+  var allballs = [];
+  function addBall(){
+    allballs.push(ball = {
+      x: Math.floor(Math.random() * canvas.width),
+      y: Math.floor(Math.random() * canvas.height),
+      xSpeed: Math.floor(Math.random() * 4),
+      ySpeed: Math.floor(Math.random() * 8),
+      radius: 30,
+    })
+  }
+  console.log(allballs);
+  counter++;
+  console.log(counter);
+  // if(counter % 2 == 0){
+  //   function bouncingBalls(){
+  //     for(let i = 0; i < allballs.size(); i++){
+  //       move(i);
+  //     }
+  //   }
+  //   function move(i) {
+  //     let x = allballs[i].x;
+  //     let y = allballs[i].y;
+  //     let radius = allballs[i].radius;
+  //     requestAnimationFrame(move);
+  //     //l.clearRect(0, 0, canvas.width, canvas.height);
+  //     l.beginPath();
+  //     l.strokeStyle = "black";
+  //     l.fillStyle = "green";
+  //     l.arc(x, y, radius, 0, Math.PI * 2, false);
+  //     l.fill();
+  //     l.strokeStyle = '#003300';
+  //     l.stroke();
+  //     if (radius + x > canvas.width || x - radius < 0)
+  //         vx = -vx;
+  //     if (y + radius > canvas.height || y - radius < 0)
+  //         vy = -vy;
+  //     x = x + vx;
+  //     y = y + vy;
+  //   }
+  // } 
+</script> -->
 </body>
 </html>
