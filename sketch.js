@@ -50,10 +50,8 @@ function changeLink(){
 function disable(){
   let p5 = document.getElementById('p5');
   p5.src = "random.js";  
-  console.log(p5);
   let h1 = document.getElementById('h1');
   h1.class = "game"; 
-  console.log(h1);
 }
 function undo(){
   if(stopped){
@@ -71,6 +69,17 @@ function start(){
   loop();
 }
 
+function setButtonColor(){
+  let doc = document.getElementsByClassName("btn");
+  for(let i = 0; i < document.querySelectorAll('.btn').length; i++){
+    doc[i].style.backgroundColor = doc[i].id;
+  }
+}
+
+window.onload = function() {
+  setButtonColor();
+};
+
 let ballList = [];
 const ballSize = 12;
 let ballScore = 0;
@@ -80,7 +89,6 @@ let balls = 800;
 function setSize(s) {
   // let S = s + "px";
   let S = random(10, 500) + "px";
-  console.log(document.getElementById("defaultCanvas0").style.width);
   document.getElementById("defaultCanvas0").style.width = S;
   document.getElementById("defaultCanvas0").style.height = S;
   //size = s;
@@ -154,8 +162,8 @@ class ball {
     // this.xSpeed = random(-10, 10);
     // this.ySpeed = random(-10, 10);
     //this.color = color(random(255), random(255), random(255))
-    this.size = d;
-    this.r = size / 2;
+    this.d = d;
+    this.r = d / 2;
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
@@ -165,7 +173,7 @@ class ball {
   show() {
     fill(this.color);
     strokeWeight(0);
-    ellipse(this.x, this.y, this.size);
+    ellipse(this.x, this.y, this.d);
   }
   move() {
     this.x += this.xSpeed;

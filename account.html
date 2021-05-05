@@ -10,27 +10,85 @@
 <body>
   <script src="sketch.js" id = 'p5'></script>
   <div>
-    <!-- <iframe id = "myVideo" width="1500" height="844" src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
-    <br> <h1 class = "gae" id = "gae">y r u gae?</h2> -->
-    <h1 id = 'h1' class = "1">What do you want boi?</h1>
-    <a href="login.html" class = "link">Return to main</a>
-  </div>
-  <div>
-    <label for="">Choose a premade color:</label>
-    <button onclick="changeColor('#FDF8E2')" id = "color1" class = "btn">Color 1</button>
-    <button onclick="changeColor('#FFDDD3')" id = "color2" class = "btn">Color 2</button>
-    <button onclick="changeColor('#F3BFB3')" id = "color3" class = "btn">Color 3</button>
-    <button onclick="changeColor('#5EA9BE')" id = "color4" class = "btn">Color 4</button>
-    <button onclick="changeColor('#9ACDE0')" id = "color5" class = "btn">Color 5</button>
-    <button onclick="changeColor('#CBE1EF')" id = "color6" class = "btn">Color 6</button>
+    <label for="">Choose a <strong>premade</strong> background color:</label>
+    <button onclick="changeColor('red')" id = "red" class = "btn">Red</button>
+    <button onclick="changeColor('orange')" id = "orange" class = "btn">Orange</button>
+    <button onclick="changeColor('yellow')" id = "yellow" class = "btn">Yellow</button>
+    <button onclick="changeColor('green')" id = "green" class = "btn">Green</button>
+    <button onclick="changeColor('blue')" id = "blue" class = "btn">Blue</button>
+    <button onclick="changeColor('purple')" id = "purple" class = "btn">Purple</button>
+    <button onclick="changeColor('#FDF8E2')" id = "#FDF8E2" class = "btn">Color 1</button>
+    <button onclick="changeColor('#FFDDD3')" id = "#FFDDD3" class = "btn">Color 2</button>
+    <button onclick="changeColor('#F3BFB3')" id = "#F3BFB3" class = "btn">Color 3</button>
+    <button onclick="changeColor('#5EA9BE')" id = "#5EA9BE" class = "btn">Color 4</button>
+    <button onclick="changeColor('#9ACDE0')" id = "#9ACDE0" class = "btn">Color 5</button>
+    <button onclick="changeColor('#CBE1EF')" id = "#CBE1EF" class = "btn">Color 6</button>
     <label for="colorpicker">or make your own!</label>
     <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
   </div>  
   <canvas id = "canvas"></canvas>
   <a class = "song link" href="https://www.youtube.com/watch?v=40JmEj0_aVM" onclick = "changeLink()">A song</a> <br> <br>
-  <button class = "btn bouncebutton" onclick="setSize(400)" id = "bouncebutton">Click me!</button>
   <ul class ="ulclass">
   </ul>
-  <a class = "link" href="allgames.html">Click to see my projects!</a>
+  <a class = "link" href="allgames.html">Click to see my projects!</a> <br>
+  <a class = "link" href="about.html">Click here to learn about my website!</a>
+
+
+  <!-- <map name="continents_map">
+    <area shape="circle" coords="70,70" href="#north_america">
+    <area shape="circle" coords="133,185,10" href="#south_america">
+    <area shape="circle" coords="270,137,10" href="#africa">
+    <area shape="circle" coords="292,44,10" href="#europe">
+    <area shape="circle" coords="469,201,10" href="#australia">
+    <area shape="circle" coords="374,65,10" href="#asia">
+    <area shape="circle" coords="340,267,10" href="#antartica">
+  </map>
+  
+  <figure style="text-align:center;">
+    <img usemap="#continents_map" src=https://bit.ly/2bgFrvL width="600px" />
+    <figcaption>World Map</figcaption>
+  </figure> -->
+  <br><br>
+  What <mark>continent and country</mark> are you currently at? <input type="text" list="text_editors">
+  <datalist id="text_editors">
+      <option value="North America"></option>
+      <option value="South America"></option>    
+      <option value="Europe"></option>
+      <option value="Asia"></option>
+      <option value="Africa"></option>
+      <option value="Oceania"></option>
+      <option value="Antarctica"></option>
+  </datalist>
+  <select> 
+    <option value="">Select an option</option>
+    <optgroup label="North America">   
+      <option value="">United States</option>
+    </optgroup>
+    <optgroup label="South America">
+      <option value="">Brazil</option>   
+    </optgroup>
+    <optgroup label="Europe">
+      <option value="">France</option>
+      <option value="">Denmark</option>    
+      <option value="">Spain</option>
+      <option value="">Great Britian</option>
+      <option value="">The Ring</option>
+    </optgroup>
+    <optgroup label="Asia">
+      <option value="">China</option>
+      <option value="">Japan</option>    
+      <option value="">South Korea</option>
+      <option value="">North Korea</option>
+      <option value="">Russia</option>
+    </optgroup>
+    <optgroup label="Africa">
+      <option value="">Madagascar</option>
+    </optgroup>
+    <optgroup label="Oceania">
+      <option value="">Australia</option>
+    </optgroup>
+  </select>
+  <button class = "btn bouncebutton" onclick="setSize(400)" id = "bouncebutton">Click me to change size!</button>
+
 </body>
 </html>

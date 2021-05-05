@@ -80,11 +80,11 @@ h2{
   display: inline;
   height: 70px;
   width: 70px;
-  border-radius: 100%;
-  border: 2px solid darkred;
+  border-radius: 30%;
+  border: 2px solid black;
   font-size: 15px;
   color:black;
-  background-color: darkorchid;
+  /* how to make the color based on the id, without having to define each one */
 }
 body{
   background-color: #9ACDE0;
@@ -143,8 +143,11 @@ label{
   animation: catchMe 5s linear 2 alternate; 
 } */
 .btn.bouncebutton{
+  height: 100px;
+  width: 100px;
   background-color: sandybrown;
   animation: bounce 3s linear infinite alternate;
+  font-size: 18px;
 }
 h1.gae{
   transform: translate(750px, -20px);
@@ -163,15 +166,18 @@ h1.gae{
   100%{transform: translate(0px, 700px) rotate(-720deg) scale(2)}
 }
 @keyframes bounce {
-  from{transform: translate(0px, 0px) rotate(0deg)}
-  to{transform: translate(300px, 300px) rotate(360deg)}
+  0%{transform: translate(0px, 0px) rotate(0deg)}
+  25%{transform: translate(200px, 0px) rotate(22.5deg)}
+  50%{transform: translate(200px, 200px) rotate(45deg)}
+  75%{transform: translate(0px, 200px) rotate(67.5deg)}
+  100%{transform: translate(0px, 0px) rotate(90deg)}
 }
 canvas {
   display: block;
   position: absolute;
   background: #F08080, solid;
   top: 40%;
-  left: 40%;
+  left: 60%;
 }
 .link{
   font-size: 40px;
