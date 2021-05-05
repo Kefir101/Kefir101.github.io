@@ -6,17 +6,17 @@ function checkInput(){
     {
       username: "Kefir101Awesome",
       password: 101,
-      date: "2004-11-24",
+      date: "2004-01-01",
     },
     {
       username: "The_Cyber_Shadow",
       password: 34,
-      date: "2005-04-16",
+      date: "2005-01-01",
     },
     {
       username: "Savta",
-      password: 1946,
-      date: "1946-01-01",
+      password: 1945,
+      date: "1945-01-01",
     },
   ];
   let correct = false;
@@ -79,6 +79,28 @@ function setButtonColor(){
 window.onload = function() {
   setButtonColor();
 };
+
+// document.onkeydown = function(e) {
+//   console.log(1);
+//   if(event.keyCode == 123) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+//      return false;
+//   }
+// }
+// document.addEventListener('contextmenu', function(e) {
+//   e.preventDefault();
+// });
 
 let ballList = [];
 const ballSize = 12;

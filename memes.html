@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,31 @@
 <body>
   <script src="sketch.js" id = 'p5'></script>
   <div>
-    <!-- <iframe id = "myVideo" width="1500" height="844" src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
-    <br> <h1 class = "gae" id = "gae">y r u gae?</h2> -->
+    <iframe id = "myVideo" width="1500" height="844" src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
+    <br> <h1 class = "gae" id = "gae">y r u gae?</h2>
     <h1 id = 'h1' class = "1">What u want boi?</h1>
-    <a href="login.html" class = "link">Return to the login</a>
   </div>
+
+  <a class = "link" href="login.html">Return to login</a>
+  <a class = "link" href="allgames.html">Games/Projects</a>
+  <a class = "link" href="account.html">Account</a>
+  <a class = "link" href="about.html">About Page</a>
 </body>
+<script>
+    setTimeout(stopVideo, 3000)
+    setTimeout(stopText, 4000)
+    function stopVideo(){
+      document.getElementById("myVideo").style.display="none";
+    }
+    function stopText(){
+      document.getElementById("gae").style.display="none";
+    }
+    document.getElementById('myVideo').addEventListener('ended', myHandler, false);
+    function myHandler(e) {
+        if(!e) { e = window.event; }
+          console.log(3);
+          document.getElementById('myVideo').style.display="none";
+          document.getElementById('videoEnd').style.display="block";
+        }
+  </script>
 </html>

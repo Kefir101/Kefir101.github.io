@@ -130,7 +130,8 @@ label{
   font-size: 35px;
 }
 .link{
-  font-size: 20px;
+  font-size: 25px;
+  margin: 10px;
 }
 .song{
   margin: 10px;
@@ -178,9 +179,6 @@ canvas {
   background: #F08080, solid;
   top: 40%;
   left: 60%;
-}
-.link{
-  font-size: 40px;
 }
 .popup{
   display: inline-block;
