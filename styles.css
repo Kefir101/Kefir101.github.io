@@ -69,7 +69,7 @@ div p{
   background-color: rgb(60, 182, 223);
   text-align: center;
 }
-h2{
+h2.login{
   display: inline;
   color:blue;
   border: lightblue 2px solid;
@@ -134,12 +134,14 @@ label{
   .link{
     font-size: 25px;
     padding: 10px;
-    text-align: center;
     color: #fff;
     /* display: block; */
-    display: flex;
+    display: block;
     background-color: #777;
     text-decoration: none;
+  }
+  a.link{
+    text-align: center;
   }
   ul.links{
     padding: 0;
