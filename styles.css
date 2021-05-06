@@ -129,9 +129,29 @@ label{
 .games{
   font-size: 35px;
 }
-.link{
-  font-size: 25px;
-  margin: 10px;
+
+@media screen {
+  .link{
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    /* display: block; */
+    display: flex;
+    background-color: #777;
+    text-decoration: none;
+  }
+  ul.links{
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+  }
+  li.links{
+    flex: 1 1 0;
+  }
+  .link:hover{
+    background-color: #555;
+  }
 }
 .song{
   margin: 10px;
@@ -177,8 +197,8 @@ canvas {
   display: block;
   position: absolute;
   background: #F08080, solid;
-  top: 40%;
-  left: 60%;
+  top: 25%;
+  left: 20%;
 }
 .popup{
   display: inline-block;
