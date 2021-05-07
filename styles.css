@@ -84,7 +84,6 @@ h2.login{
   border: 2px solid black;
   font-size: 15px;
   color:black;
-  /* how to make the color based on the id, without having to define each one */
 }
 body{
   background-color: #9ACDE0;
@@ -129,7 +128,17 @@ label{
 .games{
   font-size: 35px;
 }
-
+.billiardbtn{
+  display: inline;
+  height: 70px;
+  width: 70px;
+  border-radius: 30%;
+  border: 2px solid black;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 @media screen {
   .link{
     font-size: 25px;

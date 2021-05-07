@@ -139,6 +139,7 @@ let ready, gameOver, won, instructionPage;
 let showIns;
 let buttonList = [];
 let _mousePressed = false;
+let cueStick;
 function setSize(s) {
   // let S = s + "px";
   let S = random(10, 500) + "px";
@@ -166,6 +167,7 @@ function setup() {
   white = color(255);
   black = color(0);
   cueColor = color(202, 164, 114);
+  cueStick = loadImage('/img/cuestick.png');
   poolBallColorList = Array.of(white, yellow, blue, red, purple, orange, green, burgundy, black, yellow, blue, red, purple, orange, green, burgundy);
   showIns = new Buttons(1030, (height * 0.5), 20, 20, "", color(255, 0, 0));
   for (let i = 0; i < balls; i++) {
@@ -249,9 +251,9 @@ function draw() {
       text("Hold the left/right mouse button to change cue stick power, " + '\n' +
         "click the middle mouse button to release cue stick, " + '\n' +
         "press s to freeze/unfreeze game, and press r to reset table", 100, 100);
-      text("Billiard Score: " + ballScore, 100, 180);
+      text("Billiard Score: " + ballScore + '\n' + "Frames: " + frames, 100, 180);
     } else {
-      text("Billiard Score: " + ballScore, 100, 100);
+      text("Billiard Score: " + ballScore + '\n' + "Frames: " + frames, 100, 100);
     }
 
     for (let i = 0; i < poolBallList.length; i++) {
@@ -302,8 +304,10 @@ function draw() {
           push();
           translate(x, y);
           rotate(-findangles((mouseX - x), -(mouseY - y)));
-          let width = 15;
-          rect(ballSize / 2, -width / 2, powerlength, width / 2);
+          let width = 100;
+          //rect(ballSize / 2, -width / 2, powerlength, width / 2);
+          image(cueStick, ballSize / 2, -width/2, ballSize / 2 + powerlength, width);
+          console.log(width);
           pop();
           rectMode(CORNER);
           if (_mousePressed) {
@@ -360,6 +364,14 @@ function draw() {
       let ball = poolBallList[i];
       ball.move();
     }
+    if (keyIsPressed == true) {
+      if (key == 'ArrowUp' && frames <= 57) {
+        frames += 3;
+      } else if (key == 'ArrowDown' && frames >= 13) {
+        frames -= 3;
+      }
+      console.log(frames);
+    }
   } else if (!gameOver) {
     background(128);
     fill(0);
@@ -373,13 +385,18 @@ function draw() {
       let y = b.y;
       let width = b.width;
       let height = b.height;
+      if(hoverRectangle(mouseX, mouseY, x, y, width, height)){
+        //make lighter (hsl?, css?)
+      }
       if (clickedRectangle(mouseX, mouseY, x, y, width, height)) {
         let key = b.key;
         if (key == "Instructions") {
           instructionPage = true;
+          break;
         }
         if (key == "Start the game!" && ready) {
           play = true;
+          break;
         }
         if (multiplayer == 0) {
           ready = true;
@@ -397,11 +414,12 @@ function draw() {
           }
         }
         if (key == "Solo") {
-          multiplayer = 0;
+          multiplayer = 0; 
         } else if (key == "Multi") {
           multiplayer = 1;
           ready = true;
         }
+        text(key + " mode selected!", w/2, 200)
       }
       drawButton(b.x, b.y, b.width, b.height, b.key, b.color);
     }
@@ -686,9 +704,13 @@ function PAUSE() {
 }
 
 function clickedRectangle(x1, y1, x2, y2, width, height) {
+  return (hoverRectangle(x1, y1, x2, y2, width, height) && _mousePressed);
+}
+
+function hoverRectangle(x1, y1, x2, y2, width, height) {
   x2 = x2 - width / 2;
   y2 = y2 - height / 2;
-  return ((x1 > x2) && (x1 < (x2 + width)) && (y1 > y2) && (y1 < (y2 + height)) && _mousePressed);
+  return ((x1 > x2) && (x1 < (x2 + width)) && (y1 > y2) && (y1 < (y2 + height)));
 }
 
 function mouseReleased() {
@@ -699,13 +721,29 @@ function mouseReleased() {
 function mousePressed() {
   _mousePressed = true;
 }
-function keyPressed() {
-  if (play) {
-    if (key == 'ArrowUp' && frames <= 57) {
-      frames += 3;
-    } else if (key == 'ArrowDown' && frames >= 13) {
-      frames -= 3;
-    }
-  }
-}
 
+function hslToRgb(h, s, l) {
+  var r, g, b;
+
+  if (s == 0) {
+    r = g = b = l; // achromatic
+  } else {
+    function hue2rgb(p, q, t) {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    }
+
+    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    var p = 2 * l - q;
+
+    r = hue2rgb(p, q, h + 1/3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1/3);
+  }
+
+  return [ r * 255, g * 255, b * 255 ];
+}
