@@ -127,7 +127,7 @@ let burgundy = 0;
 let feltGreen = 0;
 let white = 0;
 let black = 0;
-let cueColor = 0;
+let cueColor = 0; 
 let newmouseX, newmouseY;
 let powerlength = 297;
 let timeElapsed = 0, frames = 60;
