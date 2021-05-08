@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
@@ -7,26 +8,42 @@
   <link rel="stylesheet" href="styles.css">
   <title>All my Games/Projects</title>
 </head>
-<body>
-  <ul class = links>
-    <li class = links><a class = "link" href="login.html">Return to login</a></li>
-    <li class = links><a class = "link" href="account.html">Account</a></li>
-    <li class = links><a class = "link" href="memes.html">Memes</a></li>
-    <li class = links><a class = "link" href="about.html">About Page</a></li>
+
+<body id = "bgames">
+  <ul class=links>
+    <li class=links><a class="link" href="login.html">Return to login</a></li>
+    <li class=links><a class="link" href="account.html">Account</a></li>
+    <li class=links><a class="link" href="memes.html">Memes</a></li>
+    <li class=links><a class="link" href="about.html">About Page</a></li>
   </ul>
-  <script src="sketch.js" id = 'p5'></script>
-  <h1 class = "gameh1">Here are my all my projects!</h1>
-  <h2>[sorted from most to least complex (time and lines)]</h2>
-  <ol>
-    <li class = "games"><a class = "game" href= "games/Chess_jar/Chess.jar" onclick = "changeLink()" download>Chess</a></li>
-    <li class = "games"><a class = "game" href= "games/GeoDash_jar/GeoDash.jar" onclick = "changeLink()" download>Geometry Dash</a></li>
-    <li class = "games"><a class = "game" href= "games/Pool_jar/Pool.jar" onclick = "changeLink()" download>Realistic Pool Game (WIP)</a></li>
-    <li class = "games"><a class = "game" href= "games/Othello_jar/Othello.jar" onclick = "changeLink()" download>Othello</a></li>
-    <li class = "games"><a class = "game" href= "games/Mental_jar/Mental.jar" onclick = "changeLink()" download>Mental Health App (BAYCON)</a></li>
-    <li class = "games"><a class = "game" href= "games/Pathfinding_jar/Pathfinding.jar" onclick = "changeLink()" download>Simple Pathfinding Algorithm (A*)</a></li>
-    <li class = "games"><a class = "game" href= "games/Oscillation_jar/Oscillation.jar" onclick = "changeLink()" download>Oscillation</a></li>
-    <li class = "games"><a class = "game" href= "games/Lissajous_jar/Lissajous.jar" onclick = "changeLink()" download>Lissajous</a></li>
-    <li class = "games"><a class = "game" href= "games/Life_jar/Life.jar" onclick = "changeLink()" download>Game of Life</a></li>
-  </ol>
+  <script src="sketch.js" id='p5'></script>
+  <!-- <input type="checkbox"> -->
+  <div id="allgames">
+    <!-- <ol>
+      <li class = "games"><a class = "game" href= "games/Chess_jar/Chess.jar" onclick = "changeLink()" download>Chess</a></li>
+      <li class = "games"><a class = "game" href= "games/GeoDash_jar/GeoDash.jar" onclick = "changeLink()" download>Geometry Dash</a></li>
+      <li class = "games"><a class = "game" href= "games/Pool_jar/Pool.jar" onclick = "changeLink()" download>Realistic Pool Game (WIP)</a></li>
+      <li class = "games"><a class = "game" href= "games/Othello_jar/Othello.jar" onclick = "changeLink()" download>Othello</a></li>
+      <li class = "games"><a class = "game" href= "games/Mental_jar/Mental.jar" onclick = "changeLink()" download>Mental Health App (BAYCON)</a></li>
+      <li class = "games"><a class = "game" href= "games/Pathfinding_jar/Pathfinding.jar" onclick = "changeLink()" download>Simple Pathfinding Algorithm (A*)</a></li>
+      <li class = "games"><a class = "game" href= "games/Oscillation_jar/Oscillation.jar" onclick = "changeLink()" download>Oscillation</a></li>
+      <li class = "games"><a class = "game" href= "games/Lissajous_jar/Lissajous.jar" onclick = "changeLink()" download>Lissajous</a></li>
+      <li class = "games"><a class = "game" href= "games/Life_jar/Life.jar" onclick = "changeLink()" download>Game of Life</a></li>
+    </ol> -->
+    <!-- <div id = "grid">
+      <p></p><p></p><p></p><p></p>
+    </div> -->
+    <h1 class="gameh1"><bold>All my projects and games</bold> <small>[from highest to lowest complexity]</small>:</h1>
+    <a class="game" href="games/Chess_jar/Chess.jar" onclick="changeLink()" download>1: Chess<img src = "img/chessweb.png" id = "gameimage"></a>
+    <a class="game" href="games/GeoDash_jar/GeoDash.jar" onclick="changeLink()" download>2: Geometry Dash<img src = "img/geodashweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Pool_jar/Pool.jar" onclick="changeLink()" download>3: Realistic Pool Game (WIP)<img src = "img/poolweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Othello_jar/Othello.jar" onclick="changeLink()" download>4: Othello<img src = "img/othelloweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Mental_jar/Mental.jar" onclick="changeLink()" download>5: Mental Health App (BAYCON)<img src = "img/mentalweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Pathfinding_jar/Pathfinding.jar" onclick="changeLink()" download>6: A* Pathfinding Algorithm<img src = "img/pathfindingweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Oscillation_jar/Oscillation.jar" onclick="changeLink()" download>7: Oscillation<img src = "img/oscillationweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Lissajous_jar/Lissajous.jar" onclick="changeLink()" download>8: Lissajous<img src = "img/lissajousweb.png" id = "gameimage"></a>
+    <a class="game" href="games/Life_jar/Life.jar" onclick="changeLink()" download>9: Game of Life<img src = "img/lifeweb.png" id = "gameimage"></a>
+  </div>
 </body>
-</html>  
+
+</html>
