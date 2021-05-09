@@ -447,3 +447,31 @@ input:checked + #allgames #grid{
   font-size: 30px;
   border: dashed 1px pink;
 }
+.momm{
+  height: 300px;
+  width: auto;
+  left: 0%;
+}
+.MOM{
+  height: 400px;
+  width: auto;
+  transform: translateX(400px);
+  margin: 10px;
+}
+.thankyoumom{
+  height: 500px;
+  width: auto;
+  transform: translate(400px);
+  margin: 10px;
+}
+.thanksend{
+  text-align: center;
+  font-size: 50;
+  margin: 0px;
+}
+.lovekefir{
+  text-align: center;
+  font-size: 40;
+  margin: 0px;
+  color: red;
+}

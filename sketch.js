@@ -3,21 +3,26 @@ function checkInput() {
   var inputpassword = document.getElementById("passwordtext").value;
   var inputdate = document.getElementById("date").value;
   let possibleLogins = [
+    // {
+    //   username: "Kefir101Awesome",
+    //   password: 101,
+    //   date: "2004-01-01",
+    // },
+    // {
+    //   username: "The_Cyber_Shadow",
+    //   password: 34,
+    //   date: "2005-01-01",
+    // },
+    // {
+    //   username: "Savta",
+    //   password: 1945,
+    //   date: "1945-01-01",
+    // },
     {
-      username: "Kefir101Awesome",
-      password: 101,
-      date: "2004-01-01",
-    },
-    {
-      username: "The_Cyber_Shadow",
-      password: 34,
-      date: "2005-01-01",
-    },
-    {
-      username: "Savta",
-      password: 1945,
-      date: "1945-01-01",
-    },
+    username: "Mom",
+    password: "loveyou",
+    date: "1972-05-09"
+    }
   ];
   let correct = false;
   possibleLogins.forEach(login => {
@@ -26,7 +31,7 @@ function checkInput() {
     }
   });
   if (correct) {
-    window.location = "/account.html";
+    window.location = "/mothersday.html";
     console.log("login correct!");
   } else if (!correct) {
     var tag = document.createElement("h3");
