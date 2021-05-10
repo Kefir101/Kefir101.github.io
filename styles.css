@@ -535,9 +535,9 @@ input:checked + #allgames #grid{
   }
   #maininfo > *{
     background-color: rgb(36, 205, 235);
-    padding: 30px 0;
+    padding: 40px 0;
     margin: 0;
-    font-size: 35px;
+    font-size: 50px;
     text-align: center;
     text-decoration: none;
     color: black;
@@ -561,7 +561,7 @@ input:checked + #allgames #grid{
     grid-area: secretlogin;
   }
   #mainmoreinfo{
-    font-size: 15px;
+    font-size: 20px;
   }
 }
 
