@@ -47,7 +47,6 @@ var cookies = 0;
 function clicked(){
   cookies++;
   var element = document.getElementById("cookiep");
-  console.log(element.innerHTML)
   element.innerHTML = "Cookies: " + cookies;
 }
 
@@ -153,6 +152,7 @@ let showIns;
 let buttonList = [];
 let _mousePressed = false;
 let cueStick;
+let spacebarPressed;
 function setSize(s) {
   // let S = s + "px";
   let S = random(10, 500) + "px";
@@ -162,13 +162,6 @@ function setSize(s) {
 }
 
 function setup() {
-  // for (let i = 15; i < size; i += 15) {
-  //   for (let j = 15; j < size; j += 15) {
-  //     let c = color(random(0, 255), random(0, 255), random(0, 255));
-  //     let b = new ball(i, j, 0, 0, ballSize, c);
-  //     ballList.push(b);
-  //   }
-  // }
   yellow = color(255, 255, 0);
   blue = color(0, 0, 255);
   red = color(255, 0, 0);
@@ -209,6 +202,7 @@ function draw() {
   newmouseX = mouseX;
   newmouseY = mouseY;
   if (instructionPage) {
+    document.getElementById("billiardbtn").style.display="none";
     background(128);
     textSize(50);
     textAlign(CENTER);
@@ -224,7 +218,7 @@ function draw() {
     text("The user features are as follows: " + '\n'
       + "Hold the left/right mouse button to change cue stick power when it is your turn " + '\n'
       + "(keep in mind that you can only hit the cue ball when it has stopped), " + '\n'
-      + "click the middle mouse button to release cue stick and launch the ball, " + '\n'
+      + "click the middle mouse button (or spacebar) to release cue stick and launch the ball, " + '\n'
       + "press s to freeze/unfreeze game, and press r to reset table, score, and timer" + '\n'
       + "Optional: Up/Down arrow keys to increase the frame-rate to a minimum of 1 and maximum of 60 frames per second", 20, h / 2 + 50);
     fill(0);
@@ -237,6 +231,7 @@ function draw() {
       instructionPage = false;
     }
   } else if (play) {
+    document.getElementById("billiardbtn").style.display="none";
     //timeElapsed += map(frames, 0, 60, 0, 1);
     drawBackground();
     if (multiplayer == 0) {
@@ -262,7 +257,7 @@ function draw() {
     textSize(15);
     if (showInstructions) {
       text("Hold the left/right mouse button to change cue stick power, " + '\n' +
-        "click the middle mouse button to release cue stick, " + '\n' +
+        "click the middle mouse button (or spacebar) to release cue stick, " + '\n' +
         "press s to freeze/unfreeze game, and press r to reset table", 100, 100);
       text("Billiard Score: " + ballScore + '\n' + "Frames: " + frames, 100, 180);
     } else {
@@ -320,7 +315,6 @@ function draw() {
           let width = 100;
           //rect(ballSize / 2, -width / 2, powerlength, width / 2);
           image(cueStick, ballSize / 2, -width/2, ballSize / 2 + powerlength, width);
-          console.log(width);
           pop();
           rectMode(CORNER);
           if (_mousePressed) {
@@ -340,6 +334,10 @@ function draw() {
                 ball.ySpeed = powerlength / 10 * sin(PI - angle);
               //frames = 1;
             }
+          }else if(spacebarPressed){
+            ball.xSpeed = powerlength / 10 * cos(PI - angle);
+            ball.ySpeed = powerlength / 10 * sin(PI - angle);
+            spacebarPressed = false;
           }
         }
       }
@@ -382,61 +380,19 @@ function draw() {
         frames += 3;
       } else if (key == 'ArrowDown' && frames >= 13) {
         frames -= 3;
+      }else if (key == ' '){
+        spacebarPressed = true;
       }
-      console.log(frames);
     }
   } else if (!gameOver) {
     background(128);
     fill(0);
     textSize(30);
     text("Play Billiards!", w / 2, h / 10);
-    text("Choose a mode:", w / 3 - 35, h / 4 + 8);
-    text("If solo, select difficulty: ", w / 6 + 30, h / 1.7);
-    for (let i = 1; i < buttonList.length; i++) {
-      let b = buttonList[i];
-      let x = b.x;
-      let y = b.y;
-      let width = b.width;
-      let height = b.height;
-      if(hoverRectangle(mouseX, mouseY, x, y, width, height)){
-        //make lighter (hsl?, css?)
-      }
-      if (clickedRectangle(mouseX, mouseY, x, y, width, height)) {
-        let key = b.key;
-        if (key == "Instructions") {
-          instructionPage = true;
-          break;
-        }
-        if (key == "Start the game!" && ready) {
-          play = true;
-          break;
-        }
-        if (multiplayer == 0) {
-          ready = true;
-          if (key == "Beginner") {
-            difficulty = 0;
-            totaltime = 300;
-          } else if (key == "Intermediate") {
-            difficulty = 1;
-            totaltime = 200;
-          } else if (key == "Advanced") {
-            difficulty = 2;
-            totaltime = 100;
-          } else {
-            ready = false;
-          }
-        }
-        if (key == "Solo") {
-          multiplayer = 0; 
-        } else if (key == "Multi") {
-          multiplayer = 1;
-          ready = true;
-        }
-        text(key + " mode selected!", w/2, 200)
-      }
-      drawButton(b.x, b.y, b.width, b.height, b.key, b.color);
-    }
+    text("Choose a mode:", w / 3 - 150, h / 4 + 8);
+    text("If solo, select difficulty: ", w / 6 - 50, h / 2);
   } else if (gameOver) {
+    document.getElementById("billiardbtn").style.display="none";
     background(128);
     textSize(100);
     fill(0);
@@ -446,6 +402,39 @@ function draw() {
     } else {
       text("You lost! Too bad!", w / 2, h / 2);
     }
+  }
+}
+
+function clickedBilliardButton(id){
+  let key = id;
+  if (key == "instructionsbtn") {
+    instructionPage = true;
+    return 0;
+  }
+  if (key == "startbtn" && ready) {
+    play = true;
+    return 0;
+  }
+  if (multiplayer == 0) {
+    ready = true;
+    if (key == "beginnerbtn") {
+      difficulty = 0;
+      totaltime = 300;
+    } else if (key == "intermediatebtn") {
+      difficulty = 1;
+      totaltime = 200;
+    } else if (key == "advancedbtn") {
+      difficulty = 2;
+      totaltime = 100;
+    } else {
+      ready = false;
+    }
+  }
+  if (key == "solobtn") {
+    multiplayer = 0; 
+  } else if (key == "multibtn") {
+    multiplayer = 1;
+    ready = true;
   }
 }
 
@@ -702,6 +691,7 @@ function keyReleased() {
     ballScore = 0;
     frames = 60;
     timeElapsed = 0;
+    spacebarPressed = false;
   } else if (key == 's') {
     pause = !pause;
     PAUSE();

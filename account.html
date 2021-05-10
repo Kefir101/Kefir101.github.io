@@ -11,12 +11,10 @@
 <body>
   <script src="sketch.js" id = 'p5'></script>
   <ul class = links>
-    <li class = links><a class = "link" href="login.html">Return to login</a></li>
+    <li class = links><a class = "link" href="main.html">Return to Main</a></li>
     <li class = links><a class = "link" href="allgames.html">Games/Projects</a></li>
     <li class = links><a class = "link" href="memes.html">Memes</a></li>
     <li class = links><a class = "link" href="about.html">About Page</a></li>
-  
-  
   </ul>
   <br>
   <a class="weatherwidget-io" href="https://forecast7.com/en/37d34n121d89/san-jose/" data-label_1="SAN JOSE" data-label_2="WEATHER" data-theme="blue-mountains" >SAN JOSE WEATHER</a>
@@ -42,7 +40,18 @@
     <input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">
     <a class = "song link" href="https://www.youtube.com/watch?v=40JmEj0_aVM" onclick = "changeLink()">A song</a> <br> <br> 
   </div> 
-  <canvas id = "canvas"></canvas>  <ul class ="ulclass"></ul>
+  <div style="z-index: -1" >
+    <canvas id = "canvas"></canvas>  <ul class ="ulclass"></ul>
+  </div>
+  <div style="z-index: 1; position: relative;" class = "menubtn" id = "billiardbtn">
+    <button onclick="clickedBilliardButton('solobtn')" id = "solobtn">Solo Mode</button>
+    <button onclick="clickedBilliardButton('multibtn')" id = "multibtn">Multiplayer Mode</button>
+    <button onclick="clickedBilliardButton('beginnerbtn')" id = "beginnerbtn">Beginner</button>
+    <button onclick="clickedBilliardButton('intermediatebtn')" id = "intermediatebtn">Intermediate</button>
+    <button onclick="clickedBilliardButton('advancedbtn')" id = "advancedbtn">Advanced</button>
+    <button onclick="clickedBilliardButton('instructionsbtn')" id = "instructionsbtn">Instructions</button>
+    <button onclick="clickedBilliardButton('startbtn')" id = "startbtn">Start!</button>
+  </div>
   <!-- <map name="continents_map">
     <area shape="circle" coords="70,70" href="#north_america">
     <area shape="circle" coords="133,185,10" href="#south_america">

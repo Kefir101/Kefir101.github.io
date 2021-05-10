@@ -139,16 +139,81 @@ label{
 .games{
   font-size: 35px;
 }
-.billiardbtn{
-  display: inline;
-  height: 70px;
-  width: 70px;
-  border-radius: 30%;
-  border: 2px solid black;
-  font-size: 15px;
+
+.menubtn{
   position: absolute;
-  top: 0;
-  left: 0;
+  display: inline-block;
+  height: 50px;
+  width: 120px;
+  border-radius: 40%;
+  font-size: 15px;
+  text-align: center;
+}
+#billiardbtn button:hover{
+  filter: brightness(1.40);
+}
+#solobtn{
+  all: inherit;
+  border: 2px solid black;
+  transform: translateX(166px);
+  transform: translate(645px, 104px);
+  color:black;
+  background-color: green;
+}
+#multibtn{
+  all: inherit;
+  border: 2px solid black;
+  transform: translateX(166px);
+  transform: translate(790px, 50px);
+  color:black;
+  background-color: green;
+}
+#beginnerbtn{
+  all: inherit;
+  border: 2px solid black;
+  width: 200px;
+  transform: translateX(166px);
+  transform: translate(638px, 137px);
+  color:black;
+  background-color: green;
+}
+#intermediatebtn{
+  all: inherit;
+  border: 2px solid black;
+  width: 200px;
+  transform: translateX(166px);
+  transform: translate(638px, 147px);
+  color:black;
+  background-color: yellow;
+}
+#advancedbtn{
+  all: inherit;
+  border: 2px solid black;
+  width: 200px;
+  transform: translateX(166px);
+  transform: translate(638px, 157px);
+  color:black;
+  background-color: red;
+}
+#instructionsbtn{
+  all: inherit;
+  border: 2px solid black;
+  width: 200px;
+  transform: translateX(166px);
+  transform: translate(970px, 30px);
+  color:black;
+  background-color: purple;
+}
+#startbtn{
+  all: inherit;
+  border: 2px solid black;
+  width: 300px;
+  height: 70px;
+  font-size: 30px;
+  transform: translateX(166px);
+  transform: translate(590px, 110px);
+  color:black;
+  background-color: pink;
 }
 @media screen {
   .link{
@@ -295,74 +360,52 @@ canvas {
 input:checked + #allgames #grid{
   display: grid;
 }
-#info{
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(10px, auto);
-  grid-gap: 10px;
-  grid-template-areas: 
-  "CSS . github . VSC ."
-  "CSS . github . VSC ."
-  "CSS HTML github . VSC ."
-  "CSS . github . VSC ."
-  "CSS . github . VSC .";
-}
-@media screen and (min-width: 800px){
+@media screen{
   #info{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    /* grid-template-rows: repeat(8, 1fr); */
     grid-auto-rows: minmax(10px, auto);
     grid-gap: 10px;
-    /* grid-template-areas: 
-    "HTML HTML CSS CSS javascript javascript"
-    "VSC VSC . . Processing Processing"
-    "github github github vercel vercel vercel"; */
     grid-template-areas: 
-    /* "CSS . github . VSC ."
-    "CSS . github . VSC ."
-    "CSS HTML github . VSC ."
-    "CSS . github . VSC ."
-    "CSS . github . VSC ." */
     "HTML HTML HTML CSS CSS CSS"
     ". javascript javascript javascript javascript ."
     "VSC VSC . . Processing Processing"
     "github github github vercel vercel vercel";
   }
-}
-#info > *{
-  background-color: teal;
-  padding: 30px 0;
-  margin: 0;
-  font-size: 35px;
-  text-align: center;
-}
-#info p:hover {
-  filter: brightness(1.30);
-}
-#HTML{
-  grid-area: HTML;
-}
-#CSS{
-  grid-area: CSS;
-}
-#javascript{
-  grid-area: javascript;
-}
-#VSC{
-  grid-area: VSC;
-}
-#Processing{
-  grid-area: Processing;
-}
-#github{
-  grid-area: github;
-}
-#vercel{
-  grid-area: vercel;
-}
-#moreinfo{
-  font-size: 15px;
+  #info > *{
+    background-color: teal;
+    padding: 30px 0;
+    margin: 0;
+    font-size: 35px;
+    text-align: center;
+  }
+  #info p:hover {
+    filter: brightness(1.30);
+  }
+  #HTML{
+    grid-area: HTML;
+  }
+  #CSS{
+    grid-area: CSS;
+  }
+  #javascript{
+    grid-area: javascript;
+  }
+  #VSC{
+    grid-area: VSC;
+  }
+  #Processing{
+    grid-area: Processing;
+  }
+  #github{
+    grid-area: github;
+  }
+  #vercel{
+    grid-area: vercel;
+  }
+  #moreinfo{
+    font-size: 15px;
+  }
 }
 #memeimage{
   /* width: auto;
@@ -479,4 +522,47 @@ input:checked + #allgames #grid{
   display: inline-block;
   margin: 0 auto;
 }
+@media screen {
+  #maininfo{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(10px, auto);
+    grid-gap: 10px;
+    grid-template-areas: 
+    "account account account gamesandprojects gamesandprojects gamesandprojects"
+    ". . mainmemes mainmemes . . "
+    "mainabout mainabout . . secretlogin secretlogin";
+  }
+  #maininfo > *{
+    background-color: rgb(36, 205, 235);
+    padding: 30px 0;
+    margin: 0;
+    font-size: 35px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+  }
+  #maininfo a:hover {
+    filter: brightness(1.30);
+  }
+  #account{
+    grid-area: account;
+  }
+  #gamesandprojects{
+    grid-area: gamesandprojects;
+  }
+  #mainmemes{
+    grid-area: mainmemes;
+  }
+  #mainabout{
+    grid-area: mainabout;
+  }
+  #secretlogin{
+    grid-area: secretlogin;
+  }
+  #mainmoreinfo{
+    font-size: 15px;
+  }
+}
+
 
