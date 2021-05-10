@@ -69,9 +69,6 @@ div p{
   background-color: rgb(60, 182, 223);
   text-align: center;
 }
-.login{
-  /* transform: translateX(-500px); */
-}
 .login h2{
   display: inline-block;
   color:blue;
@@ -376,7 +373,6 @@ input:checked + #allgames #grid{
 #sum{
   display: none;
 }
-
 #memes{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -392,86 +388,95 @@ input:checked + #allgames #grid{
 #memes img:nth-child(even){
   background-color: #F08080;
 }
-
-#working{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  grid-gap: 10px;
+@media screen {
+  #working{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    grid-gap: 10px;
+    margin: 0 auto;
+    position: relative;
+  }
+  #working h5{
+    font-size: 30px;
+    text-align: center;
+    background-color: rgb(30, 193, 199);
+    padding: 10px;
+  }
+  #working p{
+    text-decoration: none;
+    font-size: 15px;
+    background-color: rgb(10, 108, 235);
+    padding: 10px;
+  }
+  #working ul{
+    text-align: left;
+    font-size: 15px;
+    background-color: aqua;
+  }
+  #working li{
+    text-align: start;
+    font-size: 13px;
+    margin: 5px;
+  }
+  #working li li{
+    text-align: left;
+    transform: translateX(-30px);
+    font-size: 12px;
+    margin: 3px;
+  }
+  #thanksmom{
+    text-align: center;
+    margin: -7px;
+    font-size: 100px;
+    border: solid 5px red;
+  }
+  #thanksmom2{
+    text-align: center;
+    margin: 0px;
+    font-size: 50px;
+    border: dotted 3px palevioletred;
+  }
+  #thanksmom3{
+    text-align: center;
+    margin: 0px;
+    font-size: 30px;
+    border: dashed 1px pink;
+  }
+  .momm{
+    height: 300px;
+    width: auto;
+    left: 0%;
+  }
+  .MOM{
+    height: 400px;
+    width: auto;
+    transform: translateX(400px);
+    margin: 10px;
+  }
+  .thankyoumom{
+    height: 500px;
+    width: auto;
+    transform: translate(400px);
+    margin: 10px;
+  }
+  .thanksend{
+    text-align: center;
+    font-size: 50;
+    margin: 0px;
+  }
+  .lovekefir{
+    text-align: center;
+    font-size: 40;
+    margin: 0px;
+    color: red;
+  }
+}
+.cookie p{
+  transform: translateX(185px);
+  font-size: 30px;
+  border: brown solid 2px;
+  display: inline-block;
   margin: 0 auto;
-  position: relative;
 }
-#working h5{
-  font-size: 30px;
-  text-align: center;
-  background-color: rgb(30, 193, 199);
-  padding: 10px;
-}
-#working p{
-  text-decoration: none;
-  font-size: 15px;
-  background-color: rgb(10, 108, 235);
-  padding: 10px;
-}
-#working ul{
-  text-align: left;
-  font-size: 15px;
-  background-color: aqua;
-}
-#working li{
-  text-align: start;
-  font-size: 13px;
-  margin: 5px;
-}
-#working li li{
-  text-align: left;
-  transform: translateX(-30px);
-  font-size: 12px;
-  margin: 3px;
-}
-#thanksmom{
-  text-align: center;
-  margin: -7px;
-  font-size: 100px;
-  border: solid 5px red;
-}
-#thanksmom2{
-  text-align: center;
-  margin: 0px;
-  font-size: 50px;
-  border: dotted 3px palevioletred;
-}
-#thanksmom3{
-  text-align: center;
-  margin: 0px;
-  font-size: 30px;
-  border: dashed 1px pink;
-}
-.momm{
-  height: 300px;
-  width: auto;
-  left: 0%;
-}
-.MOM{
-  height: 400px;
-  width: auto;
-  transform: translateX(400px);
-  margin: 10px;
-}
-.thankyoumom{
-  height: 500px;
-  width: auto;
-  transform: translate(400px);
-  margin: 10px;
-}
-.thanksend{
-  text-align: center;
-  font-size: 50;
-  margin: 0px;
-}
-.lovekefir{
-  text-align: center;
-  font-size: 40;
-  margin: 0px;
-  color: red;
-}
+

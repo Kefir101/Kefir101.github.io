@@ -43,6 +43,14 @@ function checkInput() {
   }
   //alert(`username is ${username} and password is ${password}`);
 }
+var cookies = 0;
+function clicked(){
+  cookies++;
+  var element = document.getElementById("cookiep");
+  console.log(element.innerHTML)
+  element.innerHTML = "Cookies: " + cookies;
+}
+
 function changeColor(color) {
   document.body.style.background = color;
 }
