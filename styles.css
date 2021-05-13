@@ -284,8 +284,8 @@ canvas {
   display: block;
   position: absolute;
   background: #F08080, solid;
-  top: 45%;
-  left: 15%;
+  top: 325px;
+  left: 225px;
 }
 .popup{
   display: inline-block;

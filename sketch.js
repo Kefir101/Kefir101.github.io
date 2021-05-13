@@ -19,9 +19,9 @@ function checkInput() {
     //   date: "1945-01-01",
     // },
     {
-    username: "Mom",
-    password: "loveyou",
-    date: "1972-05-09"
+      username: "Mom",
+      password: "loveyou",
+      date: "1972-05-09"
     }
   ];
   let correct = false;
@@ -44,7 +44,7 @@ function checkInput() {
   //alert(`username is ${username} and password is ${password}`);
 }
 var cookies = 0;
-function clicked(){
+function clicked() {
   cookies++;
   var element = document.getElementById("cookiep");
   element.innerHTML = "Cookies: " + cookies;
@@ -127,7 +127,7 @@ const balls = 15;
 let poolBallList = [];
 let poolBallColorList = [];
 let startx = 750, starty = 260;
-let poolBallXList = Array.of(startx - 500, startx - 350 - 90, startx + 40 - 350, startx + 35, startx + 70, startx + 70, startx + 105, startx + 105, startx + 70, startx + 105, startx + 105, startx + 140, startx + 140, startx + 140, startx + 140, startx + 140);
+let poolBallXList = Array.of(startx - 600, startx - 350 - 90, startx + 40 - 350, startx + 35, startx + 70, startx + 70, startx + 105, startx + 105, startx + 70, startx + 105, startx + 105, startx + 140, startx + 140, startx + 140, startx + 140, startx + 140);
 let poolBallYList = Array.of(starty, starty, starty - 20 + 20, starty + 20, starty - 40, starty + 40, starty - 60, starty - 20, starty, starty + 20, starty + 60, starty - 80, starty - 40, starty, starty + 40, starty + 80);
 let yellow = 0;
 let blue = 0;
@@ -139,14 +139,14 @@ let burgundy = 0;
 let feltGreen = 0;
 let white = 0;
 let black = 0;
-let cueColor = 0; 
+let cueColor = 0;
 let newmouseX, newmouseY;
 let powerlength = 297;
 let timeElapsed = 0, frames = 60;
 let totaltime = -1;
 let multiplayer = -1;
 let difficulty = -1;
-let showInstructions = true, canSwap = true, play = false, pause = false;
+let showInstructions = true, canSwap = true, play = true, pause = false;
 let ready, gameOver, won, instructionPage;
 let showIns;
 let buttonList = [];
@@ -202,7 +202,7 @@ function draw() {
   newmouseX = mouseX;
   newmouseY = mouseY;
   if (instructionPage) {
-    document.getElementById("billiardbtn").style.display="none";
+    document.getElementById("billiardbtn").style.display = "none";
     background(128);
     textSize(50);
     textAlign(CENTER);
@@ -231,7 +231,7 @@ function draw() {
       instructionPage = false;
     }
   } else if (play) {
-    document.getElementById("billiardbtn").style.display="none";
+    document.getElementById("billiardbtn").style.display = "none";
     //timeElapsed += map(frames, 0, 60, 0, 1);
     drawBackground();
     if (multiplayer == 0) {
@@ -263,7 +263,6 @@ function draw() {
     } else {
       text("Billiard Score: " + ballScore + '\n' + "Frames: " + frames, 100, 100);
     }
-
     for (let i = 0; i < poolBallList.length; i++) {
       let ball = poolBallList[i];
       if (ball.inPocket == 1) {
@@ -272,7 +271,6 @@ function draw() {
       let x = ball.x;
       let y = ball.y;
       ball.show();
-      ball.reverseAndFall();
       ball.friction();
       if (i > 0) {
         fill(255);
@@ -314,7 +312,7 @@ function draw() {
           rotate(-findangles((mouseX - x), -(mouseY - y)));
           let width = 100;
           //rect(ballSize / 2, -width / 2, powerlength, width / 2);
-          image(cueStick, ballSize / 2, -width/2, ballSize / 2 + powerlength, width);
+          image(cueStick, ballSize / 2, -width / 2, ballSize / 2 + powerlength, width);
           pop();
           rectMode(CORNER);
           if (_mousePressed) {
@@ -333,8 +331,9 @@ function draw() {
                 ball.xSpeed = powerlength / 10 * cos(PI - angle);
                 ball.ySpeed = powerlength / 10 * sin(PI - angle);
               //frames = 1;
+              //console.log(ball.xSpeed);
             }
-          }else if(spacebarPressed){
+          } else if (spacebarPressed) {
             ball.xSpeed = powerlength / 10 * cos(PI - angle);
             ball.ySpeed = powerlength / 10 * sin(PI - angle);
             spacebarPressed = false;
@@ -369,18 +368,23 @@ function draw() {
           }
         }
       }
-
     }
     for (let i = 0; i < poolBallList.length; i++) {
       let ball = poolBallList[i];
+      if(i == 0){
+        ball.reverse();
+      }else{
+        ball.reverseAndFall();
+      }
       ball.move();
+      // console.log(ball.xSpeed, ball.x)
     }
     if (keyIsPressed == true) {
       if (key == 'ArrowUp' && frames <= 57) {
         frames += 3;
       } else if (key == 'ArrowDown' && frames >= 13) {
         frames -= 3;
-      }else if (key == ' '){
+      } else if (key == ' ') {
         spacebarPressed = true;
       }
     }
@@ -388,11 +392,13 @@ function draw() {
     background(128);
     fill(0);
     textSize(30);
+    textAlign(CENTER);
     text("Play Billiards!", w / 2, h / 10);
+    textAlign(LEFT);
     text("Choose a mode:", w / 3 - 150, h / 4 + 8);
-    text("If solo, select difficulty: ", w / 6 - 50, h / 2);
+    text("If solo, select difficulty: ", w / 13, h / 1.7);
   } else if (gameOver) {
-    document.getElementById("billiardbtn").style.display="none";
+    document.getElementById("billiardbtn").style.display = "none";
     background(128);
     textSize(100);
     fill(0);
@@ -405,7 +411,7 @@ function draw() {
   }
 }
 
-function clickedBilliardButton(id){
+function clickedBilliardButton(id) {
   let key = id;
   if (key == "instructionsbtn") {
     instructionPage = true;
@@ -431,7 +437,7 @@ function clickedBilliardButton(id){
     }
   }
   if (key == "solobtn") {
-    multiplayer = 0; 
+    multiplayer = 0;
   } else if (key == "multibtn") {
     multiplayer = 1;
     ready = true;
@@ -469,7 +475,7 @@ class PoolBall {
     this.y += this.ySpeed;
   }
   friction() {
-    let friction = 0.01;
+    let friction = 0.03;
     if (this.xSpeed > 0) {
       this.xSpeed -= friction;
     } else if (this.xSpeed < 0) {
@@ -487,7 +493,8 @@ class PoolBall {
     let r = this.r;
     let w = this.wall;
     let b = ballSize / 2;
-    if ((x < 40 || x > width - 40) && (y < 40 || y > height - 40)) {
+    if(Math.hypot(x-width/2, y-25) <= 20)console.log(Math.hypot(x-width/2, y-25));
+    if ((x < 40 || x > width - 40) && (y < 40 || y > height - 40) || Math.hypot(x-width/2, y-25) <= 13 || Math.hypot(x-width/2, y-(height-25)) <= 13) {
       this.xSpeed = 0;
       this.ySpeed = 0;
       if (x < 40 && y < 40) {
@@ -502,32 +509,123 @@ class PoolBall {
       } else if (x > width - 40 && y > height - 40) {
         x = width - 25;
         y = height - 25;
+      } else if(Math.hypot(x-width/2, y-25) <= 13){
+        x = width/2;
+        y = 25;
+      } else if(Math.hypot(x-width/2, y-(height-25)) <= 13){
+        x = width/2;
+        y = height - 25;
       }
+
+
+      this.x = x;
+      this.y = y;
       this.inPocket++;
     } else {
+      // if(x <= 15 || y <= 15 || x >= 1025 || y >= 525){
+      //   this.reset();
+      // }else
       if (x <= 15 + b || x >= 1025 - b || y <= 15 + b || y >= 525 - b) {
-        let shift = 25;
+        let xshift = 25;
+        let yshift = 25;
+        console.log("should shift");
+        if (x <= 15 + b || x >= 1025 - b) {
+          if (abs(this.xSpeed) >= 10) this.xSpeed *= -0.5;
+          else this.xSpeed *= -1;
+          if (x <= 15 + b) {
+            xshift = w + r - x;
+          } else {
+            xshift = x - (width - w - r);
+          }
+        }
         if (x <= 15 + b) {
-          x += shift;
+          x += xshift;
+          console.log(x);
         } else if (x >= 1025 - b) {
-          x -= shift;
+          if (xshift == x - (width - w - r)) {
+            x -= xshift;
+            console.log(x);
+          } else x -= xshift;
+        }
+        if (y <= 15 + b || y >= 525 - b) {
+          if (abs(this.ySpeed) >= 10) this.ySpeed *= -0.5;
+          else this.ySpeed *= -1;
+          if (y <= 15 + b) {
+            yshift = w + r - y;
+          } else {
+            yshift = y - (height - w - r);
+          }
         }
         if (y <= 15 + b) {
-          y += shift;
+          y += yshift;
         } else if (y >= 525 - b) {
-          y -= shift;
+          y -= yshift;
         }
+        this.x = x;
+        this.y = y;
       } else {
         if ((x < (w + r)) || x > (width - w - r)) {
-          this.xSpeed = -this.xSpeed;
+          this.xSpeed *= -1;
         }
         if ((y < (w + r)) || y > (height - w - r)) {
-          this.ySpeed = -this.ySpeed;
+          this.ySpeed *= -1;
         }
       }
     }
   }
-
+  reverse() {
+    let x = this.x;
+    let y = this.y;
+    let r = this.r;
+    let w = this.wall;
+    let b = ballSize / 2;
+    if (x <= 15 + b || x >= 1025 - b || y <= 15 + b || y >= 525 - b) {
+      let xshift = 25;
+      let yshift = 25;
+      console.log("should shift");
+      if (x <= 15 + b || x >= 1025 - b) {
+        if (abs(this.xSpeed) >= 10) this.xSpeed *= -0.5;
+        else this.xSpeed *= -1;
+        if (x <= 15 + b) {
+          xshift = w + r - x;
+        } else {
+          xshift = x - (width - w - r);
+        }
+      }
+      if (x <= 15 + b) {
+        x += xshift;
+        console.log(x);
+      } else if (x >= 1025 - b) {
+        if (xshift == x - (width - w - r)) {
+          x -= xshift;
+          console.log(x);
+        } else x -= xshift;
+      }
+      if (y <= 15 + b || y >= 525 - b) {
+        if (abs(this.ySpeed) >= 10) this.ySpeed *= -0.5;
+        else this.ySpeed *= -1;
+        if (y <= 15 + b) {
+          yshift = w + r - y;
+        } else {
+          yshift = y - (height - w - r);
+        }
+      }
+      if (y <= 15 + b) {
+        y += yshift;
+      } else if (y >= 525 - b) {
+        y -= yshift;
+      }
+      this.x = x;
+      this.y = y;
+    } else {
+      if ((x < (w + r)) || x > (width - w - r)) {
+        this.xSpeed *= -1;
+      }
+      if ((y < (w + r)) || y > (height - w - r)) {
+        this.ySpeed *= -1;
+      }
+    }
+  }
   reset() {
     this.x = this.ox;
     this.y = this.oy;
@@ -664,10 +762,16 @@ function drawBackground() {
   rect(0, height - 20, width, 20);
   //holes
   fill(black);
+  strokeWeight(4);
+  stroke(42, 23, 11);
   ellipse(25, 25, 50, 50);
   ellipse(width - 25, height - 25, 50, 50);
   ellipse(25, height - 25, 50, 50);
   ellipse(width - 25, 25, 50, 50);
+  ellipse(width/2, 25, 50, 50);
+  ellipse(width/2, height-25, 50, 50);
+  strokeWeight(0);
+  stroke(0);
 }
 
 function drawButton(x, y, width, height, key, color) {
@@ -687,9 +791,9 @@ function keyReleased() {
     for (let i = 0; i < poolBallList.length; i++) {
       poolBallList[i].reset();
     }
-    console.log(poolBallList[0].xSpeed, poolBallList[0].ySpeed)
+    // console.log(poolBallList[0].xSpeed, poolBallList[0].ySpeed)
     ballScore = 0;
-    frames = 60;
+    // frames = 60;
     timeElapsed = 0;
     spacebarPressed = false;
   } else if (key == 's') {
@@ -734,19 +838,19 @@ function hslToRgb(h, s, l) {
     function hue2rgb(p, q, t) {
       if (t < 0) t += 1;
       if (t > 1) t -= 1;
-      if (t < 1/6) return p + (q - p) * 6 * t;
-      if (t < 1/2) return q;
-      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
       return p;
     }
 
     var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
     var p = 2 * l - q;
 
-    r = hue2rgb(p, q, h + 1/3);
+    r = hue2rgb(p, q, h + 1 / 3);
     g = hue2rgb(p, q, h);
-    b = hue2rgb(p, q, h - 1/3);
+    b = hue2rgb(p, q, h - 1 / 3);
   }
 
-  return [ r * 255, g * 255, b * 255 ];
+  return [r * 255, g * 255, b * 255];
 }
