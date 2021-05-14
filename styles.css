@@ -419,7 +419,8 @@ input:checked + #allgames #grid{
 #memes{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(250px, auto);
+  /* grid-template-rows: repeat(6, minmax(100px, auto)); */
+  grid-auto-rows: minmax(100px, auto);
   grid-gap: 10px;
   margin: 0 auto;
   position: absolute;
@@ -427,6 +428,7 @@ input:checked + #allgames #grid{
 #memes img{
   background-color: #2980f1;
   padding: 10px;
+  min-height: 0;
 }
 #memes img:nth-child(even){
   background-color: #F08080;
@@ -525,13 +527,13 @@ input:checked + #allgames #grid{
 @media screen {
   #maininfo{
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-auto-rows: minmax(10px, auto);
     grid-gap: 10px;
     grid-template-areas: 
-    "account account account gamesandprojects gamesandprojects gamesandprojects"
-    ". . mainmemes mainmemes . . "
-    "mainabout mainabout . . secretlogin secretlogin";
+    "account account account account gamesandprojects gamesandprojects gamesandprojects gamesandprojects"
+    ". . mainmemes mainmemes mainmemes mainmemes . . "
+    "mainabout mainabout mainabout . . secretlogin secretlogin secretlogin";
   }
   #maininfo > *{
     background-color: rgb(36, 205, 235);

@@ -153,6 +153,8 @@ let buttonList = [];
 let _mousePressed = false;
 let cueStick;
 let spacebarPressed;
+let xpath = [];
+let ypath = [];
 function setSize(s) {
   // let S = s + "px";
   let S = random(10, 500) + "px";
@@ -304,7 +306,7 @@ function draw() {
         if (distx > 0 && disty < 0) {
           angle = angle + 2 * PI;
         }
-        if (abs(ball.xSpeed) < 1E-2 && abs(ball.ySpeed) < 1E-2) {
+        if (abs(ball.xSpeed) < 1E-3 && abs(ball.ySpeed) < 1E-3) {
           fill(cueColor);
           rectMode(CORNERS);
           push();
@@ -373,11 +375,17 @@ function draw() {
       let ball = poolBallList[i];
       if(i == 0){
         ball.reverse();
+        xpath.push(ball.x);
+        ypath.push(ball.y);
+        console.log(ball.xSpeed, ball.ySpeed)
       }else{
         ball.reverseAndFall();
       }
       ball.move();
       // console.log(ball.xSpeed, ball.x)
+    }
+    for(let i = 0; i < xpath.length; i++){
+      ellipse(xpath[i], ypath[i], 3, 3)
     }
     if (keyIsPressed == true) {
       if (key == 'ArrowUp' && frames <= 57) {
@@ -476,15 +484,24 @@ class PoolBall {
   }
   friction() {
     let friction = 0.03;
+    let angle = atan(this.ySpeed/this.xSpeed);
+    let frictionx = abs(friction*cos(angle));
+    let frictiony = abs(friction*sin(angle));
+    if(abs(this.xSpeed) <= 0.03){
+      this.xSpeed = 0;
+    }
+    if(abs(this.ySpeed) <= 0.03){
+      this.ySpeed = 0;
+    }
     if (this.xSpeed > 0) {
-      this.xSpeed -= friction;
+      this.xSpeed -= frictionx;
     } else if (this.xSpeed < 0) {
-      this.xSpeed += friction;
+      this.xSpeed += frictionx;
     }
     if (this.ySpeed > 0) {
-      this.ySpeed -= friction;
+      this.ySpeed -= frictiony;
     } else if (this.ySpeed < 0) {
-      this.ySpeed += friction;
+      this.ySpeed += frictiony;
     }
   }
   reverseAndFall() {
@@ -493,7 +510,6 @@ class PoolBall {
     let r = this.r;
     let w = this.wall;
     let b = ballSize / 2;
-    if(Math.hypot(x-width/2, y-25) <= 20)console.log(Math.hypot(x-width/2, y-25));
     if ((x < 40 || x > width - 40) && (y < 40 || y > height - 40) || Math.hypot(x-width/2, y-25) <= 13 || Math.hypot(x-width/2, y-(height-25)) <= 13) {
       this.xSpeed = 0;
       this.ySpeed = 0;
@@ -516,8 +532,6 @@ class PoolBall {
         x = width/2;
         y = height - 25;
       }
-
-
       this.x = x;
       this.y = y;
       this.inPocket++;
