@@ -12,8 +12,10 @@
   var stop = false;
   var full = "" + window.location.href;
   var path = full;
-  if(!full.includes("main.html")){
+  if(full.includes("index.html")){
     path = full.replace("index.html", "main.html");
+  }else if(!full.includes("main.html")){
+    path = full + "/main.html"
   }
   console.log(path);
   if(!stop){
