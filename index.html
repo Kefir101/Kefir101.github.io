@@ -9,12 +9,16 @@
 <body>
 </body>
 <script>
+  var stop = false;
   var full = "" + window.location.href;
   var path = full;
   if(!full.includes("main.html")){
     path = full.replace("index.html", "main.html");
   }
   console.log(path);
-  window.location.replace(path);
+  if(!stop){
+    window.location.replace(path);
+    stop = true;
+  }
 </script>
 </html>
