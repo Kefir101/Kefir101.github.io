@@ -49,6 +49,15 @@ function checkInput() {
   }
   //alert(`username is ${username} and password is ${password}`);
 }
+
+
+var path = window.location.pathname;
+console.log(path);
+var page = path.split("/").pop();
+console.log(page);
+
+
+
 var cookies = 0;
 var startClicking = true; 
 function clicked() {
