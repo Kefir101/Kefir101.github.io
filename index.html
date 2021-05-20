@@ -10,7 +10,10 @@
 </body>
 <script>
   var full = "" + window.location.href;
-  var path = full.replace("index.html", "main.html");
+  var path = full;
+  if(!full.includes("main.html")){
+    path = full.replace("index.html", "main.html");
+  }
   console.log(path);
   window.location.replace(path);
 </script>
