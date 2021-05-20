@@ -129,7 +129,7 @@ window.onload = function () {
 // }
 //right click inspect
 document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
+  //e.preventDefault();
 });
 //middle button scrolling
 document.addEventListener("mousedown", function(e){ if(e.button == 1){ e.preventDefault(); } });
@@ -397,9 +397,9 @@ function draw() {
               ball.y -= move * sin(phi);
               ball.friction = 1;
               jball.friction = 1;
-              // ellipse(x, y, 3, 3);
-              // ellipse(jball.x, jball.y, 3, 3);
-              console.log(findDist(x, y, jball.x, jball.y));
+              ellipse(x, y, 3, 3);
+              ellipse(jball.x, jball.y, 3, 3);
+              // console.log(findDist(x, y, jball.x, jball.y));
             }else{
               ball.friction = 0.03;
               jball.friction = 0.03;
@@ -427,12 +427,6 @@ function draw() {
         ball.reverseAndFall();
       }
       ball.move();
-      if(i == 0){
-        ball.reverse();
-        // if(ball.xSpeed != 0 && ball.ySpeed != 0) console.log(ball.xSpeed, ball.ySpeed);
-      }else{
-        ball.reverseAndFall();
-      }
       // console.log(ball.xSpeed, ball.x)
       if(_mousePressed && mouseButton == LEFT && findDist(ball.x, ball.y, mouseX, mouseY) < ballSize/2){
         console.log(ball.xSpeed, ball.ySpeed);
@@ -446,7 +440,7 @@ function draw() {
       } else if (key == ' ') {
         spacebarPressed = true;
       }else if (key == 'c'){
-        console.clear();
+        //console.clear();
       }
     }
   } else if (!gameOver) {
@@ -540,18 +534,18 @@ class PoolBall {
   move() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
-    this.xpath.push(this.x);
-    this.ypath.push(this.y);
+    // this.xpath.push(this.x);
+    // this.ypath.push(this.y);
   }
   frictionLoss() {
     let friction = this.friction;
     let angle = atan(this.ySpeed/this.xSpeed);
     let frictionx = abs(friction*cos(angle));
     let frictiony = abs(friction*sin(angle));
-    if(abs(this.xSpeed) <= 0.03){
+    if(abs(this.xSpeed) <= frictionx){
       this.xSpeed = 0;
     }
-    if(abs(this.ySpeed) <= 0.03){
+    if(abs(this.ySpeed) <= frictiony){
       this.ySpeed = 0;
     }
     if (this.xSpeed > 0) {
@@ -903,30 +897,4 @@ function mouseReleased() {
 
 function mousePressed() {
   _mousePressed = true;
-}
-
-function hslToRgb(h, s, l) {
-  var r, g, b;
-
-  if (s == 0) {
-    r = g = b = l; // achromatic
-  } else {
-    function hue2rgb(p, q, t) {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1 / 6) return p + (q - p) * 6 * t;
-      if (t < 1 / 2) return q;
-      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-      return p;
-    }
-
-    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-    var p = 2 * l - q;
-
-    r = hue2rgb(p, q, h + 1 / 3);
-    g = hue2rgb(p, q, h);
-    b = hue2rgb(p, q, h - 1 / 3);
-  }
-
-  return [r * 255, g * 255, b * 255];
 }

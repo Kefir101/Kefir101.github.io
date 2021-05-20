@@ -516,10 +516,10 @@ input:checked + #allgames #grid{
     color: red;
   }
 }
-.cookie{
-  /* transform: translateX(35%); */
-  /* position: absolute; */
-}
+/* .cookie{
+  transform: translateX(35%);
+  position: absolute;
+} */
 #cookiep1{
   transform: translateX(100px);
   font-family: monospace;
