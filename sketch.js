@@ -1,3 +1,4 @@
+
 function checkInput() {
   var inputusername = document.getElementById("usernametext").value;
   var inputpassword = document.getElementById("passwordtext").value;
@@ -18,10 +19,15 @@ function checkInput() {
     //   password: 1945,
     //   date: "1945-01-01",
     // },
+    // {
+    //   id: "/mothersday.html",
+    //   username: "Mom",
+    //   password: "loveyou",
+    //   date: "1972-05-09"
     {
-      username: "Mom",
-      password: "loveyou",
-      date: "1972-05-09"
+      username: "memes",
+      password: "goodpswd",
+      date: "2021-01-01"
     }
   ];
   let correct = false;
@@ -31,7 +37,7 @@ function checkInput() {
     }
   });
   if (correct) {
-    window.location = "/mothersday.html";
+    window.location = "/memes.html";
     console.log("login correct!");
   } else if (!correct) {
     var tag = document.createElement("h3");
@@ -44,12 +50,22 @@ function checkInput() {
   //alert(`username is ${username} and password is ${password}`);
 }
 var cookies = 0;
+var startClicking = true; 
 function clicked() {
   cookies++;
-  var element = document.getElementById("cookiep");
+  startClicking = true; //doesnt affect value in addTime for some reason
+  var element = document.getElementById("cookiep2");
   element.innerHTML = "Cookies: " + cookies;
 }
-
+const cpstimer = document.getElementById('cpstimer');
+var sec = 0;
+function addTime(){
+  if(startClicking){
+    sec++;
+    cpstimer.innerHTML = "Cookies clicked per second: " + Math.round(cookies/sec);
+    setTimeout("addTime()", 1000);
+  }
+}
 function changeColor(color) {
   document.body.style.background = color;
 }
@@ -90,6 +106,7 @@ function setButtonColor() {
 
 window.onload = function () {
   setButtonColor();
+  addTime();
 };
 
 // document.onkeydown = function(e) {
@@ -110,9 +127,12 @@ window.onload = function () {
 //      return false;
 //   }
 // }
-// document.addEventListener('contextmenu', function(e) {
-//   e.preventDefault();
-// });
+//right click inspect
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+//middle button scrolling
+document.addEventListener("mousedown", function(e){ if(e.button == 1){ e.preventDefault(); } });
 
 //let ballList = [];
 //const ballSize = 12;
@@ -127,7 +147,7 @@ const balls = 15;
 let poolBallList = [];
 let poolBallColorList = [];
 let startx = 750, starty = 260;
-let poolBallXList = Array.of(startx - 600, startx - 350 - 90, startx + 40 - 350, startx + 35, startx + 70, startx + 70, startx + 105, startx + 105, startx + 70, startx + 105, startx + 105, startx + 140, startx + 140, startx + 140, startx + 140, startx + 140);
+let poolBallXList = Array.of(startx -300, startx - 600, startx + 40 - 350, startx + 35, startx + 70, startx + 70, startx + 105, startx + 105, startx + 70, startx + 105, startx + 105, startx + 140, startx + 140, startx + 140, startx + 140, startx + 140);
 let poolBallYList = Array.of(starty, starty, starty - 20 + 20, starty + 20, starty - 40, starty + 40, starty - 60, starty - 20, starty, starty + 20, starty + 60, starty - 80, starty - 40, starty, starty + 40, starty + 80);
 let yellow = 0;
 let blue = 0;
@@ -153,8 +173,6 @@ let buttonList = [];
 let _mousePressed = false;
 let cueStick;
 let spacebarPressed;
-let xpath = [];
-let ypath = [];
 function setSize(s) {
   // let S = s + "px";
   let S = random(10, 500) + "px";
@@ -273,7 +291,7 @@ function draw() {
       let x = ball.x;
       let y = ball.y;
       ball.show();
-      ball.friction();
+      ball.frictionLoss();
       if (i > 0) {
         fill(255);
         ellipse(x, y, 15, 15);
@@ -330,14 +348,14 @@ function draw() {
                 }
                 break;
               case CENTER:
-                ball.xSpeed = powerlength / 10 * cos(PI - angle);
-                ball.ySpeed = powerlength / 10 * sin(PI - angle);
+                ball.xSpeed = powerlength / 13 * cos(PI - angle);
+                ball.ySpeed = powerlength / 13 * sin(PI - angle);
               //frames = 1;
               //console.log(ball.xSpeed);
             }
           } else if (spacebarPressed) {
-            ball.xSpeed = powerlength / 10 * cos(PI - angle);
-            ball.ySpeed = powerlength / 10 * sin(PI - angle);
+            ball.xSpeed = powerlength / 13 * cos(PI - angle);
+            ball.ySpeed = powerlength / 13 * sin(PI - angle);
             spacebarPressed = false;
           }
         }
@@ -355,10 +373,39 @@ function draw() {
               } else {
                 phi = atan(-yDist / xDist);
               }
-              let move = ballSize - findDist(x, y, jball.x, jball.y);
-              jball.x += move * cos(phi);
-              jball.y -= move * sin(phi);
+              let move = (ballSize - findDist(x, y, jball.x, jball.y))*0.5;
+              // if(ball.x > jball.x){
+              //   console.log("phi " + phi);
+              //   console.log(ball.x);
+              //   ball.x += move * cos(phi);
+              //   console.log(ball.x);
+              //   jball.y -= move * sin(phi);
+              // }else{
+              //   ball.x -= move * cos(phi);
+              //   jball.y += move * sin(phi);
+              // }
+              // if(Math.random() > 0.5 && false){
+              //   jball.x += move * cos(phi);
+              //   jball.y -= move * sin(phi);
+              // }else{
+              //   jball.x += move * cos(phi);
+              //   jball.y -= move * sin(phi);
+              // }
+              jball.x -= move * cos(phi);
+              jball.y += move * sin(phi);
+              ball.x += move * cos(phi);
+              ball.y -= move * sin(phi);
+              ball.friction = 1;
+              jball.friction = 1;
+              // ellipse(x, y, 3, 3);
+              // ellipse(jball.x, jball.y, 3, 3);
+              console.log(findDist(x, y, jball.x, jball.y));
+            }else{
+              ball.friction = 0.03;
+              jball.friction = 0.03;
             }
+            x = ball.x;
+            y = ball.y;
             let tempballxSpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v1x");
             let tempballySpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v1y");
             let tempjballxSpeed = findVelocity(x, y, jball.x, jball.y, ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, "v2x");
@@ -375,17 +422,21 @@ function draw() {
       let ball = poolBallList[i];
       if(i == 0){
         ball.reverse();
-        xpath.push(ball.x);
-        ypath.push(ball.y);
-        console.log(ball.xSpeed, ball.ySpeed)
+        // if(ball.xSpeed != 0 && ball.ySpeed != 0) console.log(ball.xSpeed, ball.ySpeed);
       }else{
         ball.reverseAndFall();
       }
       ball.move();
+      if(i == 0){
+        ball.reverse();
+        // if(ball.xSpeed != 0 && ball.ySpeed != 0) console.log(ball.xSpeed, ball.ySpeed);
+      }else{
+        ball.reverseAndFall();
+      }
       // console.log(ball.xSpeed, ball.x)
-    }
-    for(let i = 0; i < xpath.length; i++){
-      ellipse(xpath[i], ypath[i], 3, 3)
+      if(_mousePressed && mouseButton == LEFT && findDist(ball.x, ball.y, mouseX, mouseY) < ballSize/2){
+        console.log(ball.xSpeed, ball.ySpeed);
+      }
     }
     if (keyIsPressed == true) {
       if (key == 'ArrowUp' && frames <= 57) {
@@ -394,6 +445,8 @@ function draw() {
         frames -= 3;
       } else if (key == ' ') {
         spacebarPressed = true;
+      }else if (key == 'c'){
+        console.clear();
       }
     }
   } else if (!gameOver) {
@@ -472,18 +525,26 @@ class PoolBall {
     this.color = color;
     this.inPocket = 0;
     this.wall = 20;
+    this.xpath = [];
+    this.ypath = [];
+    this.friction = 0.03;
   }
   show() {
     fill(this.color);
     strokeWeight(0);
     ellipse(this.x, this.y, this.d, this.d);
+    for(let i = 0; i < this.xpath.length; i++){
+      ellipse(this.xpath[i], this.ypath[i], 3, 3)
+    }
   }
   move() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
+    this.xpath.push(this.x);
+    this.ypath.push(this.y);
   }
-  friction() {
-    let friction = 0.03;
+  frictionLoss() {
+    let friction = this.friction;
     let angle = atan(this.ySpeed/this.xSpeed);
     let frictionx = abs(friction*cos(angle));
     let frictiony = abs(friction*sin(angle));
@@ -608,11 +669,9 @@ class PoolBall {
       }
       if (x <= 15 + b) {
         x += xshift;
-        console.log(x);
       } else if (x >= 1025 - b) {
         if (xshift == x - (width - w - r)) {
           x -= xshift;
-          console.log(x);
         } else x -= xshift;
       }
       if (y <= 15 + b || y >= 525 - b) {
@@ -645,6 +704,8 @@ class PoolBall {
     this.y = this.oy;
     this.xSpeed = 0;
     this.ySpeed = 0;
+    this.xpath = [];
+    this.ypath = [];
   }
 }
 
@@ -656,7 +717,8 @@ function ballHitBall(x1, y1, x2, y2) {
 }
 
 function ballInsideBall(x1, y1, x2, y2) {
-  if ((findDist(x1, y1, x2, y2) < ballSize - 1)) {
+  console.log(ballSize-2)
+  if ((findDist(x1, y1, x2, y2) < ballSize - 2)) {
     return true;
   }
   return false;

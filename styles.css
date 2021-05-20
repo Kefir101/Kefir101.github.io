@@ -78,7 +78,7 @@ div p{
   font-size: 80px;
   margin: -12px;
 }
-#LCgrid{
+#LoginCookiegrid{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: minmax(50px, auto);
@@ -139,7 +139,6 @@ label{
 .games{
   font-size: 35px;
 }
-
 .menubtn{
   position: absolute;
   display: inline-block;
@@ -431,7 +430,7 @@ input:checked + #allgames #grid{
   min-height: 0;
 }
 #memes img:nth-child(even){
-  background-color: #F08080;
+  background-color: #443838;
 }
 @media screen {
   #working{
@@ -517,10 +516,28 @@ input:checked + #allgames #grid{
     color: red;
   }
 }
-.cookie p{
+.cookie{
+  /* transform: translateX(35%); */
+  /* position: absolute; */
+}
+#cookiep1{
+  transform: translateX(100px);
+  font-family: monospace;
+  font-size: 25px;
+  display: inline-block;
+  margin: 0 auto;
+}
+#cookiep2{
   transform: translateX(185px);
   font-size: 30px;
   border: brown solid 2px;
+  display: inline-block;
+  margin: 0 auto;
+}
+#cpstimer{
+  transform: translateX(70px);
+  font-size: 30px;
+  border: green solid 2px;
   display: inline-block;
   margin: 0 auto;
 }
@@ -532,8 +549,11 @@ input:checked + #allgames #grid{
     grid-gap: 10px;
     grid-template-areas: 
     "account account account account gamesandprojects gamesandprojects gamesandprojects gamesandprojects"
-    ". . mainmemes mainmemes mainmemes mainmemes . . "
-    "mainabout mainabout mainabout . . secretlogin secretlogin secretlogin";
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    "mainabout mainabout mainabout mainabout secretlogin secretlogin secretlogin secretlogin";
   }
   #maininfo > *{
     background-color: rgb(36, 205, 235);
@@ -553,9 +573,6 @@ input:checked + #allgames #grid{
   #gamesandprojects{
     grid-area: gamesandprojects;
   }
-  #mainmemes{
-    grid-area: mainmemes;
-  }
   #mainabout{
     grid-area: mainabout;
   }
@@ -566,5 +583,18 @@ input:checked + #allgames #grid{
     font-size: 20px;
   }
 }
-
-
+/* #cursor1{
+  width: 30px;
+  height: auto;
+  left: 400px;
+  position: absolute;
+  top: 235px;
+  animation: revolve 10s infinite linear;
+} */
+@keyframes revolve {
+  /* 0%{transform: translate(400px, 490px) rotateZ(0deg)}
+  50%{transform: translate(180px, 245px) rotateZ(90deg)}
+  100%{transform: translate(400px, 0px) rotateZ(180deg)} */
+  from { transform: rotate(0deg) translateX(230px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(230px) rotate(-360deg); }
+}
