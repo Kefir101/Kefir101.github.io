@@ -110,25 +110,27 @@ window.onload = function () {
   setButtonColor();
   addTime();
 };
-
-// document.onkeydown = function(e) {
-//   console.log(1);
-//   if(event.keyCode == 123) {
-//      return false;
-//   }
-//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-//      return false;
-//   }
-//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-//      return false;
-//   }
-//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-//      return false;
-//   }
-//   if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-//      return false;
-//   }
-// }
+var full = "" + window.location.href;
+if(!full.includes("http://127.0.0.1:5500/")){
+  document.onkeydown = function(e) {
+    console.log(1);
+    if(event.keyCode == 123) {
+       return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+       return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+       return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+       return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+       return false;
+    }
+  }
+}
 //right click inspect
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
@@ -232,11 +234,11 @@ function draw() {
   newmouseY = mouseY;
   if (instructionPage) {
     document.getElementById("billiardbtn").style.display = "none";
-    background(128);
+    background(197, 139, 231);
     textSize(50);
     textAlign(CENTER);
     text("INSTRUCTIONS: ", w / 2, h / 8);
-    textSize(16);
+    textSize(19);
     textAlign(LEFT);
     text("There are 2 player modes and 3 difficulty levels if you choose to play single-player!" + '\n'
       + "The difficulty levels determine how much time you will have: 300, 200, and 100 seconds, " + '\n'
@@ -249,7 +251,7 @@ function draw() {
       + "(keep in mind that you can only hit the cue ball when it has stopped), " + '\n'
       + "click the middle mouse button (or spacebar) to release cue stick and launch the ball, " + '\n'
       + "press s to freeze/unfreeze game, and press r to reset table, score, and timer" + '\n'
-      + "Optional: Up/Down arrow keys to increase the frame-rate to a minimum of 1 and maximum of 60 frames per second", 20, h / 2 + 50);
+      + "Optional: Up/Down arrow keys to increase the frame-rate to a minimum of 1 and maximum of 60 frames per second", 20, h / 2 + 20);
     fill(0);
     rectMode(CENTER);
     rect(70, 45, 80, 30);
@@ -258,6 +260,7 @@ function draw() {
     text("Return", 33, 55);
     if (clickedRectangle(mouseX, mouseY, 70, 45, 80, 30)) {
       instructionPage = false;
+      document.getElementById("billiardbtn").style.display = "inline-block";
     }
   } else if (play) {
     document.getElementById("billiardbtn").style.display = "none";
@@ -374,6 +377,8 @@ function draw() {
         let jball = poolBallList[j];
         if (ball.inPocket == 0 && jball.inPocket == 0 && i != j) {
           if (ballInsideBall(x, y, jball.x, jball.y) || ballHitBall(x, y, jball.x, jball.y)) {
+            // console.log("inside " + ballInsideBall(x, y, jball.x, jball.y));
+            // console.log("hit " + ballHitBall(x, y, jball.x, jball.y));
             if (ballInsideBall(x, y, jball.x, jball.y)) {
               let xDist = x - jball.x;
               let yDist = y - jball.y;
@@ -383,7 +388,7 @@ function draw() {
               } else {
                 phi = atan(-yDist / xDist);
               }
-              let move = (ballSize - findDist(x, y, jball.x, jball.y))*0.5;
+              let move = (ballSize - findDist(x, y, jball.x, jball.y))*0.50;
               // if(ball.x > jball.x){
               //   console.log("phi " + phi);
               //   console.log(ball.x);
@@ -405,8 +410,8 @@ function draw() {
               jball.y += move * sin(phi);
               ball.x += move * cos(phi);
               ball.y -= move * sin(phi);
-              ball.friction = 1.5;
-              jball.friction = 1.5;
+              ball.friction = 1.2;
+              jball.friction = 1.2;
               insideAball = true;
               fill(0);
               // ellipse(ball.x, ball.y, 3, 3);
@@ -430,8 +435,10 @@ function draw() {
         ball.friction = 0.03;
       }
     }
+    let frictionList = [];
     for (let i = 0; i < poolBallList.length; i++) {
       let ball = poolBallList[i];
+      frictionList.push(i, ball.friction);
       if(i == 0){
         ball.reverse();
         // if(ball.xSpeed != 0 && ball.ySpeed != 0) console.log(ball.xSpeed, ball.ySpeed);
@@ -455,8 +462,9 @@ function draw() {
         //console.clear();
       }
     }
+    console.log(frictionList);
   } else if (!gameOver) {
-    background(128);
+    background(0, 105, 148);
     fill(0);
     textSize(30);
     textAlign(CENTER);
@@ -721,7 +729,7 @@ function ballHitBall(x1, y1, x2, y2) {
 }
 
 function ballInsideBall(x1, y1, x2, y2) {
-  if ((findDist(x1, y1, x2, y2) < ballSize - 2)) {
+  if ((findDist(x1, y1, x2, y2) < (ballSize - 6))) {
     return true;
   }
   return false;
