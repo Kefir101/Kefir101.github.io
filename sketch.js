@@ -38,7 +38,6 @@ function checkInput() {
   });
   if (correct) {
     window.location = "/memes.html";
-    console.log("login correct!");
   } else if (!correct) {
     var tag = document.createElement("h3");
     var text = document.createTextNode("Try again!");
@@ -50,8 +49,6 @@ function checkInput() {
   //alert(`username is ${username} and password is ${password}`);
 }
 
-
-
 var cookies = 0;
 var startClicking = true; 
 function clicked() {
@@ -60,15 +57,17 @@ function clicked() {
   var element = document.getElementById("cookiep2");
   element.innerHTML = "Cookies: " + cookies;
 }
-const cpstimer = document.getElementById('cpstimer');
 var sec = 0;
 function addTime(){
   if(startClicking){
     sec++;
-    cpstimer.innerHTML = "Cookies clicked per second: " + Math.round(cookies/sec);
+    var newHTML = "Cookies clicked per second: " + Math.round(cookies/sec);
+    cpstimer.innerHTML = newHTML; //how???
     setTimeout("addTime()", 1000);
   }
 }
+
+
 function changeColor(color) {
   document.body.style.background = color;
 }
@@ -132,7 +131,7 @@ window.onload = function () {
 // }
 //right click inspect
 document.addEventListener('contextmenu', function(e) {
-  //e.preventDefault();
+  e.preventDefault();
 });
 //middle button scrolling
 document.addEventListener("mousedown", function(e){ if(e.button == 1){ e.preventDefault(); } });
@@ -150,7 +149,7 @@ const balls = 15;
 let poolBallList = [];
 let poolBallColorList = [];
 let startx = 750, starty = 260;
-let poolBallXList = Array.of(startx -300, startx - 600, startx + 40 - 350, startx + 35, startx + 70, startx + 70, startx + 105, startx + 105, startx + 70, startx + 105, startx + 105, startx + 140, startx + 140, startx + 140, startx + 140, startx + 140);
+let poolBallXList = Array.of(startx - 300, startx - 600, startx - 260, startx + 35, startx + 70, startx + 70, startx + 105, startx + 105, startx + 70, startx + 105, startx + 105, startx + 140, startx + 140, startx + 140, startx + 140, startx + 140);
 let poolBallYList = Array.of(starty, starty, starty - 20 + 20, starty + 20, starty - 40, starty + 40, starty - 60, starty - 20, starty, starty + 20, starty + 60, starty - 80, starty - 40, starty, starty + 40, starty + 80);
 let yellow = 0;
 let blue = 0;
@@ -169,13 +168,20 @@ let timeElapsed = 0, frames = 60;
 let totaltime = -1;
 let multiplayer = -1;
 let difficulty = -1;
-let showInstructions = true, canSwap = true, play = true, pause = false;
-let ready, gameOver, won, instructionPage;
+let showInstructions = true, canSwap = true, play = false, pause = false;
+let ready = false, gameOver, won, instructionPage;
 let showIns;
 let buttonList = [];
 let _mousePressed = false;
 let cueStick;
 let spacebarPressed;
+
+if(ready){
+  difficulty = 0;
+  totaltime = 999;
+  play = true;
+}
+
 function setSize(s) {
   // let S = s + "px";
   let S = random(10, 500) + "px";
@@ -363,6 +369,7 @@ function draw() {
           }
         }
       }
+      var insideAball = false;
       for (let j = 0; j < poolBallList.length; j++) {
         let jball = poolBallList[j];
         if (ball.inPocket == 0 && jball.inPocket == 0 && i != j) {
@@ -387,25 +394,24 @@ function draw() {
               //   ball.x -= move * cos(phi);
               //   jball.y += move * sin(phi);
               // }
-              // if(Math.random() > 0.5 && false){
-              //   jball.x += move * cos(phi);
-              //   jball.y -= move * sin(phi);
-              // }else{
-              //   jball.x += move * cos(phi);
-              //   jball.y -= move * sin(phi);
-              // }
+              if(Math.random() > 0.5 && false){
+                jball.x += move * cos(phi);
+                jball.y -= move * sin(phi);
+              }else{
+                // jball.x += move * cos(phi);
+                // jball.y -= move * sin(phi);
+              }
               jball.x -= move * cos(phi);
               jball.y += move * sin(phi);
               ball.x += move * cos(phi);
               ball.y -= move * sin(phi);
-              ball.friction = 1;
-              jball.friction = 1;
-              ellipse(x, y, 3, 3);
-              ellipse(jball.x, jball.y, 3, 3);
-              // console.log(findDist(x, y, jball.x, jball.y));
-            }else{
-              ball.friction = 0.03;
-              jball.friction = 0.03;
+              ball.friction = 1.5;
+              jball.friction = 1.5;
+              insideAball = true;
+              fill(0);
+              // ellipse(ball.x, ball.y, 3, 3);
+              // ellipse(jball.x, jball.y, 3, 3);
+              console.log(i, j, findDist(x, y, jball.x, jball.y), ball.friction, jball.friction);
             }
             x = ball.x;
             y = ball.y;
@@ -420,6 +426,9 @@ function draw() {
           }
         }
       }
+      if(!insideAball){
+        ball.friction = 0.03;
+      }
     }
     for (let i = 0; i < poolBallList.length; i++) {
       let ball = poolBallList[i];
@@ -432,7 +441,7 @@ function draw() {
       ball.move();
       // console.log(ball.xSpeed, ball.x)
       if(_mousePressed && mouseButton == LEFT && findDist(ball.x, ball.y, mouseX, mouseY) < ballSize/2){
-        console.log(ball.xSpeed, ball.ySpeed);
+        console.log(ball.xSpeed, ball.ySpeed, ball.friction);
       }
     }
     if (keyIsPressed == true) {
@@ -537,8 +546,10 @@ class PoolBall {
   move() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
-    // this.xpath.push(this.x);
-    // this.ypath.push(this.y);
+    if(abs(this.xSpeed) > 0 && abs(this.ySpeed)){
+      this.xpath.push(this.x);
+      this.ypath.push(this.y);
+    }
   }
   frictionLoss() {
     let friction = this.friction;
@@ -600,7 +611,6 @@ class PoolBall {
       if (x <= 15 + b || x >= 1025 - b || y <= 15 + b || y >= 525 - b) {
         let xshift = 25;
         let yshift = 25;
-        console.log("should shift");
         if (x <= 15 + b || x >= 1025 - b) {
           if (abs(this.xSpeed) >= 10) this.xSpeed *= -0.5;
           else this.xSpeed *= -1;
@@ -612,11 +622,9 @@ class PoolBall {
         }
         if (x <= 15 + b) {
           x += xshift;
-          console.log(x);
         } else if (x >= 1025 - b) {
           if (xshift == x - (width - w - r)) {
             x -= xshift;
-            console.log(x);
           } else x -= xshift;
         }
         if (y <= 15 + b || y >= 525 - b) {
@@ -654,7 +662,6 @@ class PoolBall {
     if (x <= 15 + b || x >= 1025 - b || y <= 15 + b || y >= 525 - b) {
       let xshift = 25;
       let yshift = 25;
-      console.log("should shift");
       if (x <= 15 + b || x >= 1025 - b) {
         if (abs(this.xSpeed) >= 10) this.xSpeed *= -0.5;
         else this.xSpeed *= -1;
@@ -714,7 +721,6 @@ function ballHitBall(x1, y1, x2, y2) {
 }
 
 function ballInsideBall(x1, y1, x2, y2) {
-  console.log(ballSize-2)
   if ((findDist(x1, y1, x2, y2) < ballSize - 2)) {
     return true;
   }

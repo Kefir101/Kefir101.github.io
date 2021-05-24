@@ -583,14 +583,18 @@ input:checked + #allgames #grid{
     font-size: 20px;
   }
 }
-/* #cursor1{
+#secondcookie{
+  text-align: center;
+  transform: translatex(500px);
+}
+#cursor1{
   width: 30px;
   height: auto;
-  left: 400px;
+  left: 730px;
+  top: -320px;
   position: absolute;
-  top: 235px;
   animation: revolve 10s infinite linear;
-} */
+}
 @keyframes revolve {
   /* 0%{transform: translate(400px, 490px) rotateZ(0deg)}
   50%{transform: translate(180px, 245px) rotateZ(90deg)}
