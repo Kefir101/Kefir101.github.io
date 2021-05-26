@@ -138,11 +138,6 @@ document.addEventListener('contextmenu', function(e) {
 //middle button scrolling
 document.addEventListener("mousedown", function(e){ if(e.button == 1){ e.preventDefault(); } });
 
-//let ballList = [];
-//const ballSize = 12;
-//let ballScore = 0;
-//let size = 300;
-//let balls = 800;
 const size = 1040, width = size, height = size / 2;
 const w = width, h = height;
 const ballSize = 40;
@@ -399,24 +394,24 @@ function draw() {
               //   ball.x -= move * cos(phi);
               //   jball.y += move * sin(phi);
               // }
-              if(Math.random() > 0.5 && false){
-                jball.x += move * cos(phi);
-                jball.y -= move * sin(phi);
-              }else{
-                // jball.x += move * cos(phi);
-                // jball.y -= move * sin(phi);
-              }
+              // if(Math.random() > 0.5){
+              //   ball.x += move * cos(phi);
+              //   ball.y -= move * sin(phi);
+              // }else{
+              //   jball.x += move * cos(phi);
+              //   jball.y -= move * sin(phi);
+              // }
               jball.x -= move * cos(phi);
               jball.y += move * sin(phi);
               ball.x += move * cos(phi);
               ball.y -= move * sin(phi);
-              ball.friction = 1.2;
-              jball.friction = 1.2;
+              ball.friction = 0.3;
+              jball.friction = 0.3;
               insideAball = true;
               fill(0);
               // ellipse(ball.x, ball.y, 3, 3);
-              // ellipse(jball.x, jball.y, 3, 3);
-              console.log(i, j, findDist(x, y, jball.x, jball.y), ball.friction, jball.friction);
+              // ellipse(jball.x, jball.y, 3, 3); 
+              console.log(i, j, findDist(x, y, jball.x, jball.y), ball.xSpeed, ball.ySpeed, jball.xSpeed, jball.ySpeed, ball.friction, jball.friction);
             }
             x = ball.x;
             y = ball.y;
@@ -561,7 +556,7 @@ class PoolBall {
   }
   frictionLoss() {
     let friction = this.friction;
-    let angle = atan(this.ySpeed/this.xSpeed);
+    let angle = atan(-this.ySpeed/this.xSpeed);
     let frictionx = abs(friction*cos(angle));
     let frictiony = abs(friction*sin(angle));
     if(abs(this.xSpeed) <= frictionx){
@@ -915,3 +910,15 @@ function mouseReleased() {
 function mousePressed() {
   _mousePressed = true;
 }
+
+
+// const CODE = (code) => {
+//   code.setup = () => {
+//     code.createCanvas(1000, 500);
+//   };
+//   code.draw = () => {
+//     code.background(255);
+//     code.rect(100,100,50,50);
+//   };
+// };
+// let codeCanvas = newp5(code);

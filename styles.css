@@ -286,6 +286,16 @@ canvas {
   top: 325px;
   left: 225px;
 }
+#canvas1{
+  background: yellow;
+  top: 325px;
+  left: 225px;
+}
+#canvas2 {
+  background: green;
+  top: 400px;
+  left: 225px;
+}
 .popup{
   display: inline-block;
   width: 500px;
