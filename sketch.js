@@ -62,7 +62,7 @@ function addTime(){
   if(startClicking){
     sec++;
     var newHTML = "Cookies clicked per second: " + Math.round(cookies/sec);
-    cpstimer.innerHTML = newHTML; //how???
+    // cpstimer.innerHTML = newHTML; //how???
     setTimeout("addTime()", 1000);
   }
 }
