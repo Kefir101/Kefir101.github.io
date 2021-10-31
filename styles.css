@@ -510,9 +510,9 @@ input:checked + #allprojects #grid{
     grid-template-areas: 
     "account account account account gamesandprojects gamesandprojects gamesandprojects gamesandprojects"
     ". . . . . . . ."
-    "mainabout mainabout mainabout mainabout exclusivelogin exclusivelogin exclusivelogin exclusivelogin"
+    "exclusivelogin exclusivelogin exclusivelogin exclusivelogin settings settings settings settings"
     ". . . . . . . ."
-    ". . settings settings settings settings . .";
+    ". . mainabout mainabout mainabout mainabout . .";
   }
   #maininfo > *{
     background-color: rgb(36, 205, 235);
