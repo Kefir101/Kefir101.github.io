@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download all my Games/Projects</title>
+</head>
+
+<body id="bgames">
+  <ul class=links>
+    <li class=links><a class="link" id="main.html" href="main.html">Return to Main</a></li>
+    <li class=links><a class="link" id="account.html" href="account.html">Account</a></li>
+    <li class=links><a class="link" id="allprojects.html" href="allprojects.html">Games/Projects</a></li>
+    <li class=links><a class="link" id="exclusivelogin.html" href="exclusivelogin.html">Exclusive Login</a></li>
+    <li class=links><a class="link" id="settings.html" href="settings.html">Settings</a></li>
+    <li class=links><a class="link" id="about.html" href="about.html">About</a></li>
+
+  </ul>
+  <script src="sketch.js" id='p5'></script>
+  <!-- <input type="checkbox"> -->
+  <br>
+  <div class="gameh1">
+    <h1 class="no_padding_border_margin">
+      <bold>Download Projects</bold>
+    </h1>
+    <h5 class="no_padding_border_margin">From highest to lowest complexity, click project name to download:</h5>
+    <h6 class="no_padding_border_margin">(* denotes a work in progress)</h6>
+  </div>
+  <br><br>
+  <div id="allprojects">
+    <!-- <ol>
+      <li class = "games"><a class = "game" href= "games/Chess_jar/Chess.jar" onclick = "changeLink()" download>Chess</a></li>
+      <li class = "games"><a class = "game" href= "games/GeoDash_jar/GeoDash.jar" onclick = "changeLink()" download>Geometry Dash</a></li>
+      <li class = "games"><a class = "game" href= "games/Pool_jar/Pool.jar" onclick = "changeLink()" download>Realistic Pool Game (WIP)</a></li>
+      <li class = "games"><a class = "game" href= "games/Othello_jar/Othello.jar" onclick = "changeLink()" download>Othello</a></li>
+      <li class = "games"><a class = "game" href= "games/Mental_jar/Mental.jar" onclick = "changeLink()" download>Mental Health App (BAYCON)</a></li>
+      <li class = "games"><a class = "game" href= "games/Pathfinding_jar/Pathfinding.jar" onclick = "changeLink()" download>Simple Pathfinding Algorithm (A*)</a></li>
+      <li class = "games"><a class = "game" href= "games/Oscillation_jar/Oscillation.jar" onclick = "changeLink()" download>Oscillation</a></li>
+      <li class = "games"><a class = "game" href= "games/Lissajous_jar/Lissajous.jar" onclick = "changeLink()" download>Lissajous</a></li>
+      <li class = "games"><a class = "game" href= "games/Life_jar/Life.jar" onclick = "changeLink()" download>Game of Life</a></li>
+    </ol> -->
+    <!-- <div id = "grid">
+      <p></p><p></p><p></p><p></p>
+    </div> -->
+
+    <a class="game" href="games/Chess_jar/Chess.jar" onclick="changeLink()" download>1: Chess<img src="img/chessweb.png"
+        id="gameimage"></a>
+    <a class="game" href="games/GeoDash_jar/GeoDash.jar" onclick="changeLink()" download>2: Geometry Dash<img
+        src="img/geodashweb.png" id="gameimage"></a>
+    <a class="game" href="games/Pool_jar/Pool.jar" onclick="changeLink()" download>3: Billiards*<img
+        src="img/poolweb.png" id="gameimage"></a>
+    <a class="game" href="games/Othello_jar/Othello.jar" onclick="changeLink()" download>4: Othello<img
+        src="img/othelloweb.png" id="gameimage"></a>
+    <a class="game" href="manasC478.github.io" onclick="changeLink()" download>5: Seating Chart Generator*<img
+        src="img/seatingchartgenerator.png" id="gameimage"></a>
+    <a class="game" href="" onclick="changeLink()" download>6: 2D Physics Engine*<img src="img/physicsengineweb.png"
+        id="gameimage"></a>
+    <a class="game" href="" onclick="changeLink()" download>7: Minecraft Word Counter*<img
+        src="img/minecraftwordcounter.png" id="gameimage"></a>
+    <a class="game" href="games/Mental_jar/Mental.jar" onclick="changeLink()" download>8: Mental Health App<img
+        src="img/mentalweb.png" id="gameimage"></a>
+    <a class="game" href="games/Pathfinding_jar/Pathfinding.jar" onclick="changeLink()" download>9: A* Pathfinding
+      Algorithm<img src="img/pathfindingweb.png" id="gameimage"></a>
+    <a class="game" href="games/Oscillation_jar/Oscillation.jar" onclick="changeLink()" download>10: Oscillation<img
+        src="img/oscillationweb.png" id="gameimage"></a>
+    <a class="game" href="games/Lissajous_jar/Lissajous.jar" onclick="changeLink()" download>11: Lissajous<img
+        src="img/lissajousweb.png" id="gameimage"></a>
+    <a class="game" href="games/Life_jar/Life.jar" onclick="changeLink()" download>12: Game of Life<img
+        src="img/lifeweb.png" id="gameimage"></a>
+
+  </div>
+</body>
+
+</html>

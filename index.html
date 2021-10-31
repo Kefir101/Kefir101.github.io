@@ -1,11 +1,13 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta id = "rdurl" name="redirectURL" http-equiv="refresh" content="0; URL=" />
+  <meta id="rdurl" name="redirectURL" http-equiv="refresh" content="0; URL=" />
   <title>Loading...</title>
 </head>
+
 <body>
 </body>
 <script>
@@ -13,15 +15,21 @@
   var full = "" + window.location.href;
   console.log(full);
   var path = full;
-  if(full.includes("index.html")){
-    path = full.replace("index.html", "main.html");
-  }else if(!full.includes("main.html")){
-    path = full + "main.html"
+  if (!full.includes("main.html")) {
+    if (full.includes("index.html")) {
+      path = full.replace("index.html", "main.html");
+    } else if (full.endsWith("/")) {
+      path = full + "main.html"
+    } else {
+      path = full + "/main.html"
+    }
   }
+
   console.log(path);
-  if(!stop){
+  if (!stop) {
     window.location.replace(path);
     stop = true;
   }
 </script>
+
 </html>

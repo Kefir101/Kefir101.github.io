@@ -1,70 +1,3 @@
-/* h1{
-  color:orange;
-  background-color: aqua;
-  font-size: 52px;
-  text-decoration: underline;
-  font-family: sans-serif;
-  text-align: center;
-}
-p.ageq.old{
-  color: rgb(45, 204, 24);
-  text-align: right;
-  line-height: 20px;
-  letter-spacing: 10px;
-  column-count: 3;
-  column-gap: 30;
-}
-ol{
- border-style: dashed;
-  border-width: 4px;
-  border-color: red; 
-  border: 4px solid crimson; 
-  border-bottom:rgb(27, 16, 97) 4px solid;
-  border-left: 8px solid;
-}
-li{
-  list-style-type: square;
-  text-shadow: 2px 2px #5a5c40;
-}
-span{
-  display: block;
-}
-div{
-  display: inline-block;
-  border: 5px solid green;
-  margin: 20px;
-  padding: 20px solid red;
-}
-textarea#bio{
-  display: inline-block;
-  border: 5px solid blue;
-  margin: 20px;
-  padding: 20px solid red;
-} 
-div .ageq{
-  display: inline-block;
-  border: 5px solid blue;
-  margin: 20px;
-  padding: 20px solid red;
-}
-a[href="t.html"]{
-  display: inline-block;
-  border: 5px solid green;
-  margin: 20px;
-  padding: 20px solid red;
-  text-decoration: bold;
-  text-transform: uppercase;
-}
-div{
-  color: lightcoral;
-  border: lightcoral 3px solid;
-  margin: 10px;
-}
-div p{
-  border: inherit;
-  margin: inherit;
-  color: seagreen;
-}*/
 .accounttitle{
   background-color: rgb(60, 182, 223);
   text-align: center;
@@ -93,13 +26,19 @@ div p{
   display: inline;
   height: 70px;
   width: 70px;
-  border-radius: 30%;
-  border: 2px solid black;
+  border: 0px;
+  padding: 0px;
   font-size: 15px;
   color:black;
 }
 .btn:hover{
   filter: brightness(1.40);
+}
+#colorbtngrid{
+  display: inline-block;
+  border: 2px solid black;
+  grid-template-columns: repeat(12, 1fr);
+  font-size: 0;
 }
 body{
   background-color: #9ACDE0;
@@ -133,87 +72,93 @@ label{
   margin: 5px;
 }
 .gameh1{
-  text-decoration: underline;
-  font-size: 45px;
+  text-align: center;
+  font-size: 35px;
+  background-color: #1182af;  
 }
 .games{
   font-size: 35px;
 }
-.menubtn{
-  position: absolute;
-  display: inline-block;
-  height: 50px;
-  width: 120px;
-  border-radius: 40%;
-  font-size: 15px;
-  text-align: center;
+@media screen {
+  .menubtn{
+    position: absolute;
+    display: inline-block;
+    height: 50px;
+    width: 120px;
+    border-radius: 40%;
+    font-size: 15px;
+    text-align: center;
+    transform: translateY(-55px);
+
+  }
+  #billiardbtn button:hover{
+    filter: brightness(1.40);
+  }
+  #solobtn{
+    all: inherit;
+    border: 2px solid black;
+    transform: translateX(166px);
+    transform: translate(645px, 104px);
+    color:black;
+    background-color: green;
+  }
+  #multibtn{
+    all: inherit;
+    border: 2px solid black;
+    transform: translateX(166px);
+    transform: translate(790px, 50px);
+    color:black;
+    background-color: green;
+  }
+  #beginnerbtn{
+    all: inherit;
+    border: 2px solid black;
+    width: 200px;
+    transform: translateX(166px);
+    transform: translate(638px, 137px);
+    color:black;
+    background-color: green;
+  }
+  #intermediatebtn{
+    all: inherit;
+    border: 2px solid black;
+    width: 200px;
+    transform: translateX(166px);
+    transform: translate(638px, 147px);
+    color:black;
+    background-color: yellow;
+  }
+  #advancedbtn{
+    all: inherit;
+    border: 2px solid black;
+    width: 200px;
+    transform: translateX(166px);
+    transform: translate(638px, 157px);
+    color:black;
+    background-color: red;
+  }
+  #instructionsbtn{
+    all: inherit;
+    border: 2px solid black;
+    width: 200px;
+    transform: translateX(166px);
+    transform: translate(970px, 30px);
+    color:black;
+    background-color: purple;
+  }
+  #startbtn{
+    all: inherit;
+    border: 2px solid black;
+    width: 300px;
+    height: 70px;
+    font-size: 30px;
+    transform: translateX(166px);
+    transform: translate(590px, 110px);
+    color:black;
+    background-color: pink;
+  }
 }
-#billiardbtn button:hover{
-  filter: brightness(1.40);
-}
-#solobtn{
-  all: inherit;
-  border: 2px solid black;
-  transform: translateX(166px);
-  transform: translate(645px, 104px);
-  color:black;
-  background-color: green;
-}
-#multibtn{
-  all: inherit;
-  border: 2px solid black;
-  transform: translateX(166px);
-  transform: translate(790px, 50px);
-  color:black;
-  background-color: green;
-}
-#beginnerbtn{
-  all: inherit;
-  border: 2px solid black;
-  width: 200px;
-  transform: translateX(166px);
-  transform: translate(638px, 137px);
-  color:black;
-  background-color: green;
-}
-#intermediatebtn{
-  all: inherit;
-  border: 2px solid black;
-  width: 200px;
-  transform: translateX(166px);
-  transform: translate(638px, 147px);
-  color:black;
-  background-color: yellow;
-}
-#advancedbtn{
-  all: inherit;
-  border: 2px solid black;
-  width: 200px;
-  transform: translateX(166px);
-  transform: translate(638px, 157px);
-  color:black;
-  background-color: red;
-}
-#instructionsbtn{
-  all: inherit;
-  border: 2px solid black;
-  width: 200px;
-  transform: translateX(166px);
-  transform: translate(970px, 30px);
-  color:black;
-  background-color: purple;
-}
-#startbtn{
-  all: inherit;
-  border: 2px solid black;
-  width: 300px;
-  height: 70px;
-  font-size: 30px;
-  transform: translateX(166px);
-  transform: translate(590px, 110px);
-  color:black;
-  background-color: pink;
-}
+
 @media screen {
   .link{
     font-size: 25px;
@@ -283,7 +228,7 @@ canvas {
   display: block;
   position: absolute;
   background: #F08080, solid;
-  top: 325px;
+  top: 80px;
   left: 225px;
 }
 #canvas1{
@@ -315,7 +260,12 @@ canvas {
 .p5{
   display: none;
 }
-#allgames{
+.no_padding_border_margin{
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+}
+#allprojects{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* grid-auto-rows: minmax(40px, auto); */
@@ -324,17 +274,17 @@ canvas {
   margin: 0 auto;
   position: relative;
 }
-#allgames a{
+#allprojects a{
   background-color: #3bbced;
   padding: 30px;
   text-align: left;
   text-decoration: none;
   font-size: 30px;
 }
-#allgames a:nth-child(even){
+#allprojects a:nth-child(even){
   background: #777;
 }
-#allgames h1{
+#allprojects h1{
   background-color: #1182af;
   padding: 20px;
   text-align: left;
@@ -366,7 +316,7 @@ canvas {
   margin: 0;
   opacity: 0.2; 
 }
-input:checked + #allgames #grid{
+input:checked + #allprojects #grid{
   display: grid;
 }
 @media screen{
@@ -560,10 +510,9 @@ input:checked + #allgames #grid{
     grid-template-areas: 
     "account account account account gamesandprojects gamesandprojects gamesandprojects gamesandprojects"
     ". . . . . . . ."
+    "mainabout mainabout mainabout mainabout exclusivelogin exclusivelogin exclusivelogin exclusivelogin"
     ". . . . . . . ."
-    ". . . . . . . ."
-    ". . . . . . . ."
-    "mainabout mainabout mainabout mainabout secretlogin secretlogin secretlogin secretlogin";
+    ". . settings settings settings settings . .";
   }
   #maininfo > *{
     background-color: rgb(36, 205, 235);
@@ -586,8 +535,11 @@ input:checked + #allgames #grid{
   #mainabout{
     grid-area: mainabout;
   }
-  #secretlogin{
-    grid-area: secretlogin;
+  #exclusivelogin{
+    grid-area: exclusivelogin;
+  }
+  #settings{
+    grid-area: settings;
   }
   #mainmoreinfo{
     font-size: 20px;
@@ -612,3 +564,80 @@ input:checked + #allgames #grid{
   from { transform: rotate(0deg) translateX(230px) rotate(0deg); }
   to   { transform: rotate(360deg) translateX(230px) rotate(-360deg); }
 }
+.weathergrid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.timegrid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+
+/* h1{
+  color:orange;
+  background-color: aqua;
+  font-size: 52px;
+  text-decoration: underline;
+  font-family: sans-serif;
+  text-align: center;
+}
+p.ageq.old{
+  color: rgb(45, 204, 24);
+  text-align: right;
+  line-height: 20px;
+  letter-spacing: 10px;
+  column-count: 3;
+  column-gap: 30;
+}
+ol{
+ border-style: dashed;
+  border-width: 4px;
+  border-color: red; 
+  border: 4px solid crimson; 
+  border-bottom:rgb(27, 16, 97) 4px solid;
+  border-left: 8px solid;
+}
+li{
+  list-style-type: square;
+  text-shadow: 2px 2px #5a5c40;
+}
+span{
+  display: block;
+}
+div{
+  display: inline-block;
+  border: 5px solid green;
+  margin: 20px;
+  padding: 20px solid red;
+}
+textarea#bio{
+  display: inline-block;
+  border: 5px solid blue;
+  margin: 20px;
+  padding: 20px solid red;
+} 
+div .ageq{
+  display: inline-block;
+  border: 5px solid blue;
+  margin: 20px;
+  padding: 20px solid red;
+}
+a[href="t.html"]{
+  display: inline-block;
+  border: 5px solid green;
+  margin: 20px;
+  padding: 20px solid red;
+  text-decoration: bold;
+  text-transform: uppercase;
+}
+div{
+  color: lightcoral;
+  border: lightcoral 3px solid;
+  margin: 10px;
+}
+div p{
+  border: inherit;
+  margin: inherit;
+  color: seagreen;
+}*/

@@ -1,10 +1,10 @@
 const size2 = 1000;
 
-function setup(){
+function setup() {
   createCanvas(size2, size2)
 }
 
-function draw(){
+function draw() {
   background(200);
 }
 
@@ -33,20 +33,20 @@ class magnetBall {
   move() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
-    if(abs(this.xSpeed) > 0 && abs(this.ySpeed)){
+    if (abs(this.xSpeed) > 0 && abs(this.ySpeed)) {
       this.xpath.push(this.x);
       this.ypath.push(this.y);
     }
   }
   frictionLoss() {
     let friction = this.friction;
-    let angle = atan(-this.ySpeed/this.xSpeed);
-    let frictionx = abs(friction*cos(angle));
-    let frictiony = abs(friction*sin(angle));
-    if(abs(this.xSpeed) <= frictionx){
+    let angle = atan(-this.ySpeed / this.xSpeed);
+    let frictionx = abs(friction * cos(angle));
+    let frictiony = abs(friction * sin(angle));
+    if (abs(this.xSpeed) <= frictionx) {
       this.xSpeed = 0;
     }
-    if(abs(this.ySpeed) <= frictiony){
+    if (abs(this.ySpeed) <= frictiony) {
       this.ySpeed = 0;
     }
     if (this.xSpeed > 0) {
@@ -66,7 +66,7 @@ class magnetBall {
     let r = this.r;
     let w = this.wall;
     let b = ballSize / 2;
-    if ((x < 40 || x > width - 40) && (y < 40 || y > height - 40) || Math.hypot(x-width/2, y-25) <= 13 || Math.hypot(x-width/2, y-(height-25)) <= 13) {
+    if ((x < 40 || x > width - 40) && (y < 40 || y > height - 40) || Math.hypot(x - width / 2, y - 25) <= 13 || Math.hypot(x - width / 2, y - (height - 25)) <= 13) {
       this.xSpeed = 0;
       this.ySpeed = 0;
       if (x < 40 && y < 40) {
@@ -81,11 +81,11 @@ class magnetBall {
       } else if (x > width - 40 && y > height - 40) {
         x = width - 25;
         y = height - 25;
-      } else if(Math.hypot(x-width/2, y-25) <= 13){
-        x = width/2;
+      } else if (Math.hypot(x - width / 2, y - 25) <= 13) {
+        x = width / 2;
         y = 25;
-      } else if(Math.hypot(x-width/2, y-(height-25)) <= 13){
-        x = width/2;
+      } else if (Math.hypot(x - width / 2, y - (height - 25)) <= 13) {
+        x = width / 2;
         y = height - 25;
       }
       this.x = x;
