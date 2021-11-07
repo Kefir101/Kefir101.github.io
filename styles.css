@@ -224,13 +224,6 @@ h1.gae{
   75%{transform: translate(0px, 200px) rotate(67.5deg)}
   100%{transform: translate(0px, 0px) rotate(90deg)}
 }
-canvas {
-  display: block;
-  position: absolute;
-  background: #F08080, solid;
-  top: 80px;
-  left: 225px;
-}
 #canvas1{
   background: yellow;
   top: 325px;
@@ -257,9 +250,7 @@ canvas {
 #colorpicker{
   width: 25px;
 }
-.p5{
-  display: none;
-}
+
 .no_padding_border_margin{
   padding: 0px;
   border: 0px;
@@ -510,9 +501,9 @@ input:checked + #allprojects #grid{
     grid-template-areas: 
     "account account account account gamesandprojects gamesandprojects gamesandprojects gamesandprojects"
     ". . . . . . . ."
-    "exclusivelogin exclusivelogin exclusivelogin exclusivelogin settings settings settings settings"
+    "create create create create exclusivelogin exclusivelogin exclusivelogin exclusivelogin "
     ". . . . . . . ."
-    ". . mainabout mainabout mainabout mainabout . .";
+    "settings settings settings settings mainabout mainabout mainabout mainabout";
   }
   #maininfo > *{
     background-color: rgb(36, 205, 235);
@@ -534,6 +525,9 @@ input:checked + #allprojects #grid{
   }
   #mainabout{
     grid-area: mainabout;
+  }
+  #create{
+    grid-area: create;
   }
   #exclusivelogin{
     grid-area: exclusivelogin;
