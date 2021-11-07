@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/billiards.css">
+  <title>Account</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+  <meta charset="utf-8" />
+</head>
+<!-- <body oncontextmenu="return false"> works for right click, but have to copy for each html -->
+
+<body>
+  <script src="/js/billiards.js" id = "billiards"></script>
+
+  <ul class=links>
+    <li class=links><a class="link" id="main.html" href="main.html"> Main</a></li>
+    <li class=links><a class="link" id="account.html" href="account.html">Account</a></li>
+    <li class=links><a class="link" id="allprojects.html" href="allprojects.html">Projects</a></li>
+    <li class=links><a class="link" id="create.html" href="create.html">Create</a></li>
+    <li class=links><a class="link" id="exclusivelogin.html" href="exclusivelogin.html">Exclusive Login</a></li>
+    <li class=links><a class="link" id="settings.html" href="settings.html">Settings</a></li>
+    <li class=links><a class="link" id="about.html" href="about.html">About</a></li>
+  </ul>
+
+  <br>
+  <br>
+  <!-- <div style="z-index: -1">
+    <canvas id = "canvas1"></canvas>  <ul class ="ulclass"></ul>
+  </div> -->
+  <div style="z-index: 1; position: relative;" class="menubtn" id="billiardbtn">
+    <button onclick="clickedBilliardButton('solobtn')" id="solobtn">Solo Mode</button>
+    <button onclick="clickedBilliardButton('multibtn')" id="multibtn">Multiplayer Mode</button>
+    <button onclick="clickedBilliardButton('beginnerbtn')" id="beginnerbtn">Beginner</button>
+    <button onclick="clickedBilliardButton('intermediatebtn')" id="intermediatebtn">Intermediate</button>
+    <button onclick="clickedBilliardButton('advancedbtn')" id="advancedbtn">Advanced</button>
+    <button onclick="clickedBilliardButton('instructionsbtn')" id="instructionsbtn">Instructions</button>
+    <button onclick="clickedBilliardButton('startbtn')" id="startbtn">Start!</button>
+  </div>
+  <br> <br> <br> <br> <br> <br> <br>
+  <div id="weatherandtimegrid">
+    <div class="weathergrid">
+      <a class="weatherwidget-io" href="https://forecast7.com/en/37d77n122d42/san-francisco/"
+        data-label_1="SAN FRANCISCO" data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">SAN
+        FRANCISCO WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/35d71139d73/tokyo/" data-label_1="TOKYO"
+        data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">TOKYO WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/51d51n0d13/london/" data-label_1="LONDON"
+        data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">LONDON WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/48d862d35/paris/" data-label_1="PARIS"
+        data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">PARIS WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/31d23121d47/shanghai/" data-label_1="SHANGHAI"
+        data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">SHANGHAI WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/34d05n118d24/los-angeles/" data-label_1="LOS ANGELES"
+        data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">LOS ANGELES WEATHER</a>
+      <a class="weatherwidget-io" href="https://forecast7.com/en/22d40114d11/hong-kong/" data-label_1="HONG KONG"
+        data-label_2="WEATHER" data-mode="Current" data-theme="blue-mountains">HONG KONG WEATHER</a>
+    </div>
+    <div class="timegrid">
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/San-Francisco/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710540-c1224-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY2NGMzYTg1YiIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="time zone San Francisco" target="_blank" rel="nofollow">Current time in San Francisco</a></p>
+        <div id="clock_block_cb617ef64c3a85b"></div>
+      </div>
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/Tokyo/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710568-c1248-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY2Njg2OGVhMiIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="what time Tokyo" target="_blank" rel="nofollow">Current time in Tokyo</a></p>
+        <div id="clock_block_cb617ef66868ea2"></div>
+      </div>
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/London/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710587-c1136-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY2N2I5OWQ0ZCIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="time in London" target="_blank" rel="nofollow">Current time in London</a></p>
+        <div id="clock_block_cb617ef67b99d4d"></div>
+      </div>
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/Paris/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710599-c1195-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY2ODcxNTAzYyIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="World Time :: Paris" target="_blank" rel="nofollow">Current time in Paris</a></p>
+        <div id="clock_block_cb617ef6871503c"></div>
+      </div>
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/Shanghai/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710673-c1237-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY2ZDFiZTIyOCIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="time at Shanghai" target="_blank" rel="nofollow">Current time in Shanghai</a></p>
+        <div id="clock_block_cb617ef6d1be228"></div>
+      </div>
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/Los-Angeles/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710383-c1137-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY1YWYyNmEwNSIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="time in Los Angeles" target="_blank" rel="nofollow">Current time in Los Angeles</a></p>
+        <div id="clock_block_cb617ef5af26a05"></div>
+      </div>
+      <div class="cleanslate w24tz-current-time w24tz-small"
+        style="display: inline-block !important; visibility: hidden !important; min-width:200px !important; min-height:100px !important;">
+        <p><a href="//24timezones.com/Hong-Kong/time" style="text-decoration: none" class="clock24"
+            id="tz24-1635710816-c1102-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMSIsInNob3dzZWNvbmRzIjoiMCIsImNvbnRhaW5lcl9pZCI6ImNsb2NrX2Jsb2NrX2NiNjE3ZWY3NjAzNTQxZiIsInR5cGUiOiJkYiIsImxhbmciOiJlbiJ9"
+            title="Hong Kong timezone" target="_blank" rel="nofollow">Current time in Hong Kong</a></p>
+        <div id="clock_block_cb617ef7603541f"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+  <script>
+    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+  </script>
+    <script src="/js/sketch.js"></script>
+
+  <!-- <map name="continents_map">
+    <area shape="circle" coords="70,70" href="#north_america">
+    <area shape="circle" coords="133,185,10" href="#south_america">
+    <area shape="circle" coords="270,137,10" href="#africa">
+    <area shape="circle" coords="292,44,10" href="#europe">
+    <area shape="circle" coords="469,201,10" href="#australia">
+    <area shape="circle" coords="374,65,10" href="#asia">
+    <area shape="circle" coords="340,267,10" href="#antartica">
+  </map>
+  
+  <figure style="text-align:center;">
+    <img usemap="#continents_map" src=https://bit.ly/2bgFrvL width="600px" />
+    <figcaption>World Map</figcaption>
+  </figure> -->
+  <!-- <br><br>
+  What <mark>continent and country</mark> are you from? <input type="text" list="text_editors">
+  <datalist id="text_editors">
+      <option value="North America"></option>
+      <option value="South America"></option>    
+      <option value="Europe"></option>
+      <option value="Asia"></option>
+      <option value="Africa"></option>
+      <option value="Oceania"></option>
+      <option value="Antarctica"></option>
+  </datalist>
+  <select> 
+    <option value="">Select an option</option>
+    <optgroup label="North America">   
+      <option value="">Canada</option>
+      <option value="">United States</option>
+      <option value="">Mexico</option>
+    </optgroup>
+    <optgroup label="South America">
+      <option value="">Brazil</option>   
+      <option value="">Colombia</option>   
+      <option value="">Argentina</option>   
+      <option value="">Peru</option>
+      <option value="">Chile</option>   
+      <option value="">Ecuador</option>
+      <option value="">Venezuela</option>      
+    </optgroup>
+    <optgroup label="Europe">
+      <option value="">France</option>
+      <option value="">Denmark</option>    
+      <option value="">Spain</option>
+      <option value="">Great Britian</option>
+      <option value="">Italy</option>
+    </optgroup>
+    <optgroup label="Asia">
+      <option value="">China</option>
+      <option value="">Japan</option>    
+      <option value="">South Korea</option>
+      <option value="">North Korea</option>
+      <option value="">Russia</option>
+    </optgroup>
+    <optgroup label="Africa">
+      <option value="">South Africa</option>
+      <option value="">Nigeria</option>
+      <option value="">Kenya</option>
+      <option value="">Ghana</option>
+      <option value="">Madagascar</option>
+      <option value="">Tanzania</option>
+      <option value="">Ethiopia</option>
+    </optgroup>
+    <optgroup label="Oceania">
+      <option value="">Australia/Oceania</option>
+    </optgroup>
+    <optgroup label="Antartica">
+      <option value="">Antartica</option>
+    </optgroup>
+  </select>
+  <button class = "btn bouncebutton" onclick="setSize(400)" id = "bouncebutton">Click me to change size!</button> -->
+</body>
+
+</html>

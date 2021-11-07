@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memes</title>
+</head>
+
+<body>
+  <ul class=links>
+    <li class=links><a class="link" id="main.html" href="main.html"> Main</a></li>
+    <li class=links><a class="link" id="account.html" href="account.html">Account</a></li>
+    <li class=links><a class="link" id="allprojects.html" href="allprojects.html">Projects</a></li>
+    <li class=links><a class="link" id="create.html" href="create.html">Create</a></li>
+    <li class=links><a class="link" id="exclusivelogin.html" href="exclusivelogin.html">Exclusive Login</a></li>
+    <li class=links><a class="link" id="settings.html" href="settings.html">Settings</a></li>
+    <li class=links><a class="link" id="about.html" href="about.html">About</a></li>
+  </ul>
+  <script src="/js/sketch.js" id='p5'></script>
+  <div>
+    <iframe id="myVideo" width="1500" height="844"
+      src="https://youtube.com/embed/KgBp4G0xQg0?start=12&end=13&autoplay=1&controls=0"></iframe>
+    <br>
+    <h1 class="gae" id="gae">y r u gae?</h2>
+      <h1 id="boi" class="1">What u want boi?</h1>
+  </div>
+  <h1 id="sum">Sum memes for ya: </h2>
+    <br> <br>
+    <div id="memes">
+      <img src="img/runningawayballoon.jpg" id="memeimage">
+      <img src="img/twobuttons.jpg" id="memeimage">
+      <img src="img/boardroomsuggestion.jpg" id="memeimage">
+      <img src="img/epichandshake.jpg" id="memeimage">
+      <img src="img/expandingbrain.jpg" id="memeimage">
+      <img src="img/panikkalmpanik.jpg" id="memeimage">
+      <img src="img/drake.jpg" id="memeimage">
+      <img src="img/draw25.jpg" id="memeimage">
+      <img src="img/leftexit.jpg" id="memeimage">
+      <img src="img/batmanslappingrobin.jpg" id="memeimage">
+      <img src="img/bernieasking.jpg" id="memeimage">
+      <img src="img/clownmakeup.jpg" id="memeimage">
+      <img src="img/changemymind.jpg" id="memeimage">
+      <img src="img/buffdoge.jpg" id="memeimage">
+      <img src="img/distracted.jpg" id="memeimage">
+      <img src="img/grusplan.jpg" id="memeimage">
+      <img src="img/mockingspongebob.jpg" id="memeimage">
+      <img src="img/alwayshasbeen.jpg" id="memeimage">
+      <img src="img/monkeypuppet.jpg" id="memeimage">
+      <img src="img/stonks.jpg" id="memeimage">
+      <img src="img/thinkaboutit.jpg" id="memeimage">
+      <img src="img/tuxedowinnie.jpg" id="memeimage">
+      <img src="img/womanyellingatcat.jpg" id="memeimage">
+      <img src="img/modernproblems.jpg" id="memeimage">
+    </div>
+</body>
+<script>
+  setTimeout(stopVideo, 3000)
+  setTimeout(stopText, 4000)
+  setTimeout(stopText2, 6000)
+  setTimeout(showText, 6000)
+  function stopVideo() {
+    document.getElementById("myVideo").style.display = "none";
+  }
+  function stopText() {
+    document.getElementById("gae").style.display = "none";
+  }
+  function stopText2() {
+    document.getElementById("boi").style.display = "none";
+  }
+  // function stopId(){
+  //   document.getElementById("boi").style.display="none";
+  // }
+  function showText() {
+    document.getElementById("sum").style.display = "inline";
+  }
+  document.getElementById('myVideo').addEventListener('ended', myHandler, false);
+  function myHandler(e) {
+    if (!e) { e = window.event; }
+    console.log(3);
+    document.getElementById('myVideo').style.display = "none";
+    document.getElementById('videoEnd').style.display = "block";
+  }
+</script>
+
+</html>
+<!-- add cramming of memes so that there isnt weird spacing between them all, put all the memes next to eachother vertically and horizontally -->

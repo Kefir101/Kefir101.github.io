@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Main</title>
+</head>
+
+<body>
+  <!-- <div class = "popup" id = "popup">
+    <h1>Hi Savta!</h1>
+      <p>Hows it going? Hows your day been?</p>
+      <input type="text" id = "popuptext" onclick="enteredPopupInput()">
+  </div> -->
+  <ul class=links>
+    <li class=links><a class="link" id="main.html" href="main.html"> Main</a></li>
+    <li class=links><a class="link" id="account.html" href="account.html">Account</a></li>
+    <li class=links><a class="link" id="allprojects.html" href="allprojects.html">Projects</a></li>
+    <li class=links><a class="link" id="create.html" href="create.html">Create</a></li>
+    <li class=links><a class="link" id="exclusivelogin.html" href="exclusivelogin.html">Exclusive Login</a></li>
+    <li class=links><a class="link" id="settings.html" href="settings.html">Settings</a></li>
+    <li class=links><a class="link" id="about.html" href="about.html">About</a></li>
+  </ul>
+
+  <div id="LoginCookiegrid">
+    <div class="login">
+      <br><br>
+      <h2>Log in:</h2>
+      <br><br>
+      <p class="inputtext">Username</p>
+      <input class="input" id="usernametext" placeholder="username..." required>
+      <p class="inputtext">Password</p>
+      <input class="input" type="password" id="passwordtext" placeholder="password..." required>
+      <p class="inputtext">Date of Birth</p>
+      <input class="input" type="date" id="date">
+      <button class="loginbutton input" onclick="checkInput()" id="button1">Click here to login</button>
+      <br><br>
+      <div id="new"></div>
+      <br><br>
+      <a class="song link" href="https://www.youtube.com/watch?v=40JmEj0_aVM" onclick="changeLink()">A song</a> <br>
+      <br>
+
+    </div>
+    <div class="cookie">
+      <strong><em>
+          <bold></bold>
+          <p id="cookiep1">A cookie while you wait: </p>
+          </bold>
+        </em></strong>
+      <img src="/img/cookie.png" alt="no cookie :(" id="cookie" onclick="clicked()"> <br>
+      <strong><em>
+          <bold></bold>
+          <p id="cookiep2">Cookies: 0</p>
+          </bold>
+        </em></strong> <br>
+      <strong><em>
+          <bold></bold>
+          <p id="cpstimer">Cookies clicked per second: 0</p>
+          </bold>
+        </em></strong>
+    </div>
+  </div>
+  <script src="/js/sketch.js"></script>
+</body>
+
+</html>
