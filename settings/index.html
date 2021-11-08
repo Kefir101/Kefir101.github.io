@@ -11,6 +11,8 @@
 <body>
   <script id="replace_with_navbar" src="/js/nav.js"></script>
   <script src="/js/sketch.js"></script>
+  <script src="/js/cookieclicker.js"></script>
+
   <div style="text-align: center;">
     <label for="" style="font-size: 20px; display: block;">Select a premade background color below or make your own
       (<input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">):</label>
@@ -28,6 +30,26 @@
       <button onclick="changeBackgroundColor('#9ACDE0')" id="#9ACDE0" class="btn"></button>
       <button onclick="changeBackgroundColor('#CBE1EF')" id="#CBE1EF" class="btn"></button>
     </div>
+  </div>
+  <br><br>
+  <div class="cookie" style="text-align: center;">
+    <strong><em>
+        <bold></bold>
+        <p id="cookiep1">A cookie if you're bored: </p> 
+        </bold>
+      </em></strong>
+      <br>
+    <img src="/img/cookie.png" alt="no cookie :(" id="cookie" onclick="clicked()"> <br>
+    <strong><em>
+        <bold></bold>
+        <p id="cookiep2">Cookies: 0</p>
+        </bold>
+      </em></strong> <br>
+    <strong><em>
+        <bold></bold>
+        <p id="cpstimer">Cookies clicked per second: 0</p>
+        </bold>
+      </em></strong>
   </div>
   <script>
     let doc = document.getElementsByClassName("btn");

@@ -17,28 +17,9 @@
       <input type="text" id = "popuptext" onclick="enteredPopupInput()">
   </div> -->
   <h1 class="accounttitle">Welcome to my Personal Website!</h1>
-  <!-- <div id="LCgrid">
-    <div class="login">
-      <br><br>
-      <br><br>
-      <p class="inputtext">Username</p>
-      <input class="input" id="usernametext" placeholder="username..." required>
-      <p class="inputtext">Password</p>
-      <input class="input" type="password" id="passwordtext" placeholder="password..." required>
-      <p class="inputtext">Date of Birth</p>
-      <input class="input" type="date" id="date">
-      <button class="loginbutton input" onclick="checkInput()" id="button1">Click here to login</button>
-      <br><br>
-      <div id="new"></div>
-    </div>
-    <div class="cookie">
-        <img src="img/cookie.png" alt="no cookie :(" id="cookie" onclick="clicked()"> <br>
-        <strong><em><bold></bold><p id = "cookiep">Cookies: 0</p></bold></em></strong>
-    </div>
-  </div> -->
   <div id="maininfo">
     <a id="account" href="/account">Account<br>
-      <span id="mainmoreinfo">(personal account page with widgets and non-download gameplay)</span>
+      <span id="mainmoreinfo">(integrated/non-download gameplay)</span>
     </a>
     <a id="gamesandprojects" href="/allprojects">Download my Projects<br>
       <span id="mainmoreinfo">(.jar files need to have Java installed)</span>
@@ -59,19 +40,12 @@
       <span id="mainmoreinfo">(learn about software used to make and host the website)</span>
     </a>
   </div>
-
-  <br> <br> <br> <br>
   <script>
     document.addEventListener("keydown", function (event) {
       if (event.keyCode === 13) {
         removeCanvas();
       }
     });
-    setTimeout(removeCanvas, 2800)
-    function removeCanvas() {
-      document.getElementsByTagName("canvas")[0].style.display = "none";
-    }
-    fail; //end script on purpose
   </script>
 </body>
 

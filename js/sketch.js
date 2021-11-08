@@ -61,12 +61,6 @@ function changeLink() {
   link.setAttribute('href', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
   //link.classList.toggle('classname'); (adds/removes class)
 }
-function disable() {
-  let p5 = document.getElementById('p5');
-  p5.src = "random.js";
-  let h1 = document.getElementById('h1');
-  h1.class = "game";
-}
 var full = "" + window.location.href;
 if (!full.includes("http://127.0.0.1:5500/")) {
   document.onkeydown = function (e) {
@@ -95,3 +89,26 @@ document.addEventListener('contextmenu', function (e) {
 //middle button scrolling
 document.addEventListener("mousedown", function (e) { if (e.button == 1) { e.preventDefault(); } });
 
+
+function undo() {
+  if (stopped) {
+    start();
+  } else if (!stopped) {
+    stop();
+  }
+}
+function stop() {
+  stopped = true;
+  noLoop();
+}
+function start() {
+  stopped = false;
+  loop();
+}
+
+// function disable() {
+//   let p5 = document.getElementById('p5');
+//   p5.src = "random.js";
+//   let h1 = document.getElementById('h1');
+//   h1.class = "game";
+// }

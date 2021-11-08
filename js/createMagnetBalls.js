@@ -171,9 +171,9 @@ class magnetBall {
     ellipse(this.x, this.y, this.d, this.d);
   }
   move() {
-    if (dist(this.x, this.y, this.ox, this.oy) > 2) {
-      this.x += (this.ox-this.x)/3;
-      this.y += (this.oy-this.y)/3;
+    if (dist(this.x, this.y, this.ox, this.oy) > 1) {
+      this.x += (this.ox-this.x)/7;
+      this.y += (this.oy-this.y)/7;
     }else{
       this.xS = 0;
       this.yS = 0;

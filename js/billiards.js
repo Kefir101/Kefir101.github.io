@@ -66,17 +66,18 @@ function setup() {
     let p = (new PoolBall(poolBallXList[i], poolBallYList[i], 0, 0, ballSize, poolBallColorList[i]));
     poolBallList.push(p);
   }
-  let offset = 50;
-  let exitGame = new Buttons(w / 10, (h / 1.1), 100, 50, "Exit", color(50));
-  let solo = new Buttons(w / 3 + 150, h / 4, 100, 50, "Solo", color(0, 100, 0));
-  let multiplayer = new Buttons(w / 3 + 275, h / 4, 100, 50, "Multi", color(0, 100, 0));
-  let beginner = new Buttons(w / 2, (h / 1.40) - 2 * offset, 200, 50, "Beginner", color(0, 100, 0));
-  let intermediate = new Buttons(w / 2, (h / 1.35) - offset, 200, 50, "Intermediate", color(255, 255, 0));
-  let advanced = new Buttons(w / 2, (h / 1.30), 200, 50, "Advanced", color(255, 0, 0));
-  let instructions = new Buttons(4 * w / 5, (h / 1.5), 240, 60, "Instructions", color(128, 0, 32));
-  let startGame = new Buttons(w / 2, (h / 1.25) + offset, 300, 50, "Start the game!", color(255, 0, 255));
-  buttonList = Array.of(exitGame, solo, multiplayer, beginner, intermediate, advanced, instructions, startGame);
-  createCanvas(width, height);
+  // let offset = 50;
+  // let exitGame = new Buttons(w / 10, (h / 1.1), 100, 50, "Exit", color(50));
+  // let solo = new Buttons(w / 3 + 150, h / 4, 100, 50, "Solo", color(0, 100, 0));
+  // let multiplayer = new Buttons(w / 3 + 275, h / 4, 100, 50, "Multi", color(0, 100, 0));
+  // let beginner = new Buttons(w / 2, (h / 1.40) - 2 * offset, 200, 50, "Beginner", color(0, 100, 0));
+  // let intermediate = new Buttons(w / 2, (h / 1.35) - offset, 200, 50, "Intermediate", color(255, 255, 0));
+  // let advanced = new Buttons(w / 2, (h / 1.30), 200, 50, "Advanced", color(255, 0, 0));
+  // let instructions = new Buttons(4 * w / 5, (h / 1.5), 240, 60, "Instructions", color(128, 0, 32));
+  // let startGame = new Buttons(w / 2, (h / 1.25) + offset, 300, 50, "Start the game!", color(255, 0, 255));
+  // buttonList = Array.of(exitGame, solo, multiplayer, beginner, intermediate, advanced, instructions, startGame);
+  canvas = createCanvas(width, height);
+  canvas.position((window.innerWidth-width)/2);
 }
 
 function draw() {
