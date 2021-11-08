@@ -12,22 +12,20 @@
 </body>
 <script>
   var stop = false;
-  var full = "" + window.location.href;
-  console.log(full);
-  var path = full;
-  if (!full.includes("main.html")) {
-    if (full.includes("index.html")) {
-      path = full.replace("index.html", "main.html");
-    } else if (full.endsWith("/")) {
-      path = full + "html/main.html"
+  var site = "" + window.location.href;
+  console.log("site: " + site);
+  if (!site.includes("/main")) {
+    if (site.includes("index.html")) {
+      site = site.replace("index.html", "main/");
+    } else if(site.endsWith("/")){
+      site += "main/"
     } else {
-      path = full + "html/main.html"
+      site += "/main/"
     }
   }
-
-  console.log(path);
+  console.log("new site: " + site);
   if (!stop) {
-    window.location.replace(path);
+    window.location.replace(site);
     stop = true;
   }
 </script>

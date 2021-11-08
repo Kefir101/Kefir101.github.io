@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script id="replace_with_navbar" src="/js/nav.js"></script>
+  <script src="/js/sketch.js"></script>
+  <div style="text-align: center;">
+    <label for="" style="font-size: 20px; display: block;">Select a premade background color below or make your own
+      (<input type="color" id="colorpicker" value="#000000" onchange="changeColor(value)">):</label>
+    <div id="colorbtngrid">
+      <button onclick="changeBackgroundColor('red')" id="red" class="btn"></button>
+      <button onclick="changeBackgroundColor('orange')" id="orange" class="btn"></button>
+      <button onclick="changeBackgroundColor('yellow')" id="yellow" class="btn"></button>
+      <button onclick="changeBackgroundColor('green')" id="green" class="btn"></button>
+      <button onclick="changeBackgroundColor('blue')" id="blue" class="btn"></button>
+      <button onclick="changeBackgroundColor('purple')" id="purple" class="btn"></button>
+      <button onclick="changeBackgroundColor('#FDF8E2')" id="#FDF8E2" class="btn"></button>
+      <button onclick="changeBackgroundColor('#FFDDD3')" id="#FFDDD3" class="btn"></button>
+      <button onclick="changeBackgroundColor('#F3BFB3')" id="#F3BFB3" class="btn"></button>
+      <button onclick="changeBackgroundColor('#5EA9BE')" id="#5EA9BE" class="btn"></button>
+      <button onclick="changeBackgroundColor('#9ACDE0')" id="#9ACDE0" class="btn"></button>
+      <button onclick="changeBackgroundColor('#CBE1EF')" id="#CBE1EF" class="btn"></button>
+    </div>
+  </div>
+  <script>
+    let doc = document.getElementsByClassName("btn");
+    for (let i = 0; i < document.querySelectorAll('.btn').length; i++) {
+      doc[i].style.backgroundColor = doc[i].id;
+    }
+
+    function changeBackgroundColor(color) {
+      document.body.style.background = color;
+      localStorage.bgcolor = color;
+    }
+  </script>
+</body>
+
+</html>

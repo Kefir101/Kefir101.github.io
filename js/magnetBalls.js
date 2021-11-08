@@ -7,8 +7,9 @@ let start = false;
 var font, points;
 let text = "Made by Kefir101";
 var canvas;
+let density = 0.1;
 function preload() {
-  font = loadFont("AmaticSC-Regular.ttf");
+  font = loadFont("/Fonts/AmaticSC-Regular.ttf");
 }
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
@@ -31,7 +32,21 @@ function createPoints(text){
     sampleFactor: 0.1,
   });
 } 
-function getBallColor(points, colorcounter){
+function createPoints(text){
+  let textSize = width/5;
+  let tempPoints = font.textToPoints(text, 10, height/2, textSize, {sampleFactor: density});
+  let messageWidth = Math.max.apply(Math, tempPoints.map(function(o) { return o.x; })) - Math.min.apply(Math, tempPoints.map(function(o) { return o.x; }));
+  while(messageWidth > width){
+    textSize -= 15;
+    tempPoints = font.textToPoints(text, 10, height/2, textSize, {sampleFactor: density});
+    messageWidth = Math.max.apply(Math, tempPoints.map(function(o) { return o.x; })) - Math.min.apply(Math, tempPoints.map(function(o) { return o.x; }));
+  }
+  let messageHeight = Math.max.apply(Math, tempPoints.map(function(o) { return o.y; })) - Math.min.apply(Math, tempPoints.map(function(o) { return o.y; }));
+  let xShift = (width - messageWidth)/2;
+  let yShift = height/2 + messageHeight/2*0.9;
+  return font.textToPoints(text, xShift, yShift, textSize, {sampleFactor: density});
+} 
+function getBallColor(colorcounter){
   if (colorcounter < 256) {
       bcolor = color(255, colorcounter, 0);
     } else if (colorcounter < 512) {
@@ -42,10 +57,12 @@ function getBallColor(points, colorcounter){
   return bcolor;
 }
 function createRandomTextPoints(text) {
+  magnetBallList = [];
+  colorcounter = 0;
   points = createPoints(text);
   for (let i = 0; i < points.length; i++) {
     let pt = points[i];
-    bcolor = getBallColor(points, colorcounter);
+    bcolor = getBallColor(colorcounter);
     colorcounter += 800/points.length;
     if (i >= magnetBallList.length) {
       magnetBallList.push(
@@ -58,8 +75,7 @@ function createRandomTextPoints(text) {
     }
   }
 }
-function setRealPointPositions(text){
-  points = createPoints(text);
+function setRealPointPositions(){
   for (let i = 0; i < magnetBallList.length; i++) {
     let pt = points[i];
     magnetBallList[i].ox = pt.x;
@@ -112,8 +128,8 @@ class magnetBall {
   }
   move() {
     if (dist(this.x, this.y, this.ox, this.oy) > 2) {
-      this.x += (this.ox-this.x)/3;
-      this.y += (this.oy-this.y)/3;
+      this.x += (this.ox-this.x)/10;
+      this.y += (this.oy-this.y)/10;
     }else{
       this.xS = 0;
       this.yS = 0;

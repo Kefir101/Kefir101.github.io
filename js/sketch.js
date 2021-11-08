@@ -1,7 +1,10 @@
 var bgcolor = localStorage.bgcolor || fallbackColor;
 document.body.style.backgroundColor = localStorage.bgcolor || '#ffffff'
 
-document.getElementById(window.location.pathname.split("/").pop()).style.backgroundColor = "#555";
+window.onload = function() {
+  let navID = window.location.pathname.split("/")[1]+".html";
+  if(navID != "main.html") document.getElementById(navID).style.backgroundColor = "#555";
+};
 
 function checkInput() {
   var inputusername = document.getElementById("usernametext").value;
@@ -41,7 +44,7 @@ function checkInput() {
     }
   });
   if (correct) {
-    window.location = "/memes.html";
+    window.location = "/memes";
   } else if (!correct) {
     var tag = document.createElement("h3");
     var text = document.createTextNode("Try again!");
@@ -51,28 +54,6 @@ function checkInput() {
     setTimeout(() => { element.removeChild(tag);; }, 1000);
   }
   //alert(`username is ${username} and password is ${password}`);
-}
-var cookies = 0;
-var startClicking = true;
-function clicked() {
-  cookies++;
-  startClicking = true; //doesnt affect value in addTime for some reason
-  var element = document.getElementById("cookiep2");
-  element.innerHTML = "Cookies: " + cookies;
-}
-var sec = 0;
-function addTime() {
-  if (startClicking) {
-    sec++;
-    var newHTML = "Cookies clicked per second: " + Math.round(cookies / sec);
-    // cpstimer.innerHTML = newHTML; //how???
-    setTimeout("addTime()", 1000);
-  }
-}
-
-function changeColor(color) {
-  document.body.style.background = color;
-  localStorage.bgcolor = color;
 }
 var stopped = false;
 function changeLink() {
@@ -86,33 +67,6 @@ function disable() {
   let h1 = document.getElementById('h1');
   h1.class = "game";
 }
-function undo() {
-  if (stopped) {
-    start();
-  } else if (!stopped) {
-    stop();
-  }
-}
-function stop() {
-  stopped = true;
-  noLoop();
-}
-function start() {
-  stopped = false;
-  loop();
-}
-
-function setButtonColor() {
-  let doc = document.getElementsByClassName("btn");
-  for (let i = 0; i < document.querySelectorAll('.btn').length; i++) {
-    doc[i].style.backgroundColor = doc[i].id;
-  }
-}
-
-window.onload = function () {
-  setButtonColor();
-  addTime();
-};
 var full = "" + window.location.href;
 if (!full.includes("http://127.0.0.1:5500/")) {
   document.onkeydown = function (e) {
@@ -141,13 +95,3 @@ document.addEventListener('contextmenu', function (e) {
 //middle button scrolling
 document.addEventListener("mousedown", function (e) { if (e.button == 1) { e.preventDefault(); } });
 
-// const CODE = (code) => {
-//   code.setup = () => {
-//     code.createCanvas(1000, 500);
-//   };
-//   code.draw = () => {
-//     code.background(255);
-//     code.rect(100,100,50,50);
-//   };
-// };
-// let codeCanvas = newp5(code);
