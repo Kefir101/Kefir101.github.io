@@ -2,7 +2,7 @@ var cookies = 0;
 var startClicking = false;
 function clicked() {
   cookies++;
-  if(!startClicking){
+  if (!startClicking) {
     startClicking = true; //doesnt affect value in addTime for some reason
     addTime()
   }

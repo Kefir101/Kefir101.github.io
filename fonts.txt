@@ -1,4 +1,3 @@
-'.',
 './007 GoldenEye.ttf',
 './04B_03_.TTF',
 './1000hurt.ttf',

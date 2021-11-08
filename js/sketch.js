@@ -1,9 +1,9 @@
 var bgcolor = localStorage.bgcolor || fallbackColor;
 document.body.style.backgroundColor = localStorage.bgcolor || '#ffffff'
 
-window.onload = function() {
-  let navID = window.location.pathname.split("/")[1]+".html";
-  if(navID != "main.html") document.getElementById(navID).style.backgroundColor = "#555";
+window.onload = function () {
+  let navID = window.location.pathname.split("/")[1] + ".html";
+  if (navID != "main.html") document.getElementById(navID).style.backgroundColor = "#555";
 };
 
 function checkInput() {
@@ -88,27 +88,3 @@ document.addEventListener('contextmenu', function (e) {
 });
 //middle button scrolling
 document.addEventListener("mousedown", function (e) { if (e.button == 1) { e.preventDefault(); } });
-
-
-function undo() {
-  if (stopped) {
-    start();
-  } else if (!stopped) {
-    stop();
-  }
-}
-function stop() {
-  stopped = true;
-  noLoop();
-}
-function start() {
-  stopped = false;
-  loop();
-}
-
-// function disable() {
-//   let p5 = document.getElementById('p5');
-//   p5.src = "random.js";
-//   let h1 = document.getElementById('h1');
-//   h1.class = "game";
-// }

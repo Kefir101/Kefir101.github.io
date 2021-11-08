@@ -77,7 +77,7 @@ function setup() {
   // let startGame = new Buttons(w / 2, (h / 1.25) + offset, 300, 50, "Start the game!", color(255, 0, 255));
   // buttonList = Array.of(exitGame, solo, multiplayer, beginner, intermediate, advanced, instructions, startGame);
   canvas = createCanvas(width, height);
-  canvas.position((window.innerWidth-width)/2);
+  canvas.position((window.innerWidth - width) / 2);
 }
 
 function draw() {

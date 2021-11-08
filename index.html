@@ -17,7 +17,7 @@
   if (!site.includes("/main")) {
     if (site.includes("index.html")) {
       site = site.replace("index.html", "main/");
-    } else if(site.endsWith("/")){
+    } else if (site.endsWith("/")) {
       site += "main/"
     } else {
       site += "/main/"
