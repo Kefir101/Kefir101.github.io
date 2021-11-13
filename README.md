@@ -9,7 +9,7 @@ so I learned web development from scratch (HTML, CSS, Javascript) to implement t
 to host on the website. Ever since then, I've been adding to the project. I worked on it heavily from May to June of 2021, 
 but then had to focus on college applications and so I have only continued recently in November.
 
-Every part of this website is still a work in progress, for I am constantly tweaking existing parts and adding new features. 
-I'm currently expaning the settings page for more customization of the website, adding an integrated cookie clicker game, 
-and adapting the organization of the page to account for different screen sizes/ratios.
+Every part of this website is still a work in progress (currently at roughly 3000 lines, not including comments), 
+for I am constantly tweaking existing parts and adding new features. I'm currently expaning the settings page for more customization of the website, 
+adding an integrated cookie clicker game, and adapting the organization of the page to account for different screen sizes/ratios.
 
