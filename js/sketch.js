@@ -3,7 +3,7 @@ document.body.style.backgroundColor = localStorage.bgcolor || '#ffffff'
 
 window.onload = function () {
   let navID = window.location.pathname.split("/")[1] + ".html";
-  if (navID != "main.html") document.getElementById(navID).style.backgroundColor = "#555";
+  if (navID != "main.html" && navID != "cookieclicker.html" && navID != "mothersday.html") document.getElementById(navID).style.backgroundColor = "#555";
 };
 
 function checkInput() {
@@ -62,7 +62,7 @@ function changeLink() {
   //link.classList.toggle('classname'); (adds/removes class)
 }
 var full = "" + window.location.href;
-if (!full.includes("http://127.0.0.1:5500/")) {
+if (!full.includes("127.0.0.1:5500")) {
   document.onkeydown = function (e) {
     console.log(1);
     if (event.keyCode == 123) {
@@ -81,10 +81,10 @@ if (!full.includes("http://127.0.0.1:5500/")) {
       return false;
     }
   }
+  //right click inspect
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+  //middle button scrolling
+  document.addEventListener("mousedown", function (e) { if (e.button == 1) { e.preventDefault(); } });
 }
-//right click inspect
-document.addEventListener('contextmenu', function (e) {
-  e.preventDefault();
-});
-//middle button scrolling
-document.addEventListener("mousedown", function (e) { if (e.button == 1) { e.preventDefault(); } });

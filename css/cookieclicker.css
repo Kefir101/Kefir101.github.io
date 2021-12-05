@@ -1,0 +1,135 @@
+#cookiepanel {
+    display: inline-block;
+}
+
+#maincookie {
+    text-align: center;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.clickedcookie{
+    animation: fadeOut 2s forwards;
+    visibility: visible;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0; margin-top: 40px;} 
+}
+/* .clickedcookiecookie{
+    animation: cookieFadeOut 2s forwards;
+}
+.clickedcookietext{
+    animation: textFadeOut 8s forwards;
+}
+@keyframes cookieFadeOut {
+    0% {opacity: 1;}
+    20% {margin-top: -30px;} 
+    100% {opacity: 0; margin-top: 100px;} 
+} 
+@keyframes textFadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0; margin-top: -200px;} 
+}  */
+@media screen {
+    .obj {
+        --timeunit: 10s;
+        --offsetunit: 30vmin;
+        --sizeunit: 5vmin;
+        --time: 5;
+        --dist: 1.13;
+        --size: 0.4;
+        position: absolute;
+        top: calc(50% - calc(var(--size) * var(--sizeunit)));
+        --offset: calc(var(--dist) * var(--offsetunit));
+        /* distance from the center */
+        left: calc(50% - var(--offset));
+        width: calc(2 * var(--offset));
+        animation: circleRound calc(var(--time) * var(--timeunit)) linear infinite;
+        /* border-radius: 50%;
+    border-style: none;
+    background-color: blue; */
+    }
+    .inner {
+        /* width: calc(calc(2 * var(--size)) * var(--sizeunit));
+    height: calc(calc(2 * var(--size)) * var(--sizeunit)); 
+    border-radius: 0%;
+    border-style: none;
+    background-color: blue; */
+    }
+    .inner::after {
+        content: "";
+        background: url("/img/cursor.png");
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        transform: scale(0.1) rotateZ(90deg) translateX(-2300px) translateY(2200px);
+    }
+    @keyframes circleRound {
+        100% {
+            transform: rotate(-360deg);
+        }
+    }
+}
+
+#shop {
+    display: inline-block;
+    position: absolute;
+    transform: translate(400px, 00px);
+}
+#shoptitle{
+    font-size: 35px;
+    transform: translateX(100px);
+}
+
+.shopbtn {
+    display: inline;
+    height: 64px;
+    width: 300px;
+    border: 0px;
+    padding: 0px;
+    font-size: 15px;
+    /* background-color: rgb(204, 199, 178);
+    border: black 1px solid;
+    outline: 4px solid rgb(204, 199, 178);
+    margin: 4.1px; */
+    background: url(/cookieclickerimg/ShopBtnBackground.jpg);
+}
+
+.shopbtn:hover {
+    filter: brightness(1.20);
+}
+
+.shopbtnitemname{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 30px;
+    color: white;
+    transform: translate(-20px, 10px);
+}
+.shopbtnitemprice{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 12px;
+    color: green;
+    transform: translate(-20px, 10px);
+}
+.shopbtnitemcount{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 45px;
+    transform: translate(120px, -40px);
+    opacity: 0.2;
+    color: #000;
+    text-shadow: 0px 0px 8px #fff;
+}

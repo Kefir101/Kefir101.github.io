@@ -2,6 +2,7 @@
 
 <head>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/cookieclicker.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +11,202 @@
 
 <body>
   <script src="/js/sketch.js"></script>
-  <script src="/js/cookieclicker.js"></script>
+  <h1 class="accounttitle">Cookie Clicker</h1>
 
-  <div class="cookie2" style="z-index: -1">
-    <img src="/img/cookie.png" alt="no cookie :(" id="secondcookie" onclick="clicked()"> <br>
-    <strong><em>
-        <bold></bold>
-        <p idx="cookiep">Cookies: 0</p>
-        </bold>
-      </em></strong>
+  <div id="cookiepanel" style="z-index: -1;">
+    <p id="cookieCount" style="font-size: 40px; transform: translateX(375px);">0 cookies</p>
+    <p id="cookiesPerSecond" style="font-size: 20px; transform: translate(400px, -47px);">per second: 0</p>
+    <img style="transform: translateX(200px); z-index: -1; display: inline;" src="/img/cookie.png" alt="cookie?" id="maincookie">
+    <div id="buildingsInCookie" style="transform: translate(192px, -232px);">
+      <div id="cursors" class="obj">
+      </div>
+      <div id="grandmas">
+      </div>
+      <div id="farms">
+      </div>
+      <div id="mines">
+      </div>
+    </div>
+    <div id = "clickedcookies"></div>
   </div>
-  <div class="cursor" style="z-index: 1; position: relative;">
-    <img src="/img/cursor.png" alt="no cursor :(" id="cursor1">
+
+  <div id="shop">
+    <h2 id="shoptitle">Store</h2>
   </div>
+
 </body>
+<script>
+  const buildings = ["cursor", "grandma", "farm", "mine", "factory", "bank", "temple"];
+  const buildingPrices = [15, 100, 1100, 12000, 130000, 1400000, 20000000];
+  const buildingCookiePerSecond = [0.4, 1, 8, 47, 260, 1400, 7800, 44000];
+
+  for (let i = 0; i < buildings.length; i++) {
+    let name = buildings[i];
+    let price = buildingPrices[i];
+    let Name = name.substring(0, 1).toUpperCase() + name.substring(1);
+    let buildingcount = name + "count";
+
+    let mainDivID = "buy" + Name + "s";
+    let mainDiv = document.createElement("div");
+    mainDiv.id = mainDivID;
+    document.getElementById("shop").append(mainDiv);
+
+    let button = document.createElement("button");
+    button.id = name + "btn";
+    button.classList.add("shopbtn");
+    button.classList.add(name);
+    // button.addEventListener('click', function(event) {
+    //   buyItem(price, name+"s", buildingcount)
+    // });
+    button.onclick = function (event) {
+      buyItem(price, name + "s", buildingcount);
+    }
+    document.getElementById(mainDivID).append(button);
+
+    let shopIcon = document.createElement("img");
+    shopIcon.src = "/cookieclickerimg/" + Name + "Shop.png";
+    shopIcon.style = "width: 64px; transform: translate(-150px, -2px); position: absolute;"
+    shopIcon.id = name + "shopbtnicon";
+    shopIcon.classList.add("shopbtnicon");
+    shopIcon.classList.add(name);
+    button.append(shopIcon);
+
+    let h4 = document.createElement("h4");
+    h4.id = name + "shopbtnitemname";
+    h4.style = "text-align: left; transform: translate(75px, 8px);"
+    h4.classList.add("shopbtnitemname");
+    h4.classList.add(name);
+    h4.innerHTML = Name;
+    button.append(h4);
+
+    let div = document.createElement("div");
+    div.id = name + "shopbtnitempriceandcookie";
+    div.style = "transform: translate(113px, -6px);  position: absolute;"
+    div.classList.add("shopbtnitempriceandcookie");
+    div.classList.add(name);
+    button.append(div);
+
+    let minicookie = document.createElement("img");
+    minicookie.src = "/img/cookie.png";
+    minicookie.style = "transform: translate(-38px, 10px); width: 18px; height: 18px;";
+    minicookie.id = name + "shopbtnitempricecookie";
+    minicookie.classList.add("shopbtnitempricecookie");
+    minicookie.classList.add(name);
+    div.append(minicookie);
+
+    let p = document.createElement("p");
+    p.id = name + "shopbtnitemprice";
+    p.style = "display: inline-block; font-size: 14; transform: translate(-35px, 5px);"
+    p.classList.add("shopbtnitemprice");
+    p.classList.add(name);
+    p.innerHTML = buildingPrices[i];
+    div.append(p);
+
+    let h5 = document.createElement("h5");
+    h5.id = name + "shopbtnitemcount";
+    h5.style = "transform: translate(123px, -28px);"
+    h5.classList.add("shopbtnitemcount");
+    h5.classList.add(name);
+    h5.innerHTML = 0;
+    h5.id = buildingcount;
+    button.append(h5);
+  }
+
+  var startedClicking = false;
+  var cookies = 0;
+  var sec = 0;
+  var mouseX, mouseY;
+  everyMillisecond();
+  everySecond();
+  let img = document.getElementById("maincookie");
+  img.addEventListener("click", setMousePos);
+  function setMousePos(event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    clicked();
+  }
+  function clicked() {
+    if (!startedClicking) {
+      startedClicking = true;
+    }
+    var clickedCookie = document.createElement("div");
+    clickedCookie.style = `display: inline; z-index: 1;  position: absolute; transform: translate(${mouseX-45}px, ${mouseY-800}px);`;
+    clickedCookie.addEventListener("click", setMousePos);
+
+    var clickedCookieText = document.createElement("p");
+    clickedCookieText.innerHTML = "+1";
+    clickedCookieText.style = "display: inline-block; color: white;"
+    clickedCookieText.classList.add("clickedcookietext");
+    clickedCookie.append(clickedCookieText);
+
+    var clickedCookieCookie = document.createElement("img");
+    clickedCookieCookie.src = "/img/cookie.png";
+    clickedCookieCookie.style = "display: inline-block; transform: translate(5px, 10px); position: relative; width: 35px; height: 35px;";
+    clickedCookieCookie.classList.add("clickedcookiecookie");
+    clickedCookie.append(clickedCookieCookie)
+    
+    clickedCookie.classList.add("clickedcookie");
+    document.getElementById("clickedcookies").append(clickedCookie);
+    changeCookie(1);
+    console.log(clickedCookie);
+  }
+
+  function changeCookie(change) {
+    var cookieCount = document.getElementById("cookieCount");
+    let currentCookies = parseFloat(cookieCount.innerHTML.split(" ")[0]);
+    currentCookies += change;
+    cookies = Math.round(currentCookies * 10) / 10;
+    cookieCount.innerHTML = cookies + " cookies";
+  }
+  function everyMillisecond() {
+    buildings.forEach(element => {
+      let id = "buy" + element.substring(0, 1).toUpperCase() + element.substring(1) + "s";
+      let priceElement = document.getElementById(id).getElementsByClassName("shopbtnitemprice")[0];
+      let cost = priceElement.innerHTML.split(" ")[0];
+      var color = (cost > cookies) ? priceElement.style.color = "red" : priceElement.style.color = "green";
+    });
+    setTimeout("everyMillisecond()", 1);
+  }
+  function everySecond() {
+    if (startedClicking) {
+      sec++;
+      getCookiesFromBuildings();
+      var newHTML = "per second: " + Math.round(cookies / sec * 10) / 10;
+      cookiesPerSecond.innerHTML = newHTML;
+    }
+    setTimeout("everySecond()", 1000);
+  }
+  function getCookiesFromBuildings() {
+    for (let i = 0; i < buildings.length; i++) {
+      let id = buildings[i] + "s";
+      if (document.getElementById(id) != null) {
+        let count = document.getElementById(id).childElementCount;
+        changeCookie(count * buildingCookiePerSecond[i])
+      }
+    }
+  }
+  function buyItem(itemPrice, itemID, itemCountID) {
+    var cookieCount = document.getElementById("cookieCount");
+    let currentCookies = cookieCount.innerHTML.split(" ")[0];
+    if (currentCookies >= itemPrice) {
+      changeCookie(-itemPrice);
+      const element = document.getElementById(itemID);
+      var div = document.createElement('div');
+      var numberOfChildElements = element.childElementCount;
+      if (itemID == "cursors") {
+        let xShift = numberOfChildElements * 5;
+        let yShift = numberOfChildElements * 10;
+        div.classList.add("singlecursor");
+        div.classList.add("inner");
+        div.style = `transform: rotate(${numberOfChildElements * -30}deg) translate(${xShift}px, ${yShift}px);`
+      } else {
+        let divclass = "single" + itemID.substring(0, itemID.length - 1);
+        div.classList.add(divclass);
+      }
+      element.appendChild(div);
+      document.getElementById(itemCountID).innerText = element.childElementCount;
+    }
+  }
+</script>
 
 </html>

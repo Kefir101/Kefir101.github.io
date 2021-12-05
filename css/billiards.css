@@ -6,8 +6,9 @@ canvas {
   /* left: 225px;  */
   border: black 4px solid;
 }
+
 @media screen {
-  .menubtn{
+  .menubtn {
     position: absolute;
     display: inline-block;
     height: 50px;
@@ -15,65 +16,65 @@ canvas {
     border-radius: 40%;
     font-size: 15px;
     text-align: center;
-    transform: translateY(-55px); 
+    transform: translateY(-55px);
   }
-  #billiardbtn button:hover{
+  #billiardbtn button:hover {
     filter: brightness(1.40);
   }
-  #solobtn{
+  #solobtn {
     all: inherit;
     border: 2px solid black;
     transform: translateX(166px);
     transform: translate(860px, 120px);
     /* +215x, +16y */
-    color:black;
+    color: black;
     background-color: green;
   }
-  #multibtn{
+  #multibtn {
     all: inherit;
     border: 2px solid black;
     transform: translateX(166px);
     transform: translate(1005px, 66px);
-    color:black;
+    color: black;
     background-color: green;
   }
-  #beginnerbtn{
+  #beginnerbtn {
     all: inherit;
     border: 2px solid black;
     width: 200px;
     transform: translateX(166px);
     transform: translate(853px, 120px);
-    color:black;
+    color: black;
     background-color: green;
   }
-  #intermediatebtn{
+  #intermediatebtn {
     all: inherit;
     border: 2px solid black;
     width: 200px;
     transform: translateX(166px);
     transform: translate(853px, 162px);
-    color:black;
+    color: black;
     background-color: yellow;
   }
-  #advancedbtn{
+  #advancedbtn {
     all: inherit;
     border: 2px solid black;
     width: 200px;
     transform: translateX(166px);
     transform: translate(853px, 172px);
-    color:black;
+    color: black;
     background-color: red;
   }
-  #instructionsbtn{
+  #instructionsbtn {
     all: inherit;
     border: 2px solid black;
     width: 200px;
     transform: translateX(166px);
     transform: translate(1185px, 46px);
-    color:black;
+    color: black;
     background-color: purple;
   }
-  #startbtn{
+  #startbtn {
     all: inherit;
     border: 2px solid black;
     width: 300px;
@@ -81,7 +82,7 @@ canvas {
     font-size: 30px;
     transform: translateX(166px);
     transform: translate(805px, 126px);
-    color:black;
+    color: black;
     background-color: pink;
   }
 }
