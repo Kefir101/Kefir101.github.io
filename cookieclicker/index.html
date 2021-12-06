@@ -16,35 +16,68 @@
   <div id="cookiepanel" style="z-index: -1;">
     <p id="cookieCount" style="font-size: 40px; transform: translateX(375px);">0 cookies</p>
     <p id="cookiesPerSecond" style="font-size: 20px; transform: translate(400px, -47px);">per second: 0</p>
-    <img style="transform: translateX(200px); z-index: -1; display: inline;" src="/img/cookie.png" alt="cookie?" id="maincookie">
+    <img style="transform: translateX(200px); z-index: -1; display: inline;" src="/img/cookie.png" alt="cookie?"
+      id="maincookie">
     <div id="buildingsInCookie" style="transform: translate(192px, -232px);">
-      <div id="cursors" class="obj">
-      </div>
-      <div id="grandmas">
-      </div>
-      <div id="farms">
-      </div>
-      <div id="mines">
-      </div>
+      <div id="cursors" class="obj"></div>
     </div>
-    <div id = "clickedcookies"></div>
+    <div id="clickedcookies"></div>
   </div>
 
   <div id="shop">
     <h2 id="shoptitle">Store</h2>
+    <!-- <img src="/cookieclickerimg/CursorShopInfo.png" alt="cant see"> -->
   </div>
-
 </body>
 <script>
-  const buildings = ["cursor", "grandma", "farm", "mine", "factory", "bank", "temple"];
-  const buildingPrices = [15, 100, 1100, 12000, 130000, 1400000, 20000000];
-  const buildingCookiePerSecond = [0.4, 1, 8, 47, 260, 1400, 7800, 44000];
+  let img = document.getElementById("maincookie");
+  img.addEventListener("click", setMousePos);
 
+  const buildings = ["cursor", "grandma", "farm", "mine", "factory", "bank", "temple"];
+  const buildingShopInfo = ["Autoclicks once every 10 seconds.", "A nice grandma to bake more cookies.",
+    "Grows cookie plants from cookie seeds.", "Mines out cookie dough and chocolate chips.",
+    "Produces large quantites of cookies.", "Generates cookies from interest.",
+    "Full of precious, ancient chocolate."]
+  let buildingPrices = [15, 100, 1100, 12000, 130000, 1400000, 20000000];
+  let buildingCookiePerSecond = [0.4, 1, 8, 47, 260, 1400, 7800, 44000];
+  let buildingCookiesProduced = Array(buildings.length).fill(0);
+  // function onMouseOut(this, event) {
+  //   //this is the original element the event handler was assigned to
+  //   var e = event.toElement || event.relatedTarget;
+  //   //check for all children levels (checking from bottom up)
+  //   while (e && e.parentNode && e.parentNode != window) {
+  //     if (e.parentNode == this || e == this) {
+  //       if (e.preventDefault) e.preventDefault();
+  //       return false;
+  //     }
+  //     e = e.parentNode;
+  //   }
+  //   removeInfo(name + "s", buildingcount);
+  // }
+  // function onMouseOver(this, event) {
+  //   var e = event.toElement || event.relatedTarget;
+  //   while (e && e.parentNode && e.parentNode != window) {
+  //     if (e.parentNode == this || e == this) {
+  //       if (e.preventDefault) e.preventDefault();
+  //       return false;
+  //     }
+  //     e = e.parentNode;
+  //   }
+  //   showInfo(name + "s", buildingcount);
+  // }
+
+  
   for (let i = 0; i < buildings.length; i++) {
     let name = buildings[i];
     let price = buildingPrices[i];
     let Name = name.substring(0, 1).toUpperCase() + name.substring(1);
     let buildingcount = name + "count";
+
+    let inCookieDiv = document.createElement("div");
+    inCookieDiv.id = name + "s";
+    document.getElementById("buildingsInCookie").append(inCookieDiv);
+
+    let numberOfBuildings = document.getElementById(name + "s").childElementCount;
 
     let mainDivID = "buy" + Name + "s";
     let mainDiv = document.createElement("div");
@@ -58,58 +91,160 @@
     // button.addEventListener('click', function(event) {
     //   buyItem(price, name+"s", buildingcount)
     // });
-    button.onclick = function (event) {
-      buyItem(price, name + "s", buildingcount);
+
+    // button.onmouseover = function (event) {
+    //   showInfo(name + "s", buildingcount);
+    // }
+    // button.onmouseout = function (event) {
+    //   removeInfo(name + "s", buildingcount);
+    // }
+    button.onmouseenter = function (event) {
+      showInfo(name + "s", buildingcount);
     }
+    button.onmouseleave = function (event) {
+      removeInfo(name + "s", buildingcount);
+    }
+    button.onclick = function (event) {
+      buyItem(name + "s", buildingcount);
+    }
+    // button.addEventListener('mouseover', onMouseOver, true);
+    // button.addEventListener('mouseout', onMouseOut, true);
+
     document.getElementById(mainDivID).append(button);
 
     let shopIcon = document.createElement("img");
     shopIcon.src = "/cookieclickerimg/" + Name + "Shop.png";
-    shopIcon.style = "width: 64px; transform: translate(-150px, -2px); position: absolute;"
+    shopIcon.style = "pointer-events:none; width: 64px; transform: translate(-150px, -2px); position: absolute;"
     shopIcon.id = name + "shopbtnicon";
     shopIcon.classList.add("shopbtnicon");
     shopIcon.classList.add(name);
     button.append(shopIcon);
 
-    let h4 = document.createElement("h4");
-    h4.id = name + "shopbtnitemname";
-    h4.style = "text-align: left; transform: translate(75px, 8px);"
-    h4.classList.add("shopbtnitemname");
-    h4.classList.add(name);
-    h4.innerHTML = Name;
-    button.append(h4);
+    let itemName = document.createElement("h4");
+    itemName.id = name + "shopbtnitemname";
+    itemName.style = "pointer-events:none; text-align: left; transform: translate(75px, 8px);"
+    itemName.classList.add("shopbtnitemname");
+    itemName.classList.add(name);
+    itemName.innerHTML = Name;
+    button.append(itemName);
 
-    let div = document.createElement("div");
-    div.id = name + "shopbtnitempriceandcookie";
-    div.style = "transform: translate(113px, -6px);  position: absolute;"
-    div.classList.add("shopbtnitempriceandcookie");
-    div.classList.add(name);
-    button.append(div);
+    let priceDiv = document.createElement("div");
+    priceDiv.id = name + "shopbtnitempriceandcookie";
+    priceDiv.style = "pointer-events:none; transform: translate(113px, -6px); position: absolute;"
+    priceDiv.classList.add("shopbtnitempriceandcookie");
+    priceDiv.classList.add(name);
+    button.append(priceDiv);
 
     let minicookie = document.createElement("img");
     minicookie.src = "/img/cookie.png";
-    minicookie.style = "transform: translate(-38px, 10px); width: 18px; height: 18px;";
+    minicookie.style = "pointer-events:none; transform: translate(-38px, 10px); width: 18px; height: 18px;";
     minicookie.id = name + "shopbtnitempricecookie";
     minicookie.classList.add("shopbtnitempricecookie");
     minicookie.classList.add(name);
-    div.append(minicookie);
+    priceDiv.append(minicookie);
 
-    let p = document.createElement("p");
-    p.id = name + "shopbtnitemprice";
-    p.style = "display: inline-block; font-size: 14; transform: translate(-35px, 5px);"
-    p.classList.add("shopbtnitemprice");
-    p.classList.add(name);
-    p.innerHTML = buildingPrices[i];
-    div.append(p);
+    let priceTag = document.createElement("p");
+    priceTag.id = name + "shopbtnitemprice";
+    priceTag.style = "pointer-events:none; display: inline-block; font-size: 14; transform: translate(-35px, 5px);"
+    priceTag.classList.add("shopbtnitemprice");
+    priceTag.classList.add(name);
+    priceTag.innerHTML = "<b>" + buildingPrices[i] + "</b>";
+    priceDiv.append(priceTag);
 
-    let h5 = document.createElement("h5");
-    h5.id = name + "shopbtnitemcount";
-    h5.style = "transform: translate(123px, -28px);"
-    h5.classList.add("shopbtnitemcount");
-    h5.classList.add(name);
-    h5.innerHTML = 0;
-    h5.id = buildingcount;
-    button.append(h5);
+    let itemCount = document.createElement("h5");
+    itemCount.id = name + "shopbtnitemcount";
+    itemCount.style = "pointer-events:none; transform: translate(123px, -28px);"
+    itemCount.classList.add("shopbtnitemcount");
+    itemCount.classList.add(name);
+    itemCount.innerHTML = 0;
+    itemCount.id = buildingcount;
+    button.append(itemCount);
+
+
+    let infoDiv = document.createElement("div");
+    infoDiv.id = name + "shopbtninfo";
+    infoDiv.style = "position: absolute; width: 400px; height: 170px; background-color: black; border: 3px solid transparent; border-image: url(/cookieclickerimg/FrameBorder.png) 3 round; border-radius: 2px; transform: translate(-405px, -70px); visibility: hidden; color: grey;"
+    infoDiv.classList.add("shopbtninfo");
+    infoDiv.classList.add(name);
+    document.getElementById(mainDivID).append(infoDiv);
+
+    let mainInfoDiv = document.createElement("div");
+    mainInfoDiv.id = name + "shopbtnmaininfo";
+    mainInfoDiv.style = "transform: translate(-345px, -70px);";
+    mainInfoDiv.classList.add("shopbtnmaininfo");
+    mainInfoDiv.classList.add(name);
+    infoDiv.append(mainInfoDiv);
+
+    let descriptionInfo = document.createElement("p");
+    descriptionInfo.id = name + "shopbtndescriptioninfo";
+    descriptionInfo.style = "font-size: 15px; transform: translate(10px, -100px); text-align: left;";
+    descriptionInfo.classList.add("shopbtndescriptioninfo");
+    descriptionInfo.classList.add(name);
+    descriptionInfo.innerHTML = buildingShopInfo[i];
+    infoDiv.append(descriptionInfo);
+
+    let imgInfo = document.createElement("img");
+    imgInfo.id = name + "shopbtnimginfo";
+    imgInfo.src = "/cookieclickerimg/" + Name + "InfoIcon.png";
+    imgInfo.style = "width: 50px; height: auto; transform: translate(350px, 75px);";
+    imgInfo.classList.add("shopbtnimginfo");
+    imgInfo.classList.add(name);
+    mainInfoDiv.append(imgInfo);
+
+    let nameInfo = document.createElement("p");
+    nameInfo.id = name + "shopbtnnameinfo";
+    nameInfo.style = "transform: translate(405px, 12px); text-align: left; color: white; font-size: 20px;";
+    nameInfo.classList.add("shopbtnnameinfo");
+    nameInfo.classList.add(name);
+    nameInfo.innerHTML = Name;
+    mainInfoDiv.append(nameInfo);
+
+    let numberOwnedInfo = document.createElement("p");
+    numberOwnedInfo.id = name + "shopbtnownedinfo";
+    numberOwnedInfo.style = "transform: translate(406px, -7px); font-size: 11px; color: grey;";
+    numberOwnedInfo.classList.add("shopbtnownedinfo");
+    numberOwnedInfo.classList.add(name);
+    numberOwnedInfo.innerHTML = "[owned : " + numberOfBuildings + "]"
+    mainInfoDiv.append(numberOwnedInfo);
+
+    let priceInfo = priceDiv.cloneNode(true);
+    priceInfo.id = name + "shopbtnpriceinfo";
+    priceInfo.style = "transform: translate(556px, -60px);";
+    priceInfo.classList.remove("shopbtnitempriceandcookie");
+    priceInfo.classList.add("shopbtnpriceinfo");
+    priceInfo.classList.add(name);
+    mainInfoDiv.append(priceInfo);
+
+    let statsInfoList = document.createElement("ul");
+    statsInfoList.id = name + "shopbtnstatsinfo";
+    statsInfoList.style = "list-style-type: circle; transform: translate(-15px, -96px); font-size: 10px; text-align: left;";
+    statsInfoList.classList.add("shopbtnstatsinfo");
+    statsInfoList.classList.add(name);
+    infoDiv.append(statsInfoList);
+
+    let singleCpsInfo = document.createElement("li");
+    singleCpsInfo.id = name + "shopbtnsinglecpsinfo";
+    singleCpsInfo.style = "transform: translate(0px, 0px);";
+    singleCpsInfo.classList.add("shopbtnsinglecpsinfo");
+    singleCpsInfo.classList.add(name);
+    singleCpsInfo.innerHTML = "each " + name + " produces " + "<big><b class = 'cookienumber'>" + buildingCookiePerSecond[i] + "</b></big> cookies per second";
+    statsInfoList.append(singleCpsInfo);
+
+    let totalCpsInfo = document.createElement("li");
+    totalCpsInfo.id = name + "shopbtntotalcpsinfo";
+    totalCpsInfo.style = "transform: translate(0px, 0px);";
+    totalCpsInfo.classList.add("shopbtntotalcpsinfo");
+    totalCpsInfo.classList.add(name);
+    totalCpsInfo.innerHTML = numberOfBuildings + " " + name + "s producing " + "<big><b class = 'cookienumber'>" + buildingCookiePerSecond[i] * numberOfBuildings + "</b></big> cookies per second";
+    statsInfoList.append(totalCpsInfo);
+
+    let cookiesProducedInfo = document.createElement("li");
+    cookiesProducedInfo.id = name + "shopbtncookiesproducedinfo";
+    cookiesProducedInfo.style = "transform: translate(0px, 0px);";
+    cookiesProducedInfo.classList.add("shopbtncookiesproducedinfo");
+    cookiesProducedInfo.classList.add(name);
+    cookiesProducedInfo.innerHTML = "<big><b class = 'cookienumber'>" + buildingCookiesProduced[i] + "</b></big> cookies produced so far";
+    statsInfoList.append(cookiesProducedInfo);
   }
 
   var startedClicking = false;
@@ -118,8 +253,7 @@
   var mouseX, mouseY;
   everyMillisecond();
   everySecond();
-  let img = document.getElementById("maincookie");
-  img.addEventListener("click", setMousePos);
+
   function setMousePos(event) {
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -130,7 +264,7 @@
       startedClicking = true;
     }
     var clickedCookie = document.createElement("div");
-    clickedCookie.style = `display: inline; z-index: 1;  position: absolute; transform: translate(${mouseX-45}px, ${mouseY-800}px);`;
+    clickedCookie.style = `display: inline; z-index: 1;  position: absolute; transform: translate(${mouseX - 45}px, ${mouseY - 800}px);`;
     clickedCookie.addEventListener("click", setMousePos);
 
     var clickedCookieText = document.createElement("p");
@@ -144,13 +278,12 @@
     clickedCookieCookie.style = "display: inline-block; transform: translate(5px, 10px); position: relative; width: 35px; height: 35px;";
     clickedCookieCookie.classList.add("clickedcookiecookie");
     clickedCookie.append(clickedCookieCookie)
-    
+
     clickedCookie.classList.add("clickedcookie");
     document.getElementById("clickedcookies").append(clickedCookie);
     changeCookie(1);
     console.log(clickedCookie);
   }
-
   function changeCookie(change) {
     var cookieCount = document.getElementById("cookieCount");
     let currentCookies = parseFloat(cookieCount.innerHTML.split(" ")[0]);
@@ -159,13 +292,16 @@
     cookieCount.innerHTML = cookies + " cookies";
   }
   function everyMillisecond() {
-    buildings.forEach(element => {
+    // console.log(document.querySelectorAll( ":hover" ).length);
+    buildings.forEach((element, i) => {
       let id = "buy" + element.substring(0, 1).toUpperCase() + element.substring(1) + "s";
-      let priceElement = document.getElementById(id).getElementsByClassName("shopbtnitemprice")[0];
-      let cost = priceElement.innerHTML.split(" ")[0];
-      var color = (cost > cookies) ? priceElement.style.color = "red" : priceElement.style.color = "green";
+      let priceTag = document.getElementById(id).getElementsByClassName("shopbtnitemprice")[0];
+      let priceInfoDiv = document.getElementById(id).querySelector(".shopbtnpriceinfo p");
+      let cost = buildingPrices[i];
+      var color = (cost > cookies) ? priceTag.style.color = "red" : priceTag.style.color = "green";
+      var color = (cost > cookies) ? priceInfoDiv.style.color = "red" : priceInfoDiv.style.color = "green";
     });
-    setTimeout("everyMillisecond()", 1);
+    setTimeout("everyMillisecond()", 0.1);
   }
   function everySecond() {
     if (startedClicking) {
@@ -181,11 +317,16 @@
       let id = buildings[i] + "s";
       if (document.getElementById(id) != null) {
         let count = document.getElementById(id).childElementCount;
-        changeCookie(count * buildingCookiePerSecond[i])
+        let cookiesProduced = count * buildingCookiePerSecond[i];
+        changeCookie(cookiesProduced);
+        buildingCookiesProduced[i] += cookiesProduced;
       }
     }
   }
-  function buyItem(itemPrice, itemID, itemCountID) {
+  function buyItem(itemID, itemCountID) {
+    const itemName = itemID.substring(0, itemID.length - 1);
+    const itemIndex = buildings.indexOf(itemName);
+    let itemPrice = buildingPrices[itemIndex];
     var cookieCount = document.getElementById("cookieCount");
     let currentCookies = cookieCount.innerHTML.split(" ")[0];
     if (currentCookies >= itemPrice) {
@@ -203,9 +344,25 @@
         let divclass = "single" + itemID.substring(0, itemID.length - 1);
         div.classList.add(divclass);
       }
+      buildingPrices[itemIndex] = Math.round(buildingPrices[itemIndex] * 1.15);
+      document.getElementById(itemName + "shopbtnitemprice").innerHTML = "<b>" + buildingPrices[itemIndex] + "</b>";
+      let id = "buy" + itemName.substring(0, 1).toUpperCase() + itemName.substring(1) + "s";
+      document.getElementById(id).querySelector(".shopbtnpriceinfo p").innerHTML = "<b>" + buildingPrices[itemIndex] + "</b>";
       element.appendChild(div);
       document.getElementById(itemCountID).innerText = element.childElementCount;
     }
+  }
+  function showInfo(itemID, itemCountID) {
+    const itemName = itemID.substring(0, itemID.length - 1);
+    const itemIndex = buildings.indexOf(itemName);
+    const infoID = itemName + "shopbtninfo";
+    document.getElementById(infoID).style.visibility = "visible";
+  }
+  function removeInfo(itemID, itemCountID) {
+    const itemName = itemID.substring(0, itemID.length - 1);
+    const itemIndex = buildings.indexOf(itemName);
+    const infoID = itemName + "shopbtninfo";
+    document.getElementById(infoID).style.visibility = "hidden";
   }
 </script>
 

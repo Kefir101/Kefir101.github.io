@@ -82,7 +82,7 @@
 #shop {
     display: inline-block;
     position: absolute;
-    transform: translate(400px, 00px);
+    transform: translate(600px, 00px);
 }
 #shoptitle{
     font-size: 35px;
@@ -120,7 +120,6 @@
     padding: 0;
     border: 0;
     font-size: 12px;
-    color: green;
     transform: translate(-20px, 10px);
 }
 .shopbtnitemcount{
@@ -132,4 +131,7 @@
     opacity: 0.2;
     color: #000;
     text-shadow: 0px 0px 8px #fff;
+}
+.cookienumber{
+    color: white;
 }
