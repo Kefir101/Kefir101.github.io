@@ -9,24 +9,34 @@
   <title>Cookie Clicker</title>
 </head>
 
-<body>
+<body id="mainbody">
   <script src="/js/sketch.js"></script>
   <h1 class="accounttitle">Cookie Clicker</h1>
 
-  <div id="cookiepanel" style="z-index: -1;">
-    <p id="cookieCount" style="font-size: 40px; transform: translateX(375px);">0 cookies</p>
-    <p id="cookiesPerSecond" style="font-size: 20px; transform: translate(400px, -47px);">per second: 0</p>
-    <img style="transform: translateX(200px); z-index: -1; display: inline;" src="/img/cookie.png" alt="cookie?"
+  <div id="cookiepanel" style="transform: translate(-100px, -50px); z-index: -1; color: white;">
+    <div id="bakeryandcookies">
+      <p id="bakeryname" style="font-size: 35px; transform: translate(225px, 10px);" onclick="changeBakeryName()">Your Bakery</p>
+      <div id="maincookiecookies" style="transform: translate(225px, -10px);">
+        <p id="cookieCount" style="transform: translateY(-5px); margin: 0px; font-size: 40px;">0 cookies</p>
+        <p id="cookiesPerSecond" style="margin: 0px; font-size: 20px; transform: translateY(-12px);">per second: 0</p>
+      </div>
+      <br>
+      <br>
+    </div>
+    <img style="transform: translate(215px, -30px); z-index: 101; display: inline;" src="/img/cookie.png" alt="cookie?"
       id="maincookie">
-    <div id="buildingsInCookie" style="transform: translate(192px, -232px);">
+    <div id="buildingsInCookie" style="transform: translate(214px, -259px);">
       <div id="cursors" class="obj"></div>
     </div>
     <div id="clickedcookies"></div>
   </div>
-
+  <!-- <div class = "verticalpanel"></div> -->
   <div id="shop">
-    <h2 id="shoptitle">Store</h2>
+    <h2 id="shoptitle" style="color: white;">Store</h2>
+    <div id="buyupgrades"></div>
+    <div id="buybuildings"></div>
   </div>
+  <div id="version" style="color: white; transform: translate(0px, 0px); font-size: 40px; margin: 0px;">v. 1.000</div>
 </body>
 <script>
   let img = document.getElementById("maincookie");
@@ -36,7 +46,8 @@
   const buildingShopInfo = ["Autoclicks once every 10 seconds.", "A nice grandma to bake more cookies.",
     "Grows cookie plants from cookie seeds.", "Mines out cookie dough and chocolate chips.",
     "Produces large quantites of cookies.", "Generates cookies from interest.",
-    "Full of precious, ancient chocolate."]
+    "Full of precious, ancient chocolate."];
+  let cookiesPerClick = 1;
   let buildingPrices = [15, 100, 1100, 12000, 130000, 1400000, 20000000];
   let buildingCookiePerSecond = [0.1, 1, 8, 47, 260, 1400, 7800, 44000];
   let buildingCookiesProduced = Array(buildings.length).fill(0);
@@ -45,17 +56,64 @@
   let buildingsUnlockedArr = [true, true].concat(Array(buildings.length - 2).fill(false));
   let cookiesInPreviousSecond = 0;
 
+  let upgrades = ["Reinforced index finger", "Carpal tunnel prevention cream", "Forwards from grandma", "Steel-plated rolling pins", "Cheap hoes", "Sugar gas"];
+  let upgradePrices = [100, 500, 1000, 5000, 11000, 120000];
+  let upgradeIDs = [0, 1, 7, 8, 10, 16];
+  let upgradeDescriptions = ["The mouse and cursors are twice as efficient.", "The mouse and cursors are twice as efficient.",
+                            "Grandmas are twice as efficient.", "Grandmas are twice as efficient.", "Farms are twice as efficient.", "Mines are twice as efficient."]
+
   for (let i = 0; i < buildingsUnlocked; i++) {
     newUnlock = true;
     unlockBuilding(i);
   }
-
+  for (let i = 0; i < upgrades.length; i++) {
+    unlockUpgrade(i);
+  }
   var startedClicking = false;
   var cookies = 0;
   var sec = 0;
   var mouseX, mouseY;
   everyMillisecond();
   everySecond();
+  function changeBakeryName(){
+    let popupDiv = buildElement("popupDiv", "div", "changebakeryname", 
+    "position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; width: 270px; height: 130px; background-color: black;" + 
+    "border: 3px solid transparent; border-image: url(/cookieclickerimg/FrameBorder.png) 3 round; border-radius: 2px; color: grey;",
+     "changebakeryname", document.getElementById("mainbody"));
+    
+    let nameYourBakery = buildElement("nameYourBakery", "p", "nameyourbakery", "transform: translateY(-5px); text-align: center; color: gold;", "nameyourbakery", 
+    popupDiv, "NAME YOUR BAKERY");
+    let whatShouldYourBakeryNameBe = buildElement("whatShouldYourBakeryNameBe", "p", "whatshouldyourbakerynamebe", 
+    "transform: translateY(-10px); text-align: center;", "nameyourbakery", popupDiv, "What should your bakery's name be?");
+    let bakeryNameInput = buildElement("bakeryNameInput", "input", "bakerynameinput", 
+    "display: block; margin: 0 auto; transform: translateY(-10px); text-align: center;", "bakerynameinput", popupDiv);
+    bakeryNameInput.type = "text";
+
+    let changeBakeryNameButtons = buildElement("changeBakeryNameButtons", "div", "changebakerynamebuttons", 
+    "display: flex; justify-content: center; transform: translate(0px, 0px)", "changebakerynamebuttons", popupDiv);
+
+    let confirmButton = buildElement("confirmButton", "button", "confirmbutton", "", "confirmbutton", changeBakeryNameButtons, "Confirm");
+    confirmButton.onclick = function (event) {
+      changeNameBakery(document.getElementById("bakerynameinput").value);
+      popupDiv.remove();
+    }
+    let randomButton = buildElement("randomButton", "button", "randombutton", "", "randombutton", changeBakeryNameButtons, "Random");
+    randomButton.onclick = function (event) {
+      randomizeBakeryName();
+      popupDiv.remove();
+    }
+    let cancelButton = buildElement("cancelButton", "button", "cancelbutton", "", "cancelbutton", changeBakeryNameButtons, "Cancel");
+    cancelButton.onclick = function (event) {
+      popupDiv.remove();
+    }
+  }
+  function changeNameBakery(bakeryName){
+    document.getElementById("bakeryname").innerHTML = bakeryName + "'s Bakery";
+  }
+  function randomizeBakeryName(){
+    bakeryName = "I'll do it later"
+    changeNameBakery(bakeryName);
+  }
   function unlockBuilding(i){
     if(!newUnlock) return;
     let name = buildings[i];
@@ -71,22 +129,20 @@
     let mainDivID = "buy" + Name + "s";
     let mainDiv = document.createElement("div");
     mainDiv.id = mainDivID;
-    document.getElementById("shop").append(mainDiv);
+    document.getElementById("buybuildings").append(mainDiv);
 
     let button = document.createElement("button");
     button.id = name + "btn";
     button.classList.add("shopbtn");
     button.classList.add(name);
     button.onmouseover = function (event) {
-      console.log("mouse over");
-      if(document.getElementById(name + "shopbtninfo").visibility = "hidden") showInfo(name + "s", buildingcount);
+      showBuildingInfo(name + "s", buildingcount);
     }
     button.onmouseleave = function (event) {
-      console.log("mouse left");
-      if(document.getElementById(name + "shopbtninfo").visibility = "visible") removeInfo(name + "s", buildingcount);
+      removeBuildingInfo(name + "s", buildingcount);
     }
     button.onclick = function (event) {
-      buyItem(name + "s", name + "shopbtnitemcount");
+      buyBuilding(name + "s", name + "shopbtnitemcount");
     }
     document.getElementById(mainDivID).append(button);
     
@@ -122,10 +178,9 @@
     let numberOwnedInfo = buildElement("numberOwnedInfo", "p", name + "shopbtnownedinfo", "transform: translate(406px, -7px); font-size: 11px; color: grey;",
      "shopbtnownedinfo " + name, mainInfoDiv, "[owned : " + numberOfBuildings + "]");
 
-    let priceInfo = buildElement("priceInfo", "div", name + "shopbtnpriceinfo", "transform: translate(556px, -60px);",
+    let priceInfo = buildElement("priceInfo", "div", name + "shopbtnpriceinfo", "transform: translate(699px, -60px);",
      "shopbtnpriceinfo " + name, mainInfoDiv, "none", "", priceDiv.cloneNode(true));
 
-    
      newUnlock = false;
   }
   function buildElement(elementName, elementType, elementID, elementStyle, elementClass, elementToAppendTo, elementInnerHTML = "", elementSrc = "", clone = false){
@@ -158,7 +213,7 @@
     clickedCookie.addEventListener("click", setMousePos);
 
     var clickedCookieText = document.createElement("p");
-    clickedCookieText.innerHTML = "+1";
+    clickedCookieText.innerHTML = "+" + cookiesPerClick;
     clickedCookieText.style = "display: inline-block; color: white;"
     clickedCookieText.classList.add("clickedcookietext");
     clickedCookie.append(clickedCookieText);
@@ -171,7 +226,7 @@
 
     clickedCookie.classList.add("clickedcookie");
     document.getElementById("clickedcookies").append(clickedCookie);
-    changeCookie(1);
+    changeCookie(cookiesPerClick);
   }
   function changeCookie(change) {
     var cookieCount = document.getElementById("cookieCount");
@@ -193,7 +248,6 @@
       let numberOfBuildings = document.getElementById(name + "s").childElementCount;
       document.getElementById(name + "shopbtnownedinfo").innerHTML = "[owned : " + numberOfBuildings + "]";
       if(buildingsFullyUnlocked > i){
-        console.log(i);
         document.getElementById(name + "shopbtnsinglecpsinfo").innerHTML = "each " + name + " produces " + "<big><b class = 'cookienumber'>" + buildingCookiePerSecond[i] + "</b></big> cookies per second";
         document.getElementById(name + "shopbtntotalcpsinfo").innerHTML = numberOfBuildings + " " + name + "(s) producing " + "<big><b class = 'cookienumber'>" + buildingCookiePerSecond[i] * numberOfBuildings + "</b></big> cookies per second";
         document.getElementById(name + "shopbtncookiesproducedinfo").innerHTML = "<big><b class = 'cookienumber'>" + buildingCookiesProduced[i] + "</b></big> cookies produced so far";
@@ -205,7 +259,6 @@
         unlockBuilding(buildingsUnlocked - 1)
         buildingsUnlockedArr[i+2] = true;
         document.getElementById(name + "shopbtnitemname").innerHTML = Name;
-        console.log(document.getElementById(name + "shopbtnicon").style);
         document.getElementById(name + "shopbtnicon").style.filter = "brightness(1)";
         document.getElementById(name + "shopbtninfo").style.height = "170px";
         document.getElementById(name + "shopbtnimginfo").src = "/cookieclickerimg/" + Name + "InfoIcon.png";
@@ -231,7 +284,12 @@
 
       }
     });
-    setTimeout("everyMillisecond()", 0.1);
+    upgradeIDs.forEach((upgradeID, i) => {
+      let priceTag = document.getElementById("upgrade" + upgradeID + "itemprice");
+      if(cookies >= upgradePrices[i]) priceTag.style.color = "green";
+      else priceTag.style.color = "red";
+    });
+    setTimeout("everyMillisecond()",  1);
   }
   function everySecond() {
     if (startedClicking) {
@@ -257,8 +315,7 @@
         if(id == "cursors"){
           var cursors = document.getElementById("cursors").children;
           for (var j = 0; j < cursors.length; j++) {
-            console.log(cursors[j].secondsPassed);
-            if(cursors[j].secondsPassed % 10 == 0 && cursors[j].secondsPassed > 0) cookiesProduced++;
+            if(cursors[j].secondsPassed % 10 == 0 && cursors[j].secondsPassed > 0) cookiesProduced += (buildingCookiePerSecond[i] * 10);
           }
         } else{
           let count = document.getElementById(id).childElementCount;
@@ -270,7 +327,7 @@
       }
     }
   }
-  function buyItem(itemID, itemCountID) {
+  function buyBuilding(itemID, itemCountID) {
     const itemName = itemID.substring(0, itemID.length - 1);
     const itemIndex = buildings.indexOf(itemName);
     let itemPrice = buildingPrices[itemIndex];
@@ -300,17 +357,120 @@
       document.getElementById(itemCountID).innerText = element.childElementCount;
     }
   }
-  function showInfo(itemID, itemCountID) {
+  function showBuildingInfo(itemID, itemCountID) {
     const itemName = itemID.substring(0, itemID.length - 1);
     const itemIndex = buildings.indexOf(itemName);
     const infoID = itemName + "shopbtninfo";
     document.getElementById(infoID).style.visibility = "visible";
   }
-  function removeInfo(itemID, itemCountID) {
+  function removeBuildingInfo(itemID, itemCountID) {
     const itemName = itemID.substring(0, itemID.length - 1);
     const itemIndex = buildings.indexOf(itemName);
     const infoID = itemName + "shopbtninfo";
     document.getElementById(infoID).style.visibility = "hidden";
+  }
+  function buyUpgrade(upgradeID){
+    let index = upgradeIDs.indexOf(upgradeID);
+    if(index != -1){
+      changeCookie(-upgradePrices[index]);
+      upgradeIDs.splice(index, 1);
+      upgrades.splice(index, 1);
+      upgradePrices.splice(index, 1);
+    }else return;
+    switch(upgradeID){
+      case 0:
+        buildingCookiePerSecond[0] *= 2;
+        cookiesPerClick *= 2;
+        break;
+      case 1:
+        buildingCookiePerSecond[0] *= 2;
+        cookiesPerClick *= 2;
+        break;
+      case 7:
+        buildingCookiePerSecond[1] *= 2;
+        break;
+      case 8:
+        buildingCookiePerSecond[1] *= 2;
+        break;
+      case 10:
+        buildingCookiePerSecond[2] *= 2;
+        break;
+      case 16:
+        buildingCookiePerSecond[3] *= 2;  
+    }
+  }
+  function unlockUpgrade(i){
+    let upgradeName = upgrades[i];
+    let upgradePrice = upgradePrices[i];
+    let upgradeID = upgradeIDs[i];
+    let upgradeImageSrc = "/cookieclickerimg/Upgrade" + upgradeID + ".png";
+    let upgradeDiv = document.createElement("div");
+    upgradeDiv.classList.add("shopupgrade");
+    document.getElementById("buyupgrades").append(upgradeDiv);
+    
+    let upgradeButton = document.createElement("div");
+    upgradeButton.id = "upgrade" + upgradeID;
+
+    upgradeButton.onmouseover = function (event) {
+      upgradeButton.style.filter = "brightness(1.2)";
+      showUpgradeInfo(upgradeID);
+    }
+    upgradeButton.onmouseleave = function (event) {
+      upgradeButton.style.filter = "brightness(1)";
+      removeUpgradeInfo(upgradeID);
+    }
+    upgradeButton.onclick = function (event) {
+      if(cookies >= upgradePrice){
+        buyUpgrade(upgradeID);
+        upgradeDiv.remove();
+      }
+    }
+    upgradeDiv.append(upgradeButton);
+
+    let upgradeImage = document.createElement("img");
+    upgradeImage.src = upgradeImageSrc;
+    upgradeButton.append(upgradeImage);
+
+    let infoID = "upgrade" + upgradeID;
+    let infoDiv = buildElement("infoDiv", "div", infoID + "info", "pointer-events: none; position: absolute; width: 400px; height: 135px; background-color: black; " + 
+    `border: 3px solid transparent; border-image: url(/cookieclickerimg/FrameBorder.png) 3 round; border-radius: 2px; transform: translate(-${420 + (i % 5)*60}px, -56px); visibility: hidden; color: grey;`,
+     "upgradeinfo", upgradeDiv);
+
+    let mainInfoDiv = buildElement("mainInfoDiv", "div", infoID + "maininfo", "transform: translate(-345px, -70px);",
+     "upgrademaininfo", infoDiv);
+
+    let imgInfo = buildElement("imgInfo", "img", infoID + "imginfo", "width: 52px; height: auto; transform: translate(348px, 75px);",
+     "upgradeimginfo", mainInfoDiv, "",  upgradeImageSrc);
+
+    let nameInfo = buildElement("nameInfo", "p", infoID + "nameinfo", "transform: translate(403px, 12px); text-align: left; color: white; font-size: 20px;",
+     "upgradenameinfo", mainInfoDiv, upgrades[i]);
+
+    let numberOwnedInfo = buildElement("numberOwnedInfo", "p", infoID + "numberownedinfo", "transform: translate(404px, -7px); font-size: 11px; color: grey;",
+     "upgradeownedinfo", mainInfoDiv, "[Upgrade]");
+
+    let priceDiv = buildElement("priceDiv", "div", "upgrade" + upgradeID + "priceandcookie", "pointer-events: none; transform: translate(710px, -74px);", 
+    "upgradepriceandcookie", mainInfoDiv);
+
+    let minicookie = buildElement("minicookie", "img", "upgrade" + upgradeID + "pricecookie", "pointer-events: none; transform: translate(-38px, 10px); width: 18px; height: 18px;", 
+    "upgradepricecookie", priceDiv, "", "/img/cookie.png");
+
+    let priceTag = buildElement("priceTag", "p", "upgrade" + upgradeID + "itemprice", "pointer-events: none; display: inline-block; font-size: 14; transform: translate(-35px, 5px);", 
+    "upgradeprice", priceDiv, "<b>" + upgradePrices[i] + "</b>");
+
+    let descriptionInfo = buildElement("descriptionInfo", "p", infoID + "descriptioninfo", "font-size: 15px; transform: translate(10px, -132px); text-align: left;",
+     "upgradedescriptioninfo", infoDiv, upgradeDescriptions[i]);
+
+    let clickToPurchaseInfo = buildElement("clickToPurchaseInfo", "p", infoID + "clicktopurchaseinfo", "font-size: 12px; transform: translate(0px, -115px); text-align: center;",
+     "upgradeclicktopurchaseinfo", infoDiv, "Click to purchase.");
+  }
+  function showUpgradeInfo(upgradeID){
+    document.getElementById("upgrade" + upgradeID + "info").style.visibility = "visible";
+  }
+  function removeUpgradeInfo(upgradeID){
+    document.getElementById("upgrade" + upgradeID + "info").style.visibility = "hidden";
+  }
+  function CC(){
+    changeCookie(1000);
   }
 </script>
 

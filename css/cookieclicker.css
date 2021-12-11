@@ -1,7 +1,29 @@
+body {
+    border: 1px solid black;
+}
 #cookiepanel {
     display: inline-block;
 }
-
+#bakeryname{
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    padding: 4px 0px;
+    text-align: center;
+}
+#changebakerynamebuttons > button{
+    border: 1px solid transparent; 
+    border-image: url(/cookieclickerimg/FrameBorder.png) 3 round; 
+    border-radius: 2px;
+    background-color: black;
+    color: gray;
+    margin: 2px;
+}
+#maincookiecookies{
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    padding: 4px 0px;
+    text-align: center;
+}
 #maincookie {
     text-align: center;
     -webkit-user-drag: none;
@@ -78,6 +100,17 @@
         }
     }
 }
+.verticalpanel{
+    display: inline-block;
+    width: 16px;
+    height: 100%;
+    background: url("/cookieclickerimg/VerticalPanel.png"); 
+    position: relative;
+    transform: translate(200px);
+    /* top: 0px;
+    bottom: 0px; */
+    /* z-index: 100; */
+}
 
 #shop {
     display: inline-block;
@@ -88,25 +121,37 @@
     font-size: 35px;
     transform: translateX(100px);
 }
-
+#buyupgrades{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.shopupgrade{
+    width: 52px;
+    height: 52px;
+    background-color: black;
+    border: 4px solid transparent;
+    border-image: url(/cookieclickerimg/FrameBorder.png) 3 round;
+    color: grey;
+}
+.shopupgrade img{
+    width: 52px;
+    height: 55px;
+} 
+.shopupgrade:hover{
+    filter: brightness(1.20);
+}
 .shopbtn {
     display: inline;
     height: 64px;
     width: 300px;
     border: 0px;
     padding: 0px;
-    font-size: 15px;
-    /* background-color: rgb(204, 199, 178);
-    border: black 1px solid;
-    outline: 4px solid rgb(204, 199, 178);
-    margin: 4.1px; */
+    font-size: 15px; 
     background: url(/cookieclickerimg/ShopBtnBackground.jpg);
 }
-
-.shopbtn:hover {
+/* .shopbtn:hover {
     filter: brightness(1.20);
-}
-
+} */
 .shopbtnitemname{
     margin: 0;
     padding: 0;
@@ -119,7 +164,6 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 12px;
     transform: translate(-20px, 10px);
 }
 .shopbtnitemcount{
