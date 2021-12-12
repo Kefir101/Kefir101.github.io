@@ -60,19 +60,18 @@
   let upgradePrices = [100, 500, 1000, 5000, 11000, 120000];
   let upgradeIDs = [0, 1, 7, 8, 10, 16];
   let upgradeDescriptions = ["The mouse and cursors are twice as efficient.", "The mouse and cursors are twice as efficient.",
-                            "Grandmas are twice as efficient.", "Grandmas are twice as efficient.", "Farms are twice as efficient.", "Mines are twice as efficient."]
+                            "Grandmas are twice as efficient.", "Grandmas are twice as efficient.", "Farms are twice as efficient.", "Mines are twice as efficient."];
+  let upgradesUnlocked = 0;
+  let upgradesUnlockedArr = Array(upgradeIDs.length).fill(false);
+  let upgradesBoughtArr = Array(upgradeIDs.length).fill(false);
 
   for (let i = 0; i < buildingsUnlocked; i++) {
     newUnlock = true;
     unlockBuilding(i);
   }
-  for (let i = 0; i < upgrades.length; i++) {
-    unlockUpgrade(i);
-  }
   var startedClicking = false;
-  var cookies = 0;
-  var sec = 0;
-  var mouseX, mouseY;
+  var cookies = document.getElementById("cookieCount").innerHTML.split(" ")[0];
+  var sec, mouseX, mouseY;
   everyMillisecond();
   everySecond();
   function changeBakeryName(){
@@ -120,10 +119,14 @@
     let price = buildingPrices[i];
     let Name = name.substring(0, 1).toUpperCase() + name.substring(1);
     let buildingcount = name + "count";
-
-    let inCookieDiv = document.createElement("div");
-    inCookieDiv.id = name + "s";
-    document.getElementById("buildingsInCookie").append(inCookieDiv);
+    let inCookieDiv;
+    if(i == 0){
+      inCookieDiv = document.getElementById("cursors");
+    }else{
+      inCookieDiv = document.createElement("div");
+      inCookieDiv.id = name + "s";
+      document.getElementById("buildingsInCookie").append(inCookieDiv);
+    }
 
     let numberOfBuildings = document.getElementById(name + "s").childElementCount;
     let mainDivID = "buy" + Name + "s";
@@ -249,7 +252,7 @@
       document.getElementById(name + "shopbtnownedinfo").innerHTML = "[owned : " + numberOfBuildings + "]";
       if(buildingsFullyUnlocked > i){
         document.getElementById(name + "shopbtnsinglecpsinfo").innerHTML = "each " + name + " produces " + "<big><b class = 'cookienumber'>" + buildingCookiePerSecond[i] + "</b></big> cookies per second";
-        document.getElementById(name + "shopbtntotalcpsinfo").innerHTML = numberOfBuildings + " " + name + "(s) producing " + "<big><b class = 'cookienumber'>" + buildingCookiePerSecond[i] * numberOfBuildings + "</b></big> cookies per second";
+        document.getElementById(name + "shopbtntotalcpsinfo").innerHTML = numberOfBuildings + " " + name + "(s) producing " + "<big><b class = 'cookienumber'>" + (Math.round(buildingCookiePerSecond[i] * numberOfBuildings * 10) / 10) + "</b></big> cookies per second";
         document.getElementById(name + "shopbtncookiesproducedinfo").innerHTML = "<big><b class = 'cookienumber'>" + buildingCookiesProduced[i] + "</b></big> cookies produced so far";
       }
       if(cookies >= cost && !buildingsUnlockedArr[i+2]) {
@@ -284,10 +287,43 @@
 
       }
     });
+    for (let i = 0; i < upgrades.length; i++) {
+      let unlock = false;
+      switch(i){
+        case 0:
+          if(document.getElementById("cursors").childElementCount == 1) unlock = true;
+          break;
+        case 1:
+          if(document.getElementById("cursors").childElementCount == 1) unlock = true;
+          break;
+        case 2:
+          if(document.getElementById("grandmas").childElementCount == 1) unlock = true;
+          break;
+        case 3:
+          if(document.getElementById("grandmas").childElementCount == 5) unlock = true;
+          break;
+        case 4:
+          if(document.getElementById("farms").childElementCount == 1) unlock = true;
+          break;
+        case 5:
+          if(document.getElementById("mines").childElementCount == 1) unlock = true;
+          break;
+      }  
+      if(unlock){
+        unlockUpgrade(i);
+      }
+    }
     upgradeIDs.forEach((upgradeID, i) => {
-      let priceTag = document.getElementById("upgrade" + upgradeID + "itemprice");
-      if(cookies >= upgradePrices[i]) priceTag.style.color = "green";
-      else priceTag.style.color = "red";
+      if(upgradesUnlockedArr[i] && !upgradesBoughtArr[i]){
+        let priceTag = document.getElementById("upgrade" + upgradeID + "itemprice");
+        if(cookies >= upgradePrices[i]) priceTag.style.color = "green";
+        else priceTag.style.color = "red";
+
+        var nodes = Array.prototype.slice.call(document.getElementById("buyupgrades").children), ref = document.getElementById("UPGRADE" + upgradeID);
+        let divIndex = nodes.indexOf(ref);
+        console.log(divIndex);
+        document.getElementById("upgrade" + upgradeID + "info").style.transform = `translate(-${420 + (divIndex % 5)*60}px, -56px)`;
+      }
     });
     setTimeout("everyMillisecond()",  1);
   }
@@ -373,9 +409,9 @@
     let index = upgradeIDs.indexOf(upgradeID);
     if(index != -1){
       changeCookie(-upgradePrices[index]);
-      upgradeIDs.splice(index, 1);
-      upgrades.splice(index, 1);
-      upgradePrices.splice(index, 1);
+      // upgradeIDs.splice(index, 1);
+      // upgrades.splice(index, 1);
+      // upgradePrices.splice(index, 1);
     }else return;
     switch(upgradeID){
       case 0:
@@ -397,14 +433,17 @@
         break;
       case 16:
         buildingCookiePerSecond[3] *= 2;  
-    }
+    }    
+    upgradesBoughtArr[index] = true;
   }
   function unlockUpgrade(i){
+    if(upgradesUnlockedArr[i]) return;
     let upgradeName = upgrades[i];
     let upgradePrice = upgradePrices[i];
     let upgradeID = upgradeIDs[i];
     let upgradeImageSrc = "/cookieclickerimg/Upgrade" + upgradeID + ".png";
     let upgradeDiv = document.createElement("div");
+    upgradeDiv.id = "UPGRADE" + upgradeID;
     upgradeDiv.classList.add("shopupgrade");
     document.getElementById("buyupgrades").append(upgradeDiv);
     
@@ -432,6 +471,12 @@
     upgradeButton.append(upgradeImage);
 
     let infoID = "upgrade" + upgradeID;
+
+    let upgradesBoughtBefore = 0;
+    for(let j = 0; j < i; j++){
+      if(upgradesBoughtArr[j]) upgradesBoughtBefore++;
+    }
+
     let infoDiv = buildElement("infoDiv", "div", infoID + "info", "pointer-events: none; position: absolute; width: 400px; height: 135px; background-color: black; " + 
     `border: 3px solid transparent; border-image: url(/cookieclickerimg/FrameBorder.png) 3 round; border-radius: 2px; transform: translate(-${420 + (i % 5)*60}px, -56px); visibility: hidden; color: grey;`,
      "upgradeinfo", upgradeDiv);
@@ -462,6 +507,9 @@
 
     let clickToPurchaseInfo = buildElement("clickToPurchaseInfo", "p", infoID + "clicktopurchaseinfo", "font-size: 12px; transform: translate(0px, -115px); text-align: center;",
      "upgradeclicktopurchaseinfo", infoDiv, "Click to purchase.");
+    
+    upgradesUnlocked++;
+    upgradesUnlockedArr[i] = true;
   }
   function showUpgradeInfo(upgradeID){
     document.getElementById("upgrade" + upgradeID + "info").style.visibility = "visible";
