@@ -1,9 +1,12 @@
+const fallbackColor = '#9ACDE0';
 var bgcolor = localStorage.bgcolor || fallbackColor;
 document.body.style.backgroundColor = localStorage.bgcolor || '#ffffff'
 
 window.onload = function () {
-  let navID = window.location.pathname.split("/")[1] + ".html";
-  if (navID != "main.html" && navID != "cookieclicker.html" && navID != "mothersday.html") document.getElementById(navID).style.backgroundColor = "#555";
+  let navID = window.location.pathname.split("/")[1];
+  if (navID != "main" && navID != "cookieclicker" && navID != "mothersday") {
+    document.getElementById(navID).style.backgroundColor = "#555";
+  }
 };
 
 function checkInput() {

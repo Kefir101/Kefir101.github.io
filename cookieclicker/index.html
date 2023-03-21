@@ -297,16 +297,16 @@
           if(document.getElementById("cursors").childElementCount == 1) unlock = true;
           break;
         case 2:
-          if(document.getElementById("grandmas").childElementCount == 1) unlock = true;
+          if(document.getElementById("grandmas") != null && document.getElementById("grandmas").childElementCount == 1) unlock = true;
           break;
         case 3:
-          if(document.getElementById("grandmas").childElementCount == 5) unlock = true;
+          if(document.getElementById("grandmas") != null && document.getElementById("grandmas").childElementCount == 5) unlock = true;
           break;
         case 4:
-          if(document.getElementById("farms").childElementCount == 1) unlock = true;
+          if(document.getElementById("farms") != null && document.getElementById("farms").childElementCount == 1) unlock = true;
           break;
         case 5:
-          if(document.getElementById("mines").childElementCount == 1) unlock = true;
+          if(document.getElementById("mines") != null && document.getElementById("mines").childElementCount == 1) unlock = true;
           break;
       }  
       if(unlock){

@@ -243,7 +243,7 @@ h1.gae {
 
 #allprojects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   /* grid-auto-rows: minmax(40px, auto); */
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
@@ -269,7 +269,7 @@ h1.gae {
   text-align: left;
   text-decoration: none;
   font-size: 50px;
-  grid-column: 1 / 4;
+  grid-column: 1 / 5;
 }
 
 #gameimage {

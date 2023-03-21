@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+}
+/* canvas {
+    image-rendering: optimizeSpeed;
+    image-rendering: pixelated;
+} */
+#functioninput{
+    position: absolute;
+    top: 100;
+    left: 50;
+    width: 200px;
+    height: 30px;
+    font-size: 28px;
+}
