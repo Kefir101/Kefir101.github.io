@@ -49,7 +49,7 @@
     "Full of precious, ancient chocolate."];
   let cookiesPerClick = 1;
   let buildingPrices = [15, 100, 1100, 12000, 130000, 1400000, 20000000];
-  let buildingCookiePerSecond = [0.1, 1, 8, 47, 260, 1400, 7800, 44000];
+  let buildingCookiePerSecond = [0.1, 1, 8, 47, 260, 1400, 7800];
   let buildingCookiesProduced = Array(buildings.length).fill(0);
   let newUnlock = false;
   let buildingsUnlocked = 2, buildingsFullyUnlocked = 0;
@@ -117,6 +117,7 @@
     if(!newUnlock) return;
     let name = buildings[i];
     let price = buildingPrices[i];
+    console.log(name, i)
     let Name = name.substring(0, 1).toUpperCase() + name.substring(1);
     let buildingcount = name + "count";
     let inCookieDiv;
@@ -255,12 +256,14 @@
         document.getElementById(name + "shopbtntotalcpsinfo").innerHTML = numberOfBuildings + " " + name + "(s) producing " + "<big><b class = 'cookienumber'>" + (Math.round(buildingCookiePerSecond[i] * numberOfBuildings * 10) / 10) + "</b></big> cookies per second";
         document.getElementById(name + "shopbtncookiesproducedinfo").innerHTML = "<big><b class = 'cookienumber'>" + buildingCookiesProduced[i] + "</b></big> cookies produced so far";
       }
-      if(cookies >= cost && !buildingsUnlockedArr[i+2]) {
+      if(cookies >= cost && buildingsUnlocked == i+2) {
         newUnlock = true;
         buildingsUnlocked++;
         buildingsFullyUnlocked++;
-        unlockBuilding(buildingsUnlocked - 1)
-        buildingsUnlockedArr[i+2] = true;
+        if(i < buildings.length - 2){
+          unlockBuilding(buildingsUnlocked - 1)
+          buildingsUnlockedArr[i+2] = true;
+        }
         document.getElementById(name + "shopbtnitemname").innerHTML = Name;
         document.getElementById(name + "shopbtnicon").style.filter = "brightness(1)";
         document.getElementById(name + "shopbtninfo").style.height = "170px";
@@ -284,7 +287,6 @@
        
      let cookiesProducedInfo = buildElement("cookiesProducedInfo", "li", name + "shopbtncookiesproducedinfo", "transform: translate(0px, 0px);",
      "shopbtncookiesproducedinfo " + name, statsInfoList, "<big><b class = 'cookienumber'>" + buildingCookiesProduced[i] + "</b></big> cookies produced so far", "");
-
       }
     });
     for (let i = 0; i < upgrades.length; i++) {
@@ -321,7 +323,6 @@
 
         var nodes = Array.prototype.slice.call(document.getElementById("buyupgrades").children), ref = document.getElementById("UPGRADE" + upgradeID);
         let divIndex = nodes.indexOf(ref);
-        console.log(divIndex);
         document.getElementById("upgrade" + upgradeID + "info").style.transform = `translate(-${420 + (divIndex % 5)*60}px, -56px)`;
       }
     });
@@ -329,10 +330,16 @@
   }
   function everySecond() {
     if (startedClicking) {
+      console.log(buildingsUnlocked)
+      console.log(buildingsFullyUnlocked)
       sec++;
       getCookiesFromBuildings();
-      let cps = Math.round((cookies - cookiesInPreviousSecond) * 10) / 10;
-      if(cps < 0) cps = 0;
+      let cps = 0;
+      buildings.forEach((name, i) => {
+        if(i >= buildingsUnlocked) return;
+        let numberOfBuildings = document.getElementById(name + "s").childElementCount;
+        cps += buildingCookiePerSecond[i]*numberOfBuildings;
+      });
       cookiesPerSecond.innerHTML = "per second: " + cps;
       cookiesInPreviousSecond = cookies;
 

@@ -5,7 +5,7 @@ document.body.style.backgroundColor = localStorage.bgcolor || '#ffffff'
 window.onload = function () {
   let navID = window.location.pathname.split("/")[1];
   if (navID != "main" && navID != "cookieclicker" && navID != "mothersday") {
-    document.getElementById(navID).style.backgroundColor = "#555";
+    // document.getElementById(navID).style.backgroundColor = "#555";
   }
 };
 
