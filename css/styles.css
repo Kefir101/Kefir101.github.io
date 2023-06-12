@@ -242,9 +242,7 @@ h1.gae {
 
 #allprojects {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  /* grid-auto-rows: minmax(40px, auto); */
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(5, minmax(300px, 20%));
   grid-gap: 10px;
   margin: 0 auto;
   position: relative;
@@ -252,10 +250,10 @@ h1.gae {
 
 #allprojects a {
   background-color: #3bbced;
-  padding: 30px;
-  text-align: left;
+  padding-block: 24px;
+  text-align: center;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 3.5vh;
 }
 
 #allprojects a:nth-child(even) {
@@ -267,14 +265,11 @@ h1.gae {
   padding: 20px;
   text-align: left;
   text-decoration: none;
-  font-size: 50px;
   grid-column: 1 / 5;
 }
-
-#gameimage {
-  width: auto;
-  height: 140px;
-  margin-left: 35px;
+#allprojects a img {
+  height: max(100px, 17vh);
+  padding: 5px;
 }
 
 #grid {
@@ -342,7 +337,7 @@ input:checked+#allprojects #grid {
     grid-area: vercel;
   }
   #moreinfo {
-    font-size: 15px;
+    font-size: 20px;
   }
 }
 
